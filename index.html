@@ -1697,8 +1697,8 @@ const StudyExperience=(()=>{
    $$('[data-study-block]').forEach(block=>{
      const id=block.id,n=+block.closest('[data-lesson]').dataset.lesson,excerpt=block.textContent.trim().slice(0,140);
      const tools=make('span','paragraph-tools'),panel=make('span','paragraph-note');panel.hidden=true;
-     const bookmark=btn('Yer imi',()=>{if(state.bookmarks[id])delete state.bookmarks[id];else state.bookmarks[id]={lesson:n,excerpt};bookmark.setAttribute('aria-pressed',String(!!state.bookmarks[id]));block.classList.toggle('is-bookmarked',!!state.bookmarks[id]);persist();renderReview();},'paragraph-button');
-     bookmark.setAttribute('aria-label','Paragrafa yer imi ekle / kaldır');bookmark.setAttribute('aria-pressed',String(!!state.bookmarks[id]));block.classList.toggle('is-bookmarked',!!state.bookmarks[id]);
+     const bookmark=btn(state.bookmarks[id]?'Kaydedildi':'Kaydet',()=>{if(state.bookmarks[id])delete state.bookmarks[id];else state.bookmarks[id]={lesson:n,excerpt};bookmark.textContent=state.bookmarks[id]?'Kaydedildi':'Kaydet';bookmark.setAttribute('aria-pressed',String(!!state.bookmarks[id]));block.classList.toggle('is-bookmarked',!!state.bookmarks[id]);persist();renderReview();},'paragraph-button');
+     bookmark.setAttribute('aria-label','Paragrafı kaydet / kayıttan kaldır');bookmark.setAttribute('aria-pressed',String(!!state.bookmarks[id]));block.classList.toggle('is-bookmarked',!!state.bookmarks[id]);
      const noteButton=btn(state.blockNotes[id]?'Notu aç':'Not ekle',()=>{panel.hidden=!panel.hidden;noteButton.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden)area.focus();},'paragraph-button');noteButton.setAttribute('aria-expanded','false');
      const label=make('label','','Bu paragrafa notum');label.htmlFor='note-'+id;const area=make('textarea');area.id=label.htmlFor;area.rows=3;area.maxLength=6000;area.value=state.blockNotes[id]||'';area.oninput=()=>{state.blockNotes[id]=area.value;noteButton.textContent=area.value?'Notu aç':'Not ekle';persist();};panel.append(label);panel.append(area);tools.append(bookmark);tools.append(noteButton);block.append(tools);block.append(panel);
    });
@@ -1706,9 +1706,9 @@ const StudyExperience=(()=>{
      const list=make('ul','review-items');let count=0;
      for(let n=1;n<=18;n++){const f=state.flags[n],r=state.quizResults[n];if(!f?.repeat&&!f?.confused&&!(r?.checked&&r.score<3))continue;count++;const li=make('li'),a=make('a');a.href='#'+cards[n-1].querySelector('h3').id;a.textContent=cards[n-1].querySelector('h3').textContent;li.append(a);li.append(make('small','',[f?.confused?'Anlamadım':'',f?.repeat?'Tekrar et':'',r?.checked?r.score+'/3 test':''].filter(Boolean).join(' · ')));list.append(li);}
      panel.append(list);if(!count)panel.append(make('p','','İşaretlediğin veya testte eksik yaptığın dersler burada görünür.'));
-     panel.append(make('h4','','Yer imlerim ve paragraf notlarım'));const marks=make('ul','review-items');let marked=0;
+     panel.append(make('h4','','Kaydettiklerim ve paragraf notlarım'));const marks=make('ul','review-items');let marked=0;
      const ids=new Set([...Object.keys(state.bookmarks),...Object.keys(state.blockNotes).filter(k=>state.blockNotes[k])]);
-     ids.forEach(id=>{const target=document.getElementById(id);if(!target)return;marked++;const li=make('li'),a=make('a');a.href='#'+id;a.textContent=state.bookmarks[id]?.excerpt||target.textContent.slice(0,100);li.append(a);if(state.blockNotes[id])li.append(make('small','',state.blockNotes[id].slice(0,180)));marks.append(li);});panel.append(marks);if(!marked)panel.append(make('p','','Paragraf altındaki Yer imi ve Not ekle düğmelerini kullan.'));
+     ids.forEach(id=>{const target=document.getElementById(id);if(!target)return;marked++;const li=make('li'),a=make('a');a.href='#'+id;a.textContent=state.bookmarks[id]?.excerpt||target.textContent.slice(0,100);li.append(a);if(state.blockNotes[id])li.append(make('small','',state.blockNotes[id].slice(0,180)));marks.append(li);});panel.append(marks);if(!marked)panel.append(make('p','','Paragraf altındaki Kaydet ve Not ekle düğmelerini kullan.'));
    }
    $('#open-review').onclick=()=>{$('#review-panel').hidden=!$('#review-panel').hidden;renderReview();};renderReview();
 
