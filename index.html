@@ -1817,7 +1817,7 @@ if(typeof document!=='undefined') (()=>{
   const parallel=$('[data-demo="parallel"]');
   if(parallel){
     const seq=[['T1','T2','T1','T2','T1','T2'],['T1','T1','T1','—','—','—'],['T2','T2','T2','—','—','—']];
-    parallel.innerHTML=demoShell('Sırayla ilerlemek ve aynı anda çalışmak','<div class="timeline">'+seq.map((row,i)=>'<div class="lane"><span class="lane-label">'+['TEK CPU','ÇEKİRDEK 1','ÇEKİRDEK 2'][i]+'</span><div class="ticks">'+row.map((t,j)=>'<span class="tick '+(t==='T2'?'teal':'')+'" data-tick="'+j+'">'+t+'</span>').join('')+'</div>').join('')+'<div class="time-axis">ZAMAN → · her kutu aynı süreyi temsil eder</div></div>');
+    parallel.innerHTML=demoShell('Sırayla ilerlemek ve aynı anda çalışmak','<div class="timeline">'+seq.map((row,i)=>'<div class="lane"><span class="lane-label">'+['TEK CPU','ÇEKİRDEK 1','ÇEKİRDEK 2'][i]+'</span><div class="ticks">'+row.map((t,j)=>'<span class="tick '+(t==='T2'?'teal':'')+'" data-tick="'+j+'">'+t+'</span>').join('')+'</div></div>').join('')+'<div class="time-axis">ZAMAN → · her kutu aynı süreyi temsil eder</div></div>');
     const frames=Array.from({length:7},(_,i)=>({title:i===0?'İki işin de üç zaman birimi hesabı var.':i===3?'İki çekirdekte işler bitti; tek CPU’da işler sürüyor.':i===6?'Tek CPU da işleri tamamladı.':'Zaman birimi '+i,note:i>=3?'Üst satır: tek CPU iş değiştirir. Alt iki satır: T1 ve T2 gerçekten aynı anda ilerler. Süreler öğretici varsayımdır; her programda 2 kat hız garanti değildir.':'Concurrency tek çekirdekte mümkündür. Paralellikte ayrı yürütme kaynakları aynı anda çalışır.'}));
     controller(parallel,frames,(_,i)=>parallel.querySelectorAll('[data-tick]').forEach(n=>n.classList.toggle('revealed',+n.dataset.tick<i)));
   }
