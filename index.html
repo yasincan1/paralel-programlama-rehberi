@@ -2013,7 +2013,7 @@ if(typeof document!=='undefined') (()=>{
   $('#resume').onclick=()=>{if(!restore(state.checkpoint))document.querySelector('[data-lesson="1"] h3').scrollIntoView({behavior:'smooth',block:'start'});};
   function scrollUpdate(){
     const max=document.documentElement.scrollHeight-innerHeight;$('#reading-fill').style.width=(max>0?scrollY/max*100:0)+'%';
-    let current=headings[0];for(const h of headings){if(h.closest('[hidden]'))continue;if(h.getBoundingClientRect().top<145)current=h;else break;}
+    let current=headings.find(h=>!h.closest('[hidden]'));for(const h of headings){if(h.closest('[hidden]'))continue;if(h.getBoundingClientRect().top<145)current=h;else break;}
     const id=current?.id;$$('[data-nav]').forEach(a=>{const active=a.dataset.nav===id;a.classList.toggle('active',active);active?a.setAttribute('aria-current','location'):a.removeAttribute('aria-current');});
     scrollPending=false;
   }
@@ -2024,7 +2024,7 @@ if(typeof document!=='undefined') (()=>{
   if(document.readyState==='complete')initPosition();else addEventListener('load',initPosition,{once:true});
   $('#export-state').onclick=()=>{capture();const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='paralel-calisma-yedegi.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('İlerleme yedeği indirildi.');};
   $('#import-state').onclick=()=>$('#import-file').click();
-  $('#import-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>100000)throw Error();const data=JSON.parse(await file.text());if(![2,3].includes(data.version)||!Array.isArray(data.completed))throw Error();state.completed=data.completed.map(String).filter(n=>+n>=1&&+n<=18);if(data.checkpoint&&document.getElementById(data.checkpoint.id))state.checkpoint={id:data.checkpoint.id,offset:Math.max(-140,Number(data.checkpoint.offset)||0),savedAt:Date.now()};progress();persist();resumeUI();toast('İlerlemen yedekten geri yüklendi.');ux.importExtra(data);}catch{toast('Geçerli bir Paralel çalışma yedeği seç.');}e.target.value='';};
+  $('#import-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>10000000)throw Error();const data=JSON.parse(await file.text());if(![2,3].includes(data.version)||!Array.isArray(data.completed))throw Error();state.completed=data.completed.map(String).filter(n=>+n>=1&&+n<=18);if(data.checkpoint&&document.getElementById(data.checkpoint.id))state.checkpoint={id:data.checkpoint.id,offset:Math.max(-140,Number(data.checkpoint.offset)||0),savedAt:Date.now()};progress();persist();resumeUI();toast('İlerlemen yedekten geri yüklendi.');ux.importExtra(data);}catch{toast('Geçerli bir Paralel çalışma yedeği seç.');}e.target.value='';};
   const search=$('#search'),results=$('#results');
   const index=headings.map(h=>{let texts=[],n=h.nextElementSibling;while(n&&!/^H[23]$/.test(n.tagName)){texts.push(n.textContent);n=n.nextElementSibling;}if(h.closest('.lesson-card'))texts=[h.closest('.lesson-card').querySelector('.lesson-body').textContent];return{id:h.id,title:h.textContent,text:texts.join(' ').replace(/\s+/g,' ')};});
   const norm=s=>s.toLocaleLowerCase('tr');
