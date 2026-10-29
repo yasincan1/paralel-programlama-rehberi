@@ -643,43 +643,58 @@ signal(S): S = S + 1; S &lt;= 0 ise kuyruktan bir bekleyeni uyandır
 </ol>
 </div><div class="demo" data-demo="array"></div><div class="lesson-end"><button class="complete" data-complete="10" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div></section><section class="lesson-card" data-lesson="11"><div class="lesson-head"><span class="lesson-number">11</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-17">Ders 11 — User/kernel thread, eşleme ve kütüphaneler</h3></div></div><div class="lesson-body">
 <ol>
-<li data-study-block id="p-11-77"><strong>Konu:</strong> Thread&#39;i kim yönetir, CPU&#39;ya kim görünür? (K05, K06, K15, K24)</li>
-<li data-study-block id="p-11-78"><strong>Basit açıklama:</strong> Kullanıcı düzeyindeki kütüphane thread&#39;leri kendi içinde yönetebilir. Kernel thread&#39;lerini OS zamanlayıcısı bilir. Bir API&#39;nin adını bilmek, onun mutlaka many-to-one kullandığını göstermez; <strong>programlama arayüzü ile uygulama modeli farklı şeylerdir</strong>.</li>
-<li data-study-block id="p-11-79"><strong>Terimler:</strong> User-level thread (ULT) = kullanıcı düzeyi thread; kernel-level thread (KLT) = çekirdek düzeyi thread; thread library = thread kütüphanesi; many-to-one = çoktan bire; one-to-one = bire bir; many-to-many = çoktan çoğa; hybrid = karma model; POSIX/Pthreads = POSIX thread arayüzü; JVM = Java sanal makinesi.</li>
-<li data-study-block id="p-11-80"><strong>Örnek:</strong> Many-to-one&#39;da 5 kullanıcı akışı tek kernel akışına bağlanır. İşletim sistemi bunları 5 ayrı kernel thread gibi zamanlayamaz. One-to-one&#39;da her birine ayrı kernel thread karşılık gelir.</li>
-<li data-study-block id="p-11-81"><strong>Sınav noktaları:</strong></li>
+<li data-study-block id="p-11-77"><strong>Bu derste neyi öğreniyoruz?</strong> Bir programın içindeki iş parçacıkları CPU&#39;ya nasıl ulaşır? Many-to-one, one-to-one ve many-to-many bu bağlantının adlarıdır. (K05, K06, K15, K24)</li>
+</ol>
+<p data-study-block id="p-11-78"><strong>Önce thread neydi?</strong> Thread, programın içinde ilerleyen bir iş akışıdır. Bir fotoğraf uygulaması düşün: bir iş akışı fotoğrafı filtreliyor, diğeri dosyaya kaydediyor, üçüncüsü ekrandaki düğmelere cevap veriyor. Bunlara U1, U2, U3 diyeceğiz. Üç iş akışının bulunması, üçünün aynı anda CPU&#39;da çalıştığını tek başına göstermez.</p>
+<ol start="2">
+<li data-study-block id="p-11-79"><strong>İki katmanı ayıralım.</strong> Kullanıcı düzeyi thread&#39;i (user-level thread, ULT), programın çalışma zamanı veya thread kütüphanesi tarafından yönetilen iş akışıdır. Buradaki “kullanıcı”, bilgisayarı kullanan kişi değildir; programın çalıştığı kullanıcı alanını anlatır. Kernel, işletim sisteminin çekirdeğidir. Kernel düzeyi thread (kernel-level thread, KLT), işletim sisteminin CPU zamanı verebildiği yürütme akışıdır. Bunlara K1, K2, K3 diyeceğiz. <strong>K1 bir CPU çekirdeği değildir.</strong> İşletim sistemi K1&#39;i uygun bir CPU çekirdeğinde çalıştırabilir, daha sonra başka çekirdeğe taşıyabilir.</li>
+</ol>
+<p data-study-block id="p-11-80"><strong>Eşleme ne demek?</strong> U1 işinin hangi K üzerinden yürütüleceğini belirleyen bağlantıdır: <strong>kullanıcı thread&#39;i → kernel thread&#39;i → CPU çekirdeği</strong>. İlk bağlantıyı çalışma zamanı/kütüphane düzenler; CPU zamanını işletim sistemi verir. Many-to-one adında soldaki sözcük U tarafını, sağdaki K tarafını anlatır. Many = çok, one = bir.</p>
+<ol start="3">
+<li data-study-block id="p-11-81"><p data-study-block id="p-11-82"><strong>Many-to-one: çok iş akışı, tek kernel thread.</strong> Örnek bağlantı: <strong>U1, U2, U3 → K1</strong>. Üçü de aynı K1 üzerinden yürür. Kütüphane önce U1&#39;e, sonra U2&#39;ye, sonra U3&#39;e sıra verebilir; işler dönüşümlü ilerler. Fakat aynı anda yalnızca biri CPU&#39;da çalışabilir. Bilgisayarda 8 çekirdek olsa bile bu üç iş tek K1 üzerinden 3 çekirdeğe aynı anda dağıtılamaz. Saf modelde U1, K1&#39;i beklemeye sokan bir sistem çağrısı yaparsa U2 ve U3 de ilerleyemez. Avantajı, kullanıcı thread&#39;leri arasındaki geçişin kernel&#39;e başvurmadan yapılabilmesidir.</p>
+</li>
+<li data-study-block id="p-11-83"><p data-study-block id="p-11-84"><strong>One-to-one: her iş akışına ayrı kernel thread.</strong> Bağlantılar <strong>U1 → K1, U2 → K2, U3 → K3</strong> şeklindedir. Üç uygun CPU çekirdeği ve çalışmaya hazır üç iş varsa işletim sistemi bunları aynı anda çalıştırabilir. K1 dosya beklerken K2 ve K3 çalışmaya devam edebilir. Ama bilgisayarda yalnızca bir çekirdek varsa yine sırayla CPU kullanırlar. <strong>Ayrı KLT paralellik imkânı sağlar; aynı anda çalışmayı garanti etmez.</strong> Her kullanıcı thread&#39;i için ayrı KLT yönetmek de kaynak ve yönetim maliyeti getirir.</p>
+</li>
+<li data-study-block id="p-11-85"><p data-study-block id="p-11-86"><strong>Many-to-many: çok iş akışı, birden fazla kernel thread.</strong> Örneğin <strong>6 ULT → 2 KLT</strong> olsun. Kütüphane altı işi iki KLT üzerinde sırayla yürütür; her işin ömür boyu aynı K&#39;ye bağlı kalması gerekmez. En az iki uygun çekirdek varsa bu gruptan aynı anda en fazla iki iş CPU&#39;da yürüyebilir. KLT&#39;lerden biri bloklanırsa diğeri çalışmaya devam edebilir; ikisi de bloklanırsa grup bekler. Yönetimi önceki modellere göre daha karmaşıktır. Hybrid/karma veya iki düzeyli model, bu yapının bazı kullanıcı thread&#39;lerini belirli bir KLT&#39;ye ayrıca bağlayabilen çeşidini anlatabilir.</p>
+</li>
 </ol>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
 <thead>
 <tr>
 <th>Model</th>
-<th>Eşleme</th>
-<th>Çok çekirdekte bu akışların paralelliği</th>
-<th>Bloklanma etkisi</th>
+<th>Bağlantıyı oku</th>
+<th>8 ULT ve 4 kullanılabilir çekirdekte aynı anda çalışma üst sınırı</th>
+<th>Bir KLT bloklanırsa</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>Many-to-one</td>
-<td>Birçok ULT → 1 KLT</td>
-<td>Tek KLT nedeniyle bu grup aynı anda bir yürütme bağlamıyla sınırlı</td>
-<td>Bloklayan sistem çağrısı bütün grubu durdurabilir</td>
+<td>8 kullanıcı thread&#39;i → 1 kernel thread</td>
+<td>1 iş</td>
+<td>Bu grubun tek yürütme yolu bekler</td>
 </tr>
 <tr>
 <td>One-to-one</td>
-<td>Her ULT → ayrı KLT</td>
-<td>OS uygun çekirdeklerde paralel çalıştırabilir</td>
-<td>Birinin bloklanması diğerlerini zorunlu durdurmaz</td>
+<td>8 kullanıcı thread&#39;i → 8 kernel thread</td>
+<td>4 iş</td>
+<td>Diğer KLT&#39;ler çalışabilir</td>
 </tr>
 <tr>
 <td>Many-to-many</td>
-<td>Birçok ULT → birden fazla KLT</td>
-<td>KLT sayısı ölçüsünde paralellik mümkün</td>
-<td>Diğer KLT&#39;ler ilerleyebilir; yönetim daha karmaşık</td>
+<td>Örnek: 8 kullanıcı thread&#39;i → 2 kernel thread</td>
+<td>2 iş</td>
+<td>Diğer KLT çalışabilir</td>
 </tr>
 </tbody></table></div>
-<p data-study-block id="p-11-82">Saf ULT avantajı: thread geçişi için kernel moduna geçmek gerekmeyebilir; uygulamaya özgü zamanlama mümkündür. Saf many-to-one dezavantajı: bloklayan çağrı ve tek KLT sınırı. KLT avantajı: OS ayrı thread&#39;leri zamanlar; bloklanana rağmen diğerlerini çalıştırabilir. Maliyeti: kernel yönetimi ve çok sayıda thread&#39;in ek yükü. Modern OS&#39;lerde thread desteği vardır; “tüm OS&#39;ler POSIX çalıştırır” doğru değildir. Windows thread API&#39;si, POSIX Pthreads, Java thread API&#39;si ayrı arayüzlerdir. Java API&#39;si JVM üzerinden çalışır; bunun eşlemesi çalışma zamanı ve kullanılan thread türüne bağlıdır. Pthreads adı tek başına ULT uygulaması demek değildir. Nottaki “Linux&#39;ta ayrım yok” ifadesi ortak task altyapısını anlatır; adres alanı/kaynak paylaşımı bakımından process–thread farkını silmez.
-6. <strong>Hatırlama:</strong> Eşlemenin <strong>sağ tarafı kernel&#39;e görünür</strong>; paralel çalışabilecek bağlamları düşünürken sağ tarafı say.
-7. <strong>Örnek soru ve çözüm:</strong> “8 ULT, 1 KLT ve 8 çekirdek var; sekizi aynı anda çalışır mı?” <strong>Hayır.</strong> Tek kernel yürütme bağlamı bu kullanıcı thread&#39;lerini sekiz çekirdeğe aynı anda dağıtamaz. “Bir bloklanan thread herkesi durdurur” sonucu her modele değil, burada anlatılan saf many-to-one modele aittir.</p>
+<p data-study-block id="p-11-87">Bu sayılar, işlerin hazır olduğu ve çekirdeklerin bu işlere ayrılabildiği örneğin üst sınırlarıdır. Gerçek hızlanma; işlerin birbirini beklemesine, kilitlere ve diğer programlara da bağlıdır.</p>
+<ol start="6">
+<li data-study-block id="p-11-88"><p data-study-block id="p-11-89"><strong>Pthreads, Windows API ve Java bu resmin neresinde?</strong> Bunlar programcının thread oluşturmak ve yönetmek için kullandığı arayüzlerdir. Thread kütüphanesi bu işlemleri sunar; JVM, Java programını çalıştıran ortamdır. Yalnızca bir arayüzün adını görmek, eşleme modelini kesin söylemeye yetmez. Örneğin “Pthreads kullanıyor” cümlesinden “kesin many-to-one” sonucu çıkarma. Java&#39;da da çalışma zamanı ve thread türü önemlidir. “Linux&#39;ta process ve thread ayrımı yok” sözü ortak task altyapısıyla ilgilidir; aynı kaynakları paylaşmaları bakımından process ve thread tamamen aynı şey değildir. Her işletim sisteminin POSIX arayüzünü desteklediğini de varsayma.</p>
+</li>
+<li data-study-block id="p-11-90"><p data-study-block id="p-11-91"><strong>Bir soruyu birlikte çözelim.</strong> “8 ULT, 2 KLT, 4 çekirdek: aynı anda en fazla kaç kullanıcı işi CPU&#39;da çalışabilir?” Önce KLT sayısına bak: 2. Sonra çekirdek sayısına bak: 4. İki yürütme akışını aynı anda çalıştıracak çekirdek var, fakat dört işi taşıyacak dört KLT yok. <strong>Cevap en fazla 2.</strong> Bu, altı işin hiç çalışmayacağı anlamına gelmez; onlara daha sonra sıra gelebilir. Burada aynı anda çalışmayı sayıyoruz.</p>
+</li>
+</ol>
+<p data-study-block id="p-11-92"><strong>Kısa tekrar:</strong> Many-to-one = çok U, tek K. One-to-one = her U&#39;ya ayrı K. Many-to-many = çok U, birden fazla K üzerinde paylaştırılır. Soruda “kaç thread var?” ile “aynı anda kaçı çalışabilir?” sorularını ayır. Üç modelin eşleme ve bloklanma farkları için <a href="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads">üniversite ders notu</a>.</p>
+<p data-study-block id="p-11-93"><strong>Animasyonu nasıl okuyacaksın?</strong> Üstteki U kutuları programın işlerini, alttaki K kutuları işletim sisteminin zamanladığı akışları gösterir. Çizgiler bağlantıdır. Önce “Many-to-one” seçeneğinde tek K1&#39;e bak; U1 beklemeye geçtiğinde diğer U&#39;ların neden durduğunu izle. Sonra “One-to-one” seçeneğine geç: ayrı K2 ve K3 sayesinde diğer işlerin ilerleyebildiğini göreceksin. Animasyon bu iki modeli karşılaştırır; many-to-many örneği yukarıdaki tabloda açıklanmıştır.</p>
 </div><div class="demo" data-demo="mapping"></div><div class="lesson-end"><button class="complete" data-complete="11" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div></section><section class="lesson-card" data-lesson="12"><div class="lesson-head"><span class="lesson-number">12</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-18">Ders 12 — Deadlock, livelock, starvation ve öncelik</h3></div></div><div class="lesson-body">
 <ol>
 <li data-study-block id="p-12-83"><strong>Konu:</strong> Birden fazla iş neden ilerleyemez? (K08, K14)</li>
