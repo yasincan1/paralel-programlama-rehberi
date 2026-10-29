@@ -1,0 +1,1671 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Paralel Programlama — Ders Rehberi</title><style>:root{color-scheme:dark;--bg:#0b0b0b;--paper:#151515;--paper2:#1c1c1c;--ink:#f0f0f0;--muted:#a5a5a5;--line:#2d2d2d;--accent:#a5a5a5;--cyan:#c4c4c4;--soft:#1f1f1f;--nav:#202020;--code:#0b0b0b;--side:270px;--text-size:16px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--ink);font:var(--text-size)/1.85 'Segoe UI',system-ui,sans-serif;background-image:radial-gradient(ellipse at 70% 0,#54545412,transparent 50%)}body.light{color-scheme:light;--bg:#f3f3f3;--paper:#ffffff;--paper2:#f6f6f6;--ink:#272727;--muted:#6f6f6f;--line:#e3e3e3;--accent:#626262;--cyan:#686868;--soft:#ebebeb;--nav:#f2f2f2;--code:#161616}button,input,select{font:inherit}a{color:var(--accent);text-underline-offset:4px}button{cursor:pointer;color:inherit;display:inline-flex;align-items:center;justify-content:center;gap:8px}button,a,input{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}svg{width:19px;height:19px;flex-shrink:0}[hidden]{display:none!important}.sidebar{position:fixed;inset:0 auto 0 0;width:var(--side);background:var(--paper);border-right:1px solid var(--line);padding:28px 17px 17px;display:flex;flex-direction:column;z-index:50}.brand{display:flex;align-items:center;gap:13px;padding:0 12px 24px;font-size:25px;font-weight:750;letter-spacing:-1px;line-height:1.1}.brand small{display:block;font-size:8px;letter-spacing:2.9px;font-weight:600;color:var(--muted);margin-top:8px}.brand-logo{width:42px;height:44px;background:linear-gradient(135deg,#8c8c8c,#525252);border-radius:13px;color:#ffffff;display:grid;place-items:center;box-shadow:0 5px 25px #77777735}.brand-logo svg{width:25px;height:25px}.space-label{display:flex;gap:9px;align-items:center;margin:0 10px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;color:var(--muted);font-size:10px}.dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px #c4c4c450;display:inline-block}.nav-scroll{flex:1;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--line) transparent}.nav-label{color:var(--muted);font-size:9px;font-weight:700;letter-spacing:1.6px;padding:18px 12px 7px}.nav-links a{display:flex;gap:11px;align-items:center;padding:10px 12px;margin:2px 0;border-radius:8px;font-size:11px;line-height:1.55;text-decoration:none;color:var(--muted);position:relative;transition:.2s}.nav-links a:hover{background:var(--nav);color:var(--ink)}.nav-links a.active{color:var(--accent);background:var(--soft)}.nav-links a.active:before{content:'';position:absolute;left:0;height:17px;width:3px;border-radius:5px;background:var(--accent)}.nav-links a.done .nav-num{background:var(--soft);color:var(--cyan)}.nav-links svg{width:15px;height:15px}.nav-num{width:25px;height:25px;display:grid;place-items:center;border-radius:7px;background:var(--nav);font-size:9px;flex-shrink:0}.sidebar-foot{margin-top:15px;padding:15px 9px 0;border-top:1px solid var(--line)}.progress-caption{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}.track{height:5px;border-radius:8px;background:var(--nav);margin:10px 0;overflow:hidden}.track span{display:block;height:100%;background:linear-gradient(90deg,#838383,#c4c4c4);width:0;transition:width .35s}.storage-note{font-size:9px;color:var(--muted);display:flex;align-items:center;gap:7px}.workspace{margin-left:var(--side)}.topbar{height:76px;padding:0 38px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}.breadcrumb{font-size:11px;color:var(--muted);margin-right:auto}.breadcrumb b{color:var(--ink);font-weight:600}.search-wrap{position:relative;width:min(310px,36%)}.search-wrap>svg{position:absolute;left:13px;top:12px;color:var(--muted);width:16px;height:16px}.search-wrap input{height:41px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 52px 9px 39px;color:var(--ink);font-size:11px;width:100%}.key{position:absolute;right:9px;top:10px;border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:9px;color:var(--muted);line-height:20px}.icon-btn{height:37px;width:37px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:9px}.icon-btn:hover{color:var(--accent);border-color:var(--accent)}.menu-btn{display:none}.reading-track{position:absolute;bottom:0;left:0;height:2px;width:100%}.reading-track span{display:block;background:linear-gradient(90deg,#838383,#c4c4c4);height:100%;width:0}.main{max-width:1320px;margin:auto;padding:34px 40px 50px}.welcome-line{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-size:11px;color:var(--muted)}.welcome-line b{color:var(--ink);font-weight:600}.live-save{display:flex;gap:7px;align-items:center;font-size:10px}.hero{min-height:355px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;position:relative;overflow:hidden;border:1px solid #4f4f4f80;border-radius:23px;padding:42px;background:radial-gradient(ellipse at 80% 0,#52525268,transparent 65%),linear-gradient(135deg,#1e1e1e,#151515);isolation:isolate;color:#f0f0f0}.hero:before{content:'';position:absolute;inset:0;background-image:linear-gradient(#a5a5a509 1px,transparent 1px),linear-gradient(90deg,#a5a5a509 1px,transparent 1px);background-size:40px 40px;mask-image:linear-gradient(90deg,transparent,#000000);z-index:-1}.hero:after{content:'';position:absolute;width:300px;height:300px;background:#676767;filter:blur(130px);opacity:.15;right:0;bottom:-150px;z-index:-1}.hero-copy{z-index:2}.eyebrow,.overline{font-size:9px;letter-spacing:2px;font-weight:700;color:var(--accent)}.hero .eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #99999935;border-radius:20px;padding:5px 10px;color:#bebebe;background:#a3a3a30b;font-size:8px;letter-spacing:1.5px}.hero h1{font-size:clamp(34px,3.7vw,55px);line-height:1.13;letter-spacing:-2px;margin:19px 0 17px;font-weight:720}.hero h1 span{color:#b5b5b5;background:linear-gradient(100deg,#c0c0c0,#cccccc);background-clip:text;-webkit-text-fill-color:transparent}.hero p{font-size:12px;line-height:1.85;color:#b7b7b7;max-width:410px;margin:0 0 24px}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:15px;text-decoration:none;border-radius:9px;padding:11px 18px;font-size:11px;font-weight:650;border:0}.primary{background:linear-gradient(110deg,#939393,#747474);color:#ffffff;box-shadow:0 5px 24px #7b7b7b35}.primary:hover{filter:brightness(1.12);transform:translateY(-1px)}.secondary{background:var(--nav);border:1px solid var(--line);color:var(--ink)}.hero .secondary{color:#dadada;background:#ffffff06;border-color:#ffffff20;margin-left:8px}.hero-art{position:relative;height:260px;perspective:700px}.orbit{position:absolute;width:240px;height:240px;border:1px solid #a8a8a828;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(56deg) rotateZ(-25deg)}.orbit.two{width:320px;height:320px;transform:translate(-50%,-50%) rotateX(56deg) rotateZ(30deg);border-style:dashed}.chip{width:112px;height:112px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(20deg) rotateZ(-15deg);border:1px solid #a7a7a780;background:linear-gradient(140deg,#6d6d6d60,#2d2d2d);box-shadow:0 0 65px #84848430,inset 0 0 28px #9f9f9f18;border-radius:23px;display:grid;place-content:center;text-align:center;animation:float-chip 5s ease-in-out infinite}.chip svg{width:32px;height:32px;color:#cecece;margin:0 auto 5px}.chip b{font-size:15px;letter-spacing:4px}.chip small{font-size:7px;letter-spacing:1.6px;color:#a2a2a2}.thread-tag{position:absolute;padding:9px 13px;border:1px solid #ffffff1d;background:#202020e6;border-radius:10px;box-shadow:0 10px 25px #00000033;font:9px Consolas,monospace;color:#bbbbbb;display:flex;align-items:center;gap:8px;animation:float-tag 4s ease-in-out infinite}.thread-tag:before{content:'';width:6px;height:6px;background:#999999;border-radius:50%;box-shadow:0 0 10px #999999}.tag-a{left:5%;top:16%}.tag-b{right:0;top:45%;animation-delay:-1.4s}.tag-b:before{background:#c4c4c4}.tag-c{left:18%;bottom:2%;animation-delay:-2.5s}.packet{width:5px;height:5px;background:#d3d3d3;position:absolute;left:50%;top:50%;box-shadow:0 0 14px #c4c4c4;border-radius:50%;animation:packet 4s linear infinite}.hero-art-caption{position:absolute;bottom:-10px;left:0;right:0;text-align:center;font:8px Consolas,monospace;letter-spacing:2px;color:#8f8f8f}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:18px 0 30px}.stat{display:flex;gap:14px;align-items:center;padding:19px;background:var(--paper);border:1px solid var(--line);border-radius:13px;transition:transform .2s}.stat:hover{transform:translateY(-3px);border-color:#5a5a5a}.stat-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:var(--soft);color:var(--accent)}.stat:nth-child(2) .stat-icon{color:var(--cyan);background:#c4c4c412}.stat:nth-child(3) .stat-icon{color:#c4c4c4;background:#c4c4c412}.stat:nth-child(4) .stat-icon{color:#b5b5b5;background:#b5b5b512}.stat b{font-size:23px;font-weight:650;letter-spacing:-.7px;line-height:1.3;display:block}.stat small{font-size:9px;color:var(--muted)}.dashboard-row{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-bottom:32px}.resume-card,.focus-card{border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:23px;position:relative;overflow:hidden}.resume-card{background:linear-gradient(120deg,var(--soft),var(--paper));border-color:#6464645c}.card-eyebrow{font-size:8px;color:var(--muted);letter-spacing:1.5px;display:flex;gap:7px;align-items:center}.resume-card h2{font-size:19px;line-height:1.4;letter-spacing:-.5px;margin:13px 0 6px;max-width:90%}.resume-card p{font-size:11px;color:var(--muted);margin:0 0 19px}.resume-card .primary{padding:9px 13px;font-size:10px}.resume-card .save-time{display:block;margin-top:12px;color:var(--muted);font-size:9px}.focus-card h2{font-size:15px;margin:10px 0 16px;letter-spacing:-.2px}.focus-links{display:flex;gap:8px;flex-wrap:wrap}.focus-links a{display:flex;gap:9px;align-items:center;padding:9px 11px;border-radius:9px;text-decoration:none;font-size:10px;background:var(--nav);border:1px solid var(--line);color:var(--ink)}.focus-links i{width:5px;height:5px;background:#aeaeae;border-radius:50%}.focus-note{font-size:9px;color:var(--muted);margin-top:13px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:30px 0 15px}.section-title h2{font-size:19px;letter-spacing:-.6px;margin:0}.section-title span{color:var(--muted);font-size:10px}.study-map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:35px}.map-card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:20px 18px;text-decoration:none;color:var(--ink);transition:.25s;overflow:hidden}.map-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 40px #00000022}.map-card>span{font-size:8px;color:var(--muted);letter-spacing:1px}.map-card b{font-size:13px;display:block;margin:9px 0 4px;font-weight:650}.map-card p{font-size:10px;color:var(--muted);margin:0}.map-card svg{position:absolute;right:15px;top:20px;color:var(--accent);width:15px;height:15px}.map-card:after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.6}.content-toolbar{display:flex;align-items:center;gap:9px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:24px 0 20px}.content-toolbar strong{font-size:12px;margin-right:auto}.tool-button{font-size:10px;background:var(--nav);border:1px solid var(--line);padding:6px 10px;border-radius:7px;color:var(--muted)}.tool-button[aria-pressed=true]{color:var(--accent);background:var(--soft)}.intro{color:var(--muted);font-size:12px;margin:22px 3px}.chapter{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:30px;margin:0 0 27px;min-width:0}.chapter>h2{font-size:23px;line-height:1.4;letter-spacing:-.65px;margin:0 0 25px;padding:0 0 22px;border-bottom:1px solid var(--line)}.chapter h3{font-size:19px;line-height:1.45;margin:30px 0 16px;letter-spacing:-.3px}.lesson-card{position:relative;margin:28px 0;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--paper)}.lesson-head{display:flex;gap:17px;align-items:center;padding:24px;background:linear-gradient(100deg,var(--soft),var(--paper2));border-bottom:1px solid var(--line)}.lesson-number{width:48px;height:53px;display:grid;place-items:center;font-size:23px;letter-spacing:-1px;background:var(--paper);border:1px solid var(--line);border-radius:12px;color:var(--accent);flex-shrink:0}.lesson-head>div{flex:1;min-width:0}.lesson-head .overline{font-size:8px}.lesson-head h3{margin:7px 0 0;font-size:19px;line-height:1.45}.complete{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:10px;color:var(--muted);white-space:nowrap;align-self:flex-start}.complete svg{width:14px;height:14px}.complete[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);background:#c4c4c40a}.lesson-body{padding:17px 25px 24px}.lesson-body>ol>li{padding:12px 6px 12px 8px;margin:0;border-bottom:1px solid var(--line)}.lesson-body>ol>li:last-child{border-bottom:0}.lesson-body>ol>li::marker{color:var(--accent);font-weight:650}.lesson-body>ol>li>strong:first-child{color:var(--accent)}p{margin:14px 0}li{margin:9px 0;padding-left:3px}ol,ul{padding-left:24px}strong{font-weight:650}.table-scroll{overflow:auto;margin:22px 0;border:1px solid var(--line);border-radius:11px;scrollbar-width:thin}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.8}th,td{padding:13px 15px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line);min-width:90px}th{background:var(--nav);font-size:10px;color:var(--accent);font-weight:650}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:var(--paper2)}code{font:.87em/1.7 Consolas,monospace;background:var(--nav);padding:3px 5px;border-radius:5px;overflow-wrap:anywhere}.code-shell{background:var(--code);color:#e4e4e4;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:24px 0}.code-bar{display:flex;justify-content:space-between;align-items:center;padding:11px 17px;border-bottom:1px solid #ffffff12;font:9px Consolas,monospace;color:#a7a7a7;letter-spacing:1px}.code-bar>span:before{content:'● ● ●';font-size:8px;margin-right:14px;color:#676767}.copy-code{background:none;border:0;font-size:10px;color:#b6b6b6}.copy-code svg{width:13px;height:13px}pre{padding:21px;margin:0;overflow:auto;tab-size:4}pre code{background:none;color:inherit;padding:0;font-size:12px;line-height:1.8;overflow-wrap:normal}blockquote{border-left:3px solid var(--accent);background:var(--soft);padding:6px 20px;margin:22px 0}.footer{display:flex;justify-content:space-between;gap:20px;padding:15px 3px;color:var(--muted);font-size:10px}.footer a{text-decoration:none}.search-results{position:absolute;top:50px;right:0;width:460px;max-height:65vh;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--paper);box-shadow:0 15px 50px #00000055;padding:8px}.search-result{display:block;padding:12px;border-radius:8px;text-decoration:none;font-size:12px;color:var(--ink);line-height:1.6}.search-result:hover{background:var(--soft)}.search-result small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.no-results{padding:14px;font-size:12px;color:var(--muted)}.toast{position:fixed;bottom:24px;left:calc(50% + 135px);transform:translateX(-50%);background:var(--paper2);border:1px solid var(--line);color:var(--ink);padding:12px 19px;border-radius:11px;box-shadow:0 8px 35px #00000044;font-size:12px;z-index:90}.overlay{display:none}.skip{position:fixed;top:-90px;left:290px;padding:10px;background:var(--paper);z-index:100}.skip:focus{top:10px}.reader-mode .hero,.reader-mode .stats,.reader-mode .dashboard-row,.reader-mode .study-map,.reader-mode .section-title,.reader-mode .welcome-line,.reader-mode .intro{display:none}.reader-mode .chapter{max-width:940px;margin-left:auto;margin-right:auto}.reader-mode .content-toolbar{position:sticky;top:85px;z-index:15;box-shadow:0 5px 20px #00000022}.backup-actions{display:flex;gap:8px;margin-top:12px}.backup-actions button{background:none;border:0;padding:0;color:var(--muted);font-size:9px;text-decoration:underline;text-underline-offset:3px}
+/* Ders içindeki etkileşimli anlatımlar */
+.demo{margin:5px 0 25px;border:1px solid #6666664f;border-radius:13px;background:linear-gradient(140deg,var(--paper2),var(--paper));overflow:hidden}.demo-heading{display:flex;gap:10px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line)}.demo-heading .demo-mark{font-size:8px;color:var(--cyan);letter-spacing:1.2px;border:1px solid #c4c4c435;border-radius:5px;padding:3px 6px;white-space:nowrap}.demo-heading strong{font-size:12px}.demo-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:13px 17px;border-top:1px solid var(--line);background:var(--bg)}.demo-controls button,.demo-controls select{font-size:10px;padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}.demo-controls button:first-child{background:var(--soft);color:var(--accent);border-color:#78787850}.demo-controls button:disabled{opacity:.4;cursor:default}.step-count{margin-left:auto;color:var(--muted);font:9px Consolas,monospace}.demo-note{padding:14px 18px;min-height:70px;margin:0;font-size:12px;color:var(--ink);background:var(--soft);border-top:1px solid var(--line)}.demo-note small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.demo-stage{padding:22px 18px;min-height:180px}.process-diagram{width:100%;height:auto;display:block;overflow:visible}.process-diagram .state-box{fill:var(--paper);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}.process-diagram .state.active .state-box{fill:var(--soft);stroke:var(--accent);stroke-width:2.5}.process-diagram text{fill:var(--muted);font-family:'Segoe UI',sans-serif;font-size:11px}.process-diagram .state text{fill:var(--ink);font-weight:600;font-size:12px}.process-diagram .edge{fill:none;stroke:var(--line);stroke-width:2}.process-diagram .edge.active{stroke:var(--cyan);stroke-width:3;stroke-dasharray:7 4;animation:dash .65s linear infinite}.process-diagram .traveler{fill:var(--cyan);filter:drop-shadow(0 0 5px #c4c4c488)}.sema-layout{display:grid;grid-template-columns:1fr 1fr;gap:15px}.sema-counter{grid-column:1/-1;display:flex;gap:12px;align-items:center;font-size:11px;color:var(--muted)}.sema-counter b{font:700 30px Consolas,monospace;color:var(--cyan);background:#c4c4c40a;border-radius:10px;padding:4px 14px;transition:color .3s}.room{border:1px dashed var(--line);border-radius:10px;padding:14px;min-height:105px}.room-label{font-size:9px;color:var(--muted);margin-bottom:12px;letter-spacing:1px}.room-tokens{display:flex;gap:8px;flex-wrap:wrap;min-height:35px;align-items:center}.thread-token{width:38px;height:35px;display:grid;place-items:center;font:11px Consolas,monospace;border:1px solid #98989865;color:var(--accent);background:var(--soft);border-radius:8px;animation:token-in .35s ease both}.thread-token.waiting{color:#c4c4c4;background:#c4c4c40d;border-color:#c4c4c450}.empty-slot{font-size:10px;color:var(--muted)}.race-grid{display:grid;grid-template-columns:1fr 80px 1fr;gap:12px;align-items:center}.worker{border:1px solid var(--line);border-radius:11px;padding:14px;text-align:center;transition:border-color .3s,transform .3s}.worker.active{border-color:var(--accent);transform:translateY(-3px);background:var(--soft)}.worker b{display:block;font:12px Consolas,monospace;color:var(--accent)}.worker .local{font:26px Consolas,monospace;margin:10px 0 4px}.worker small{font-size:9px;color:var(--muted)}.shared{text-align:center}.shared b{display:block;font:700 30px Consolas,monospace;color:var(--cyan)}.shared small{font-size:8px;color:var(--muted)}.timeline{margin:12px 0}.lane{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center;margin:13px 0}.lane-label{font:10px Consolas,monospace;color:var(--muted)}.ticks{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}.tick{height:34px;display:grid;place-items:center;background:var(--nav);border:1px solid var(--line);border-radius:5px;font:10px Consolas,monospace;opacity:.2;transition:opacity .3s,background .3s}.tick.revealed{opacity:1;background:var(--soft);border-color:#8d8d8d45;color:var(--accent)}.tick.teal.revealed{color:var(--cyan);background:#c4c4c410;border-color:#c4c4c440}.time-axis{text-align:right;font-size:8px;letter-spacing:1px;color:var(--muted)}.array-halves{display:grid;grid-template-columns:1fr 1fr;gap:12px}.array-part{padding:15px;border:1px solid var(--line);border-radius:10px}.array-part b{font:11px Consolas,monospace;color:var(--accent)}.array-part:nth-child(2) b{color:var(--cyan)}.array-track{height:8px;background:var(--nav);border-radius:5px;overflow:hidden;margin:14px 0 10px}.array-track span{display:block;height:100%;background:var(--accent);width:0;transition:width .5s}.array-part:nth-child(2) .array-track span{background:var(--cyan)}.partial-sum{font:18px Consolas,monospace}.array-part small{font-size:9px;color:var(--muted)}.join-result{text-align:center;border-top:1px dashed var(--line);margin-top:20px;padding-top:17px;color:var(--muted);font-size:11px}.join-result b{font:700 23px Consolas,monospace;display:block;color:var(--cyan)}.demo-mode{margin-left:auto;display:flex;gap:5px}.demo-mode button{border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:5px;padding:4px 7px;font-size:9px}.demo-mode button[aria-pressed=true]{background:var(--soft);color:var(--accent)}
+@keyframes float-chip{50%{transform:translate(-50%,-58%) rotateX(20deg) rotateZ(-10deg)}}@keyframes float-tag{50%{translate:0 -9px}}@keyframes packet{0%{translate:-100px -60px;opacity:0}20%{opacity:1}50%{translate:0 0}80%{opacity:1}100%{translate:110px -5px;opacity:0}}@keyframes dash{to{stroke-dashoffset:-22}}@keyframes token-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1550px){.main{padding-top:40px}.hero{min-height:385px}.hero h1{font-size:57px}}
+@media(max-width:1200px){:root{--side:240px}.main{padding:28px}.topbar{padding:0 28px}.hero{padding:30px;grid-template-columns:1.3fr 1fr}.hero h1{font-size:40px}.thread-tag{font-size:8px;padding:7px}.tag-a{left:0}.orbit.two{width:260px;height:260px}.hero-art{scale:.9}.stat{padding:16px 12px;gap:10px}.stat-icon{width:30px;height:30px}.chapter{padding:24px}.complete span{display:none}.toast{left:calc(50% + 120px)}}
+@media(max-width:900px){:root{--side:0px}.sidebar{width:270px;transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0)}.overlay.open{display:block;position:fixed;inset:0;background:#070707aa;z-index:45}.menu-btn{display:inline-flex}.topbar{height:67px;padding:0 20px}.main{padding:25px}.search-wrap{width:43%}.hero h1{font-size:42px}.toast{left:50%}.skip{left:20px}.reader-mode .content-toolbar{top:75px}}
+@media(max-width:650px){.breadcrumb{display:none}.search-wrap{flex:1;width:auto}.key{display:none}.search-wrap input{padding-right:10px}.topbar{padding:0 14px;gap:8px}.main{padding:19px 14px}.welcome-line{font-size:10px}.hero{display:block;padding:29px 25px;min-height:0}.hero h1{font-size:40px;letter-spacing:-1.6px}.hero-art{height:200px;margin-top:15px;scale:.88}.hero p{max-width:100%}.hero .secondary{padding:11px;margin-left:5px;font-size:10px}.stats{grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0 22px}.stat{padding:15px}.stat small{font-size:9px}.dashboard-row{grid-template-columns:1fr;gap:12px}.study-map{grid-template-columns:repeat(2,1fr);gap:9px}.map-card{padding:16px 13px}.map-card b{font-size:12px}.map-card p{font-size:9px}.map-card svg{width:12px;right:10px;top:15px}.section-title h2{font-size:18px}.section-title span{font-size:8px}.chapter{padding:20px 15px;border-radius:13px}.chapter>h2{font-size:20px}.lesson-head{padding:18px 13px;gap:11px}.lesson-head h3{font-size:16px}.lesson-number{width:35px;height:43px;font-size:19px;border-radius:9px}.lesson-body{padding:14px 13px}.lesson-body>ol>li{padding-left:3px}.complete{padding:7px}.content-toolbar{padding:12px}.content-toolbar strong{font-size:11px}.tool-button{font-size:9px;padding:6px 8px}.search-results{width:calc(100vw - 28px);right:-90px}.demo-stage{padding:17px 12px}.demo-heading{padding:13px;flex-wrap:wrap}.demo-heading strong{font-size:11px}.demo-mode{width:100%;margin-left:0}.sema-layout{gap:10px}.room{padding:11px}.race-grid{grid-template-columns:1fr 55px 1fr;gap:7px}.worker{padding:12px 6px}.shared b{font-size:26px}.lane{grid-template-columns:50px 1fr;gap:7px}.tick{font-size:8px;height:30px}.ticks{gap:3px}.lane-label{font-size:8px}.array-part{padding:12px}.partial-sum{font-size:15px}.demo-note{font-size:11px}.footer{font-size:9px}.storage-note{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+@media print{@page{size:A4;margin:15mm}body{background:white!important;color:black!important;font:10pt/1.6 'Segoe UI',sans-serif}.sidebar,.topbar,.hero,.stats,.dashboard-row,.study-map,.section-title,.welcome-line,.intro,.footer,.complete,.copy-code,.toast,.overlay,.skip,.content-toolbar,.demo-controls,.demo-mode{display:none!important}.workspace{margin:0}.main{padding:0;max-width:none}.chapter{border:0;padding:0;box-shadow:none;break-inside:auto}.chapter>h2{break-before:page;font-size:18pt}.lesson-card{border:0;margin:20px 0}.lesson-head{background:white;border:0;padding:0;break-after:avoid}.lesson-head h3{font-size:14pt}.lesson-body{padding:0}.lesson-number{color:black;background:white;border:1px solid #dddddd}.overline{display:none}.table-scroll{overflow:visible}table{font-size:8pt}th,td{padding:5px;min-width:0;overflow-wrap:anywhere;color:black;background:white!important;border-color:#dddddd}tr{break-inside:avoid}.code-shell{background:#f5f5f5;color:black;border:1px solid #dddddd}.code-bar{color:#555555}.code-bar>span:before{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px}pre code{font-size:8pt}a{color:inherit}code{background:#eeeeee}.demo{border:1px solid #dddddd;background:white}.demo-note{background:#f5f5f5;color:black}.demo-stage{display:none}.demo-heading{color:black}}
+
+/* Monochrome editorial layout */
+:root{--bg:#101010;--paper:#151515;--paper2:#1b1b1b;--ink:#f2f2f2;--muted:#a2a2a2;--line:#333;--accent:#e5e5e5;--cyan:#c9c9c9;--soft:#252525;--nav:#222;--code:#0a0a0a;--side:260px}
+body.light{--bg:#fff;--paper:#fff;--paper2:#f8f8f8;--ink:#161616;--muted:#686868;--line:#ddd;--accent:#171717;--cyan:#424242;--soft:#f1f1f1;--nav:#f4f4f4;--code:#171717}
+*,*:before,*:after{box-shadow:none!important;background-image:none!important}
+body{background:var(--bg)}.brand-logo{background:var(--ink);color:var(--paper);border-radius:0;width:33px;height:36px}.brand{font-size:23px}.brand small{letter-spacing:1.8px;font-size:8px}.space-label{border:0;border-radius:0;border-bottom:1px solid var(--line);padding-left:0;margin-left:12px}.dot{background:var(--muted)!important}.nav-links a,.nav-num{border-radius:3px}.nav-num{background:transparent}.nav-links a.active:before{border-radius:0}.sidebar,.topbar{background:var(--paper)}.search-wrap input,.icon-btn{border-radius:4px}.main{max-width:1180px;padding:30px 48px 60px}.welcome-line{padding-bottom:18px;border-bottom:1px solid var(--line);font-size:10px}.hero{display:block;min-height:0;background:transparent;color:var(--ink);border:0;border-radius:0;padding:28px 0 34px}.hero:before,.hero:after,.hero-art{display:none}.hero .eyebrow{border:0;padding:0;background:none;color:var(--muted);font:9px Consolas,monospace;letter-spacing:1.8px}.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(45px,5.8vw,76px);font-weight:400;line-height:1.02;letter-spacing:-2.5px;margin:20px 0}.hero p{color:var(--muted);font-size:13px;max-width:480px}.primary{background:var(--ink);color:var(--paper);border-radius:3px;box-shadow:none}.primary:hover{filter:none;transform:none;opacity:.8}.hero .secondary{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:3px}.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);gap:0;margin:0 0 30px}.stat{background:none;border:0;border-right:1px solid var(--line);border-radius:0;padding:20px}.stat:last-child{border-right:0}.stat:hover{transform:none;border-color:var(--line)}.stat-icon{display:none}.stat b{font-weight:500;font-size:25px}.stat small{font-size:10px}.resume-card,.focus-card{background:none;border:1px solid var(--line);border-radius:4px;padding:23px}.resume-card h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:24px;line-height:1.3}.focus-links a{background:none;border-radius:3px}.focus-links i{background:var(--muted)}.card-eyebrow{color:var(--muted)}.study-map{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.map-card{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:none;padding:22px}.map-card:after{display:none}.map-card:hover{transform:none;background:var(--soft);border-color:var(--line)}.map-card b{font-size:13px}.section-title h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:26px}.content-toolbar{border-radius:3px}.tool-button{border-radius:3px}.intro{font-size:12px}.chapter{border:0;border-top:1px solid var(--ink);border-radius:0;padding:32px 0;background:none;margin-top:35px}.chapter>h2{font-family:Georgia,'Times New Roman',serif;font-size:29px;font-weight:400;letter-spacing:-.6px;border:0;padding-bottom:0;margin-bottom:28px}.lesson-card{border-radius:0;border:0;border-top:1px solid var(--line);background:none;margin:32px 0}.lesson-head{background:none;padding:26px 0;border-bottom:1px solid var(--line)}.lesson-number{border-radius:0;border:0;border-right:1px solid var(--line);background:none;color:var(--muted);font-family:Georgia,serif;font-size:30px;width:55px;padding-right:15px}.lesson-head h3{font-weight:600;font-size:20px;letter-spacing:-.6px}.lesson-head .overline{color:var(--muted);font-size:8px}.complete{border-radius:3px}.complete[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}.lesson-body{padding:20px 0}.lesson-body>ol>li>strong:first-child{color:var(--ink)}.lesson-body>ol>li::marker{color:var(--muted)}.table-scroll{border-radius:0}th{font-size:11px;color:var(--ink)}code{border-radius:2px}.code-shell{border-radius:3px}.code-bar>span:before{display:none}.code-bar,.copy-code{color:#bbb}.demo{border-radius:3px;border-color:var(--line);background:var(--paper)}.demo-heading .demo-mark{border-radius:0;color:var(--muted);border:0;border-right:1px solid var(--line);padding:0 10px 0 0}.demo-heading strong{font-weight:600}.demo-controls button,.demo-controls select,.demo-mode button{border-radius:3px}.demo-controls button:first-child{background:var(--ink);color:var(--paper);border-color:var(--ink)}.demo-mode button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.demo-note{background:var(--soft);border-top-color:var(--line)}.worker,.room,.thread-token,.array-part,.tick{border-radius:3px}.thread-token.waiting{border-style:dashed}.process-diagram .edge.active{stroke-dasharray:7 4}.toast,.search-results,.search-result{border-radius:3px}.chapter{filter:grayscale(1)}
+@media(max-width:900px){.main{padding:25px}.sidebar{width:260px}.workspace{margin-left:0}}
+@media(max-width:650px){.main{padding:18px 17px}.hero{padding:20px 0 27px}.hero h1{font-size:55px}.hero p{font-size:12px}.hero .secondary{margin-left:5px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.stat{padding:17px 10px}.study-map{grid-template-columns:1fr 1fr}.map-card{padding:19px 14px}.chapter{padding:27px 0}.chapter>h2{font-size:25px}.lesson-head{padding:20px 0}.lesson-head h3{font-size:17px}.lesson-number{width:38px;font-size:25px;padding-right:10px}.lesson-body{padding:15px 0}.resume-card,.focus-card{padding:20px}.content-toolbar{gap:6px;padding:10px}.tool-button{padding:6px}.content-toolbar strong{font-size:10px}}
+@media print{.hero,.stats,.dashboard-row,.study-map{display:none!important}.main{padding:0}.chapter{padding:0;border:0;filter:none}.chapter>h2{font-size:18pt}.lesson-head h3{font-size:14pt}.demo-note{color:black;background:#f5f5f5}.lesson-number{color:black}.code-shell{background:#f5f5f5;color:black}}
+</style></head><body><a class="skip" href="#icerik">İçeriğe geç</a><div class="overlay"></div><aside class="sidebar" aria-label="Ders gezintisi"><div class="brand"><span class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6"/></svg></span><div>paralel<span style="color:var(--accent)">.</span><small>DERS REHBERİ</small></div></div><div class="space-label"><span class="dot"></span>PARALEL PROGRAMLAMA · SINAV</div><div class="nav-scroll"><div class="nav-label">İÇİNDEKİLER</div><nav class="nav-links"><a href="#icerik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6"/></svg><span>Genel bakış</span></a><a href="#bolum-2" data-nav="bolum-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Kaynak durumu, kanıtlar ve hocanın tarzı</span></a><a href="#bolum-4" data-nav="bolum-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Konu öncelik tablosu</span></a><a href="#bolum-5" data-nav="bolum-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Çalışma rotası</span></a><a href="#bolum-6" data-nav="bolum-6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Sıfırdan konu anlatımları</span></a></nav><div class="nav-label">KONU ANLATIMLARI · 18 DERS</div><nav class="nav-links"><a href="#bolum-7" data-nav="bolum-7" data-lesson-nav="1"><span class="nav-num">01</span><span>İşletim sistemi, kernel, shell ve hizmetler</span></a><a href="#bolum-8" data-nav="bolum-8" data-lesson-nav="2"><span class="nav-num">02</span><span>Program, process ve süreç belleği</span></a><a href="#bolum-9" data-nav="bolum-9" data-lesson-nav="3"><span class="nav-num">03</span><span>Beş durumlu süreç diyagramı</span></a><a href="#bolum-10" data-nav="bolum-10" data-lesson-nav="4"><span class="nav-num">04</span><span>PCB, kuyruklar, scheduler ve context switch</span></a><a href="#bolum-11" data-nav="bolum-11" data-lesson-nav="5"><span class="nav-num">05</span><span>Oluşturma, sonlandırma, parent/child ve suspension</span></a><a href="#bolum-12" data-nav="bolum-12" data-lesson-nav="6"><span class="nav-num">06</span><span>Thread, paylaşılan kaynaklar ve özel bağlam</span></a><a href="#bolum-13" data-nav="bolum-13" data-lesson-nav="7"><span class="nav-num">07</span><span>Concurrency, parallelism ve işi bölme</span></a><a href="#bolum-14" data-nav="bolum-14" data-lesson-nav="8"><span class="nav-num">08</span><span>Yarış durumu, atomiklik ve kritik bölge</span></a><a href="#bolum-15" data-nav="bolum-15" data-lesson-nav="9"><span class="nav-num">09</span><span>Semaphore ve mutex: sınavın sayısal kısmı</span></a><a href="#bolum-16" data-nav="bolum-16" data-lesson-nav="10"><span class="nav-num">10</span><span>İşi iki thread&#39;e bölme, sonuçları birleştirme</span></a><a href="#bolum-17" data-nav="bolum-17" data-lesson-nav="11"><span class="nav-num">11</span><span>User/kernel thread, eşleme ve kütüphaneler</span></a><a href="#bolum-18" data-nav="bolum-18" data-lesson-nav="12"><span class="nav-num">12</span><span>Deadlock, livelock, starvation ve öncelik</span></a><a href="#bolum-19" data-nav="bolum-19" data-lesson-nav="13"><span class="nav-num">13</span><span>İşlemci, bus, instruction cycle ve assembly</span></a><a href="#bolum-20" data-nav="bolum-20" data-lesson-nav="14"><span class="nav-num">14</span><span>Register genişliği, segmentler, adres ve bit kaydırma</span></a><a href="#bolum-21" data-nav="bolum-21" data-lesson-nav="15"><span class="nav-num">15</span><span>Windows süreç API&#39;leri ve native/WOW64</span></a><a href="#bolum-22" data-nav="bolum-22" data-lesson-nav="16"><span class="nav-num">16</span><span>Kimlik, yetki ve çok süreçli tarayıcı</span></a><a href="#bolum-23" data-nav="bolum-23" data-lesson-nav="17"><span class="nav-num">17</span><span>Ağ kimlikleri ve spoofing (düşük öncelik)</span></a><a href="#bolum-24" data-nav="bolum-24" data-lesson-nav="18"><span class="nav-num">18</span><span>Notlardaki tamamlayıcı hesap ve teori parçaları</span></a></nav><div class="nav-label">PRATİK & TEKRAR</div><nav class="nav-links"><a href="#bolum-25" data-nav="bolum-25"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Çıkmış soruların tam çözümleri</span></a><a href="#bolum-29" data-nav="bolum-29"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Karıştırılan kavramlar: hızlı karşılaştırma</span></a><a href="#bolum-30" data-nav="bolum-30"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Önemli kavramlar sözlüğü</span></a><a href="#bolum-31" data-nav="bolum-31"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Mini deneme — 50 dakika, 100 puan</span></a><a href="#bolum-34" data-nav="bolum-34"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Sınavdan önce okunacak kısa tekrar</span></a><a href="#bolum-35" data-nav="bolum-35"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Kaynak envanteri ve kapsama karşı kontrol</span></a><a href="#bolum-38" data-nav="bolum-38"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg><span>Birlikte başlayacağımız ilk ders</span></a></nav></div><div class="sidebar-foot"><div class="progress-caption"><span>Tamamlanan dersler</span><b id="progress-count">0 / 18</b></div><div class="track"><span id="progress-fill"></span></div><div class="storage-note"><span class="dot"></span><span id="storage-label">Bu tarayıcıya otomatik kaydedilir</span></div><div class="backup-actions"><button id="export-state">Yedeği indir</button><button id="import-state">Yedekten yükle</button><input type="file" id="import-file" accept=".json,application/json" aria-label="Çalışma ilerlemesi yedeği" hidden></div></div></aside><div class="workspace"><header class="topbar"><button class="icon-btn menu-btn" id="menu" aria-label="Ders menüsünü aç" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="breadcrumb">Çalışma alanı <span aria-hidden="true"> / </span><b>Ders rehberi</b></div><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" aria-label="Rehberde konu veya kavram ara" placeholder="Konu ara…" autocomplete="off" aria-controls="results" aria-expanded="false"><span class="key">Ctrl K</span><div class="search-results" id="results" aria-label="Arama sonuçları" aria-live="polite" hidden></div></div><button class="icon-btn" id="theme" aria-label="Açık temaya geç" title="Temayı değiştir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button><button class="icon-btn" id="print" aria-label="Yazdır veya PDF kaydet" title="Yazdır / PDF kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg></button><div class="reading-track"><span id="reading-fill"></span></div></header><main class="main" id="icerik"><div class="welcome-line"><span>Paralel Programlama / Sınav hazırlığı</span><span class="live-save"><span class="dot"></span><span id="save-label">Otomatik kaydediliyor</span></span></div><section class="hero"><div class="hero-copy"><div class="eyebrow">DERS NOTLARI / ÇÖZÜMLÜ SORULAR</div><h1>Paralel<br>Programlama.</h1><p>İşletim sistemi temelleri, paralel programlama kavramları ve sınav soruları.</p><a class="primary" href="#bolum-7">İlk derse git <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="secondary" href="#bolum-9">Adım adım örnekler</a></div></section><div class="stats"><div class="stat"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg></span><div><b>18</b><small>Adım adım ders</small></div></div><div class="stat"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6"/></svg></span><div><b>5</b><small>Canlı anlatım</small></div></div><div class="stat"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><div><b>3</b><small>Çıkmış soru çözümü</small></div></div><div class="stat"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><div><b><span id="done-count">0</span><span style="font-size:12px;color:var(--muted)"> / 18</span></b><small>Tamamlanan ders</small></div></div></div><div class="dashboard-row"><section class="resume-card"><div class="card-eyebrow"><span class="dot"></span>KALDIĞIN YERDEN</div><h2 id="resume-title">İlk adım: işletim sistemini tanı</h2><p id="resume-detail">Ders ve okuma konumun otomatik kaydedilir.</p><button class="primary" id="resume"><span id="resume-text">İlk derse başla</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><small class="save-time" id="resume-time">18 kısa ders · kendi hızında çalış</small></section><section class="focus-card"><div class="card-eyebrow">ÇIKMIŞ SORULAR</div><h2>Üç sorunun konuları</h2><div class="focus-links"><a href="#bolum-9"><i></i>Süreç diyagramı</a><a href="#bolum-15"><i></i>Semaphore</a><a href="#bolum-16"><i></i>İki section ile toplama</a></div><p class="focus-note">Görünen çıkmış sorulara dayanır. Diğer konuları da tamamla.</p></section></div><div class="section-title"><h2>Dersler</h2><span>18 DERS / 6 BÖLÜM</span></div><div class="study-map"><a class="map-card" href="#bolum-7"><span>DERS 01 — 04</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>İşletim sistemi temelleri</b><p>OS, process ve beş durum</p></a><a class="map-card" href="#bolum-11"><span>DERS 05 — 06</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Süreçler ve thread’ler</b><p>Yaşam döngüsü ve bellek</p></a><a class="map-card" href="#bolum-13"><span>DERS 07 — 08</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Eşzamanlılık ve yarış</b><p>Paralellik ve paylaşılan veri</p></a><a class="map-card" href="#bolum-15"><span>DERS 09 — 10</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Semafor ve paralel kod</b><p>İzinler, bekleme ve toplama</p></a><a class="map-card" href="#bolum-17"><span>DERS 11 — 15</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Modeller ve donanım</b><p>Thread modelleri, donanım ve API</p></a><a class="map-card" href="#bolum-22"><span>DERS 16 — 18</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Diğer konular</b><p>Güvenlik ve tamamlayıcı konular</p></a></div><div class="content-toolbar" id="content-tools"><strong>Ders kütüphanesi</strong><button class="tool-button" id="focus" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 3H20v19H6.5A2.5 2.5 0 0 1 4 19.5v-14A2.5 2.5 0 0 1 6.5 3Z"/></svg>Odak modu</button><button class="tool-button" id="font-minus" aria-label="Yazıyı küçült">A−</button><span id="font-label" style="font-size:10px;color:var(--muted)">16 px</span><button class="tool-button" id="font-plus" aria-label="Yazıyı büyüt">A+</button></div><div class="intro">
+<p>Bu rehber, klasördeki <strong>26 ders notu fotoğrafı ve 1 sınav fotoğrafı</strong> incelenerek hazırlandı. Amaç tanım ezberlemek kadar, bir durumun neden oluştuğunu ve kodun neden doğru çalıştığını anlamaktır. Önce aşağıdaki çalışma yolunu izle; kaynak fotoğrafları tek tek okuman gerekmiyor.</p>
+</div><article><section class="chapter" data-chapter="bolum-2"><h2 id="bolum-2">1. Kaynak durumu, kanıtlar ve hocanın tarzı</h2>
+<ul>
+<li>Fotoğraflarda güvenilir, ardışık sayfa numaraları yok. Bu yüzden sondaki envanterde dosyalara K01–K26 kodları verildi. Bunlar <strong>orijinal sayfa numarası değildir</strong>.</li>
+<li>K12 ve K21 aynı defter sayfasının iki fotoğrafıdır. Dolayısıyla 26 fotoğrafı, 26 farklı içerik sayfası olarak saymak doğru olmaz. Diğer sayfalarda da tekrarlanan anlatımlar var.</li>
+<li>Bazı fotoğrafların üst kenarlarında önceki satırlar kesik. Sınav fotoğrafının sağ kenarı da kesik. Okunabilen ana içerik kullanıldı; görünmeyen ifadeler tamamlanmış bir alıntı gibi sunulmadı.</li>
+<li>Notlar yalnızca işletim sistemi konularından oluşmuyor: makine öğrenmesi, ağ güvenliği ve otomata hakkında kısa parçalar da var. Bunlar düşük öncelikli ayrı ders olarak korunmuştur.</li>
+<li>Notlardaki tarihler ile sınavın tarihi aynı döneme ait görünmüyor. Fotoğraftaki sınav tarihi <strong>03.11.2025</strong>, bazı defter tarihleri 2026. Aynı kapsamın tekrar edileceği garanti edilemez.</li>
+</ul>
+<h3 id="bolum-3">Görünen üç sorudan çıkarılabilecekler</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Okunabilen istek</th>
+<th>Ölçülen beceri</th>
+<th>Kanıtın sınırı</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5 durumlu process state diagram çizimi ve transition&#39;lar; 15 puan</td>
+<td>Şemayı belleğinden kurma, okları adlandırma</td>
+<td>Gelecek sınavda kesin çıkacağı anlamına gelmez</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4 thread, başlangıç değeri 2 olan semaphore; -2, 0, 1 değerlerini yorumlama</td>
+<td>Tanımı verilen sayısal duruma uygulama</td>
+<td>Sağ uç kesik; puanı güvenle okunmuyor</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1000 elemanlı diziyi 0–499 ve 500–999 olarak iki section/thread ile toplama; işler bitince toplamı yazdırma; 30 puan</td>
+<td>Kod tamamlama, iş bölümü, bekleme, doğru indeks</td>
+<td>Sağ uç kesik; OpenMP adı görünmüyor; “section” ifadesi OpenMP yorumunu güçlü biçimde destekliyor</td>
+</tr>
+</tbody></table></div>
+<p><strong>Tarz yorumu:</strong> Görünen sorular çoktan seçmeli değil, açık uçlu. “Çiziniz, geçişleri yazınız, yorumlayınız, kodu tamamlayınız” biçiminde. İngilizce teknik terimler Türkçe cümle içinde kullanılıyor. Kodun derlenebilmesi ve büyük/küçük harf duyarlılığı sınavın üst notunda vurgulanıyor. Bu nedenle rehberde şekil, adım izleme ve kod yazma birlikte çalıştırılıyor. Üç soru sınavın tamamı değildir; kalan sorular ve toplam konu dağılımı bilinmiyor.</p>
+</section>
+<section class="chapter" data-chapter="bolum-4"><h2 id="bolum-4">2. Konu öncelik tablosu</h2>
+<p>Öncelik, çalışma zamanını dağıtır; çıkma olasılığının ölçülmüş yüzdesi değildir. “Yüksek” için doğrudan çıkmış soru veya onu çözmek için gerekli temel; “orta” için notlarda belirgin anlatım/ödev/soru vurgusu; “düşük” için kısa ayrıntı veya ders dışı görünen parça kanıtı kullanıldı.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Öncelik</th>
+<th>Konu</th>
+<th>Dayanak</th>
+<th>Rehber dersi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔴</td>
+<td>Beş süreç durumu ve altı geçiş</td>
+<td>Çıkmış S1; K02, K13, K16&#39;da tekrar</td>
+<td>3</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>Semafor; negatif, sıfır ve pozitif değerler</td>
+<td>Çıkmış S2; K18, K25</td>
+<td>9</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>İki section ile toplama, bekleme, indeksler</td>
+<td>Çıkmış S3; thread temeli K06, K26</td>
+<td>10</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>Process–thread, ortak ve özel bellek</td>
+<td>S2 ve S3&#39;ün önkoşulu; birçok sayfada tekrar</td>
+<td>2, 6</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>Race condition, critical section, mutual exclusion, atomic operation</td>
+<td>Semafor ve doğru paralel kodun önkoşulu; K08, K14, K18</td>
+<td>8</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>Concurrency–parallelism, data/task parallelism</td>
+<td>Paralel kodu anlamanın temeli; K05, K15</td>
+<td>7</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>PCB, context switch, ready/wait kuyrukları</td>
+<td>Durum geçişleriyle bağlantılı, K02, K06, K16</td>
+<td>4</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Oluşturma, sonlandırma, parent/child, suspension, swapping</td>
+<td>Ayrı başlıklar; Notepad ödevi; K01, K03, K23</td>
+<td>5</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>ULT/KLT, many-to-one, one-to-one, many-to-many, kütüphaneler</td>
+<td>Birçok sayfada karşılaştırma soruları var</td>
+<td>11</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Deadlock–livelock–starvation</td>
+<td>Concurrency anlatımının ana kavramları</td>
+<td>12</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>OS görevi, kernel/shell, user/kernel mode, OS hizmetleri</td>
+<td>Temel ders çerçevesi; K04, K07, K10, K20</td>
+<td>1</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Register, instruction cycle, assembly izleme, adres hesabı</td>
+<td>Şekiller ve “hesaplama yapılacak” vurgusu</td>
+<td>13, 14</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Windows süreç API&#39;leri, native/WOW64</td>
+<td>Numaralı API listesi ve bitlik ödevi</td>
+<td>15</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Authentication–authorization, RBAC/ABAC/ACL, tarayıcı izolasyonu</td>
+<td>K09&#39;da geniş anlatım; K11&#39;de soru vurgusu</td>
+<td>16</td>
+</tr>
+<tr>
+<td>🟢</td>
+<td>Ağ spoofing ayrıntıları</td>
+<td>K24&#39;ün bir bölümü; görünen sınavda kanıt yok</td>
+<td>17</td>
+</tr>
+<tr>
+<td>🟢</td>
+<td>Boot/MBR, dosya yolları, terminal/console ayrıntıları</td>
+<td>Temele yardımcı, doğrudan sınav kanıtı yok</td>
+<td>1, 13</td>
+</tr>
+<tr>
+<td>🟢</td>
+<td>Random forest/bootstrap, Gaussian Naive Bayes, pumping lemma</td>
+<td>Sayfa başı/sonu kısa parçalar; kapsam ilişkisi belirsiz</td>
+<td>18</td>
+</tr>
+</tbody></table></div>
+<p><strong>Kapsam sınırı:</strong> Notlarda FCFS/SJF gibi CPU çizelgeleme algoritmalarının hesaplı anlatımı, Banker&#39;s algorithm, sayfa değiştirme algoritmaları veya MPI/CUDA anlatımı görülmüyor. Bunları hocanın işlediği ana konuymuş gibi eklemedim. Notlardaki time-out ve öncelik kavramları ise atlanmadı.</p>
+</section>
+<section class="chapter" data-chapter="bolum-5"><h2 id="bolum-5">3. Çalışma rotası</h2>
+<p>Öncelik ile öğrenme sırası aynı şey değildir: semafordan önce süreç ve thread anlaşılmalıdır.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Oturum</th>
+<th align="right">Süre önerisi</th>
+<th>İçerik</th>
+<th>Bitince yapacağın kontrol</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="right">25 dk</td>
+<td>Ders 1–2: CPU, OS, program/process, bellek</td>
+<td>“Bekleyen process hâlâ process midir?” sorusunu açıklayabil</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="right">30 dk</td>
+<td>Ders 3–4: durum diyagramı, PCB</td>
+<td>Beş durumu ve altı oku bakmadan çiz</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="right">25 dk</td>
+<td>Ders 5–6: yaşam döngüsü, thread</td>
+<td>Ortak/özel bellek tablosunu yeniden kur</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="right">25 dk</td>
+<td>Ders 7–8: paralellik ve yarış</td>
+<td>İki artırmanın nasıl bir artışa dönüştüğünü izle</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="right">30 dk</td>
+<td>Ders 9 ve çıkmış S2</td>
+<td>S=2&#39;den başlayarak 4 wait&#39;i hesapla</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="right">35 dk</td>
+<td>Ders 10 ve çıkmış S3</td>
+<td>İki section&#39;lı kodu boş sayfaya yaz</td>
+</tr>
+<tr>
+<td>7</td>
+<td align="right">30 dk</td>
+<td>Ders 11–12: modeller, ilerleme sorunları</td>
+<td>ULT/KLT ve üç kilitlenme kavramını ayır</td>
+</tr>
+<tr>
+<td>8</td>
+<td align="right">35 dk</td>
+<td>Ders 13–15: donanım, hesaplar, API</td>
+<td>Adres ve register sorusu çöz</td>
+</tr>
+<tr>
+<td>9</td>
+<td align="right">25 dk</td>
+<td>Ders 16–18: güvenlik ve tamamlayıcı parçalar</td>
+<td>Kimlik/yetki ayrımını örnekle</td>
+</tr>
+<tr>
+<td>10</td>
+<td align="right">50 dk</td>
+<td>Mini deneme + hata incelemesi</td>
+<td>Yanlışını neden yaptığını bir cümleyle yaz</td>
+</tr>
+</tbody></table></div>
+<p>Her oturumda: 10–15 dakika öğren, notu kapat, örnek soruyu çöz, cevabınla karşılaştır. Yanlışında tüm bölümü yeniden okumak yerine karıştırdığın ayrımı bul.</p>
+</section>
+<section class="chapter" data-chapter="bolum-6"><h2 id="bolum-6">4. Sıfırdan konu anlatımları</h2>
+<section class="lesson-card" data-lesson="1"><div class="lesson-head"><span class="lesson-number">01</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-7">Ders 1 — İşletim sistemi, kernel, shell ve hizmetler</h3></div><button class="complete" data-complete="1" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Bilgisayardaki işleri kim yönetir? (K04, K07, K10, K20)</li>
+<li><strong>Basit açıklama:</strong> CPU komutları işler; RAM o anda gereken kod ve verileri tutar; disk kalıcı saklama sağlar. İşletim sistemi (OS) uygulamalara CPU zamanı, bellek, dosya ve cihaz erişimi sağlar. Kernel, OS&#39;nin temel yönetim işlerini yapan çekirdeğidir. Shell kullanıcının komutlarını alır. Notlardaki donanım → BIOS → OS → shell → kullanıcı zinciri bir katman/başlatma anlatımıdır; kullanıcı her işleminde BIOS&#39;tan geçmez.</li>
+<li><strong>Terimler:</strong> Operating system = işletim sistemi; kernel = çekirdek; shell = kabuk; resource = kaynak; system call = sistem çağrısı; user mode = kullanıcı kipi; kernel mode = çekirdek kipi; GUI = grafik kullanıcı arayüzü.</li>
+<li><strong>Örnek:</strong> Bir editör dosya açmak istediğinde OS hizmeti kullanır. Uygulama isteği kullanıcı kipinde hazırlanır; dosya sistemine ilişkin çekirdek işi sistem çağrısıyla yapılır. “Dosya açınca bütün uygulama kernel olur” denmez.</li>
+<li><strong>Sınav noktaları:</strong> OS hedefleri notta convenience (kullanım kolaylığı), efficiency (verimlilik), ability to evolve (gelişebilirlik). Hizmetler: program geliştirmeye ortam sağlama, program yürütme, I/O erişimi, dosyalara denetimli erişim, sisteme erişim, hata algılama/yanıt, accounting (kullanım kaydı). Ana yönetim alanları: süreç, bellek/sanal bellek, koruma/güvenlik, zamanlama/kaynaklar, sistem yapısı. Bash bir komut kabuğudur; Explorer Windows&#39;un grafik kabuğu örneğidir. Terminal komut kabuğu ile aynı şey değildir: kabuk komutu yorumlar, terminal giriş/çıkış arayüzüdür. Console tarihsel olarak doğrudan bağlı sistem terminalidir; güncel kullanımda yazılımsal konsollar da vardır.</li>
+<li><strong>Hatırlama:</strong> “CPU yapar, RAM tutar, OS paylaştırır, shell isteği alır.” User/kernel bir <strong>yetki</strong> ayrımıdır; 32/64 bit ayrımı değildir.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “CPU&#39;yu ve dosya erişimlerini paylaşılabilir biçimde yöneten yapı shell midir?” <strong>Hayır.</strong> Kaynak yönetimi OS/kernel işidir. Shell, kullanıcıya bu hizmetleri çağırma arayüzü sunar.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="2"><div class="lesson-head"><span class="lesson-number">02</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-8">Ders 2 — Program, process ve süreç belleği</h3></div><button class="complete" data-complete="2" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Duran tarif ile yürütülen işin farkı. (K02, K13, K20)</li>
+<li><strong>Basit açıklama:</strong> Program diskteki komut/veri bütünüdür. Process (süreç), programın yürütülmekte olan örneğidir; kendine ait durum ve kaynak bilgisi vardır. “Yürütülmekte” sürekli CPU üzerinde demek değildir. Bekleyen süreç de varlığını sürdürür.</li>
+<li><strong>Terimler:</strong> Program = program; process = süreç; instance = örnek; address space = adres alanı; text/code = kod; data = veri; heap = dinamik bellek alanı; stack = yığın; PID = süreç kimliği.</li>
+<li><strong>Örnek:</strong> Aynı uygulamayı iki ayrı süreç olarak açabilirsin. Tarif aynı olabilir, işin o anki ilerlemesi ve verileri farklıdır. Bazı uygulamalar yeni pencereyi aynı süreçte de açabilir; pencere sayısı süreç sayısını kesin vermez.</li>
+<li><strong>Sınav noktaları:</strong> Text çalıştırılabilir komutları; data global/statik verileri; heap dinamik ayrılan nesneleri; stack çağrı çerçevelerini, otomatik yerel değişkenleri ve dönüş bilgilerini barındırır. “Stack fonksiyonların kodudur” yanlıştır; kod text&#39;tedir. Kaynak bir dosya/CPU/bellek alanı olabilir; process bu kaynakları kullanan yürütme birimidir. Klavye bekleyen editör process&#39;tir; klavye girdisi ise beklediği olaydır.</li>
+<li><strong>Hatırlama:</strong> “Program tarif, process tarifin yaşayan uygulaması.” Bellekte “Kod–Veri–Dinamik–Çağrı” sırasıyla text–data–heap–stack&#39;i hatırla; bu fiziksel adres sırası iddiası değildir.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “I/O bekleyen programın process olma özelliği biter mi?” <strong>Bitmez.</strong> Süreç blocked durumuna geçer, kodu/verisi ve OS kaydı sürer; yalnızca CPU komutu yürütmüyordur.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="3"><div class="lesson-head"><span class="lesson-number">03</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-9">Ders 3 — Beş durumlu süreç diyagramı</h3></div><button class="complete" data-complete="3" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body"><div class="demo" data-demo="process"></div>
+<ol>
+<li><strong>Konu:</strong> Process state diagram ve transition&#39;lar. (K02, K13, K16)</li>
+<li><strong>Basit açıklama:</strong> Süreç oluşturulur, CPU sırasına girer, çalışır; bazen bekler, sonra devam eder ve biter. <strong>Ready CPU bekler; blocked bir olay bekler.</strong></li>
+<li><strong>Terimler:</strong> New = yeni; ready = hazır; running = çalışıyor; blocked/waiting = engellenmiş/bekliyor; exit/terminated = sonlanmış; admit = kabul; dispatch = CPU&#39;ya atama; time-out = zaman dilimi dolması; event wait = olay bekleme; event occurs = olay gerçekleşmesi; release = bitirip bırakma.</li>
+<li><strong>Örnek:</strong> Editör açılır → ready; CPU verilir → running; klavyeden girdi bekler → blocked; tuşa basılır → ready; CPU tekrar verilir → running; kapatılır → exit.</li>
+<li><strong>Sınav noktaları:</strong> Aşağıdaki altı oku ve etiketlerini öğren. Blocked&#39;dan doğrudan running&#39;e ok çizme. Olayın tamamlanması CPU&#39;yu otomatik kazandırmaz. Time-out ile I/O beklemesini ayır: ilki ready&#39;ye, ikincisi blocked&#39;a götürür. Notta görülen 30 ms örneği evrensel OS sabiti değildir.</li>
+</ol>
+<div class="code-shell"><div class="code-bar"><span>text</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-text">New --admit--&gt; Ready --dispatch--&gt; Running --release--&gt; Exit
+                ^                    |
+                +-----time-out-------+
+                ^                    |
+                |                 event wait
+           event occurs              v
+                +---------------- Blocked
+</code></pre></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Kaynak</th>
+<th>Hedef</th>
+<th>Geçiş adı</th>
+<th>Sebep</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>New</td>
+<td>Ready</td>
+<td>Admit</td>
+<td>Süreç çalıştırılmaya kabul edildi</td>
+</tr>
+<tr>
+<td>Ready</td>
+<td>Running</td>
+<td>Dispatch</td>
+<td>CPU verildi</td>
+</tr>
+<tr>
+<td>Running</td>
+<td>Ready</td>
+<td>Time-out</td>
+<td>Zaman dilimi bitti / CPU geri alındı</td>
+</tr>
+<tr>
+<td>Running</td>
+<td>Blocked</td>
+<td>Event wait</td>
+<td>I/O veya olay beklemeye başladı</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>Ready</td>
+<td>Event occurs</td>
+<td>Beklenen olay tamamlandı</td>
+</tr>
+<tr>
+<td>Running</td>
+<td>Exit</td>
+<td>Release</td>
+<td>Normal yürütme tamamlandı</td>
+</tr>
+</tbody></table></div>
+<ol start="6">
+<li><strong>Hatırlama:</strong> “Hazır: CPU eksik. Blocked: olay eksik.” Ana hat <strong>Yeni–Hazır–Çalış–Bitir</strong>, yan kol <strong>Çalış–Bekle–Hazır</strong>.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Disk okuması biten süreç hangi duruma geçer?” <strong>Ready.</strong> Diski artık beklemez; CPU&#39;yu almak için dispatch gerekir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="4"><div class="lesson-head"><span class="lesson-number">04</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-10">Ders 4 — PCB, kuyruklar, scheduler ve context switch</h3></div><button class="complete" data-complete="4" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> OS bir sürecin kaldığı yeri nasıl hatırlar? (K02, K06, K13, K16)</li>
+<li><strong>Basit açıklama:</strong> PCB sürecin OS içindeki kayıt dosyasıdır. CPU başka işe geçince eski işin gerekli durumunu saklar, yeni işin durumunu yükler. Böylece süreç sanki kaldığı yerden kesintisiz sürüyormuş gibi ilerler.</li>
+<li><strong>Terimler:</strong> Process control block = süreç kontrol bloğu; context = bağlam; context switch = bağlam değişimi; program counter = program sayacı; register = yazmaç; scheduler = zamanlayıcı; dispatcher = seçilen işe CPU&#39;yu devreden mekanizma; ready queue = hazır kuyruğu; wait queue = bekleme kuyruğu.</li>
+<li><strong>Örnek:</strong> İki kitap okurken her birine ayraç koyarsın. Sadece “kitabın adı” yetmez; kaldığın satır da gerekir. PID kimliktir, PC kaldığın komut konumudur.</li>
+<li><strong>Sınav noktaları:</strong> PCB&#39;de kimlik/PID, durum, PC ve register bilgileri, zamanlama bilgileri/öncelikler/kuyruk bağlantıları, bellek ve kaynak yönetim bilgileri bulunur. Nottaki üç ana grup: process identification, processor state information, process control information. Süreç tablosu bu kayıtları yönetir. Context switch: mevcut register/PC bağlamını kaydet → durum/PCB ve kuyrukları güncelle → sonraki işi seç → yeni bağlamı yükle → yürütmeye devam et. Bu süre yönetim maliyetidir; uygulamanın hesabını ilerletmez. Scheduler seçer, dispatcher devreder. “Dispatcher mutlaka en yüksek öncelikli thread&#39;dir” genel tanım değildir.</li>
+<li><strong>Hatırlama:</strong> <strong>Kaydet–Güncelle–Seç–Yükle.</strong> PID “kim?”, PC “nerede?”, state “ne durumda?” sorusunu yanıtlar.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Context switch sırasında yalnızca PID saklamak yeterli midir?” <strong>Hayır.</strong> PID işi tanımlar; PC ve register bağlamı yürütmenin doğru yerden sürmesi için gerekir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="5"><div class="lesson-head"><span class="lesson-number">05</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-11">Ders 5 — Oluşturma, sonlandırma, parent/child ve suspension</h3></div><button class="complete" data-complete="5" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Sürecin yaşam döngüsü ve askıya alınması. (K01, K03, K23)</li>
+<li><strong>Basit açıklama:</strong> OS süreç oluştururken kimlik verir, bellek/kaynak ayırır ve PCB hazırlar. Sonlandırma işi bitirir. Suspension (askıya alma) ise devam etme olanağını korur. Notların yedi durumlu modelinde askıdaki süreçler ana bellek dışında düşünülür.</li>
+<li><strong>Terimler:</strong> Creation = oluşturma; termination = sonlandırma; parent = ebeveyn; child/spawned process = çocuk süreç; suspend/resume = askıya al/devam ettir; swapping = bellek ile disk arasında taşıma; process image = süreç görüntüsü; orphan = ebeveynsiz kalan canlı çocuk; zombie = bitmiş, çıkış bilgisi henüz toplanmamış çocuk.</li>
+<li><strong>Örnek:</strong> Büyük bir işin disk cevabını uzun süre beklediğini düşün. OS başka işlere RAM açmak için onu dışarı taşıyabilir. Olayı disk dışında bekleme ile RAM&#39;de olmama iki ayrı bilgidir.</li>
+<li><strong>Sınav noktaları:</strong> Oluşturma nedenleri: yeni batch job, interactive login, OS hizmeti, mevcut sürecin çocuk oluşturması. Adımlar: benzersiz PID → alan ayır → PCB başlat → gerekli bağlantıları kur → diğer yapıları oluştur/güncelle. Sonlandırma nedenleri: normal bitiş, süre sınırı, bellek yokluğu, sınır ihlali, koruma hatası, aritmetik hata, zaman aşımı, I/O hatası, geçersiz komut, ayrıcalıklı komutu izinsiz kullanma, veri yanlış kullanımı, OS/operatör müdahalesi, ebeveyn isteği veya politika gereği ebeveyn sonlanması. “Bütün sistemlerde ebeveyn biterse çocuk da biter” diye genellenmez.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Durum</th>
+<th>Olayı bekliyor mu?</th>
+<th>Notların modelinde RAM&#39;de mi?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ready</td>
+<td>Hayır</td>
+<td>Evet</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>Evet</td>
+<td>Evet</td>
+</tr>
+<tr>
+<td>Ready/Suspend</td>
+<td>Hayır</td>
+<td>Hayır</td>
+</tr>
+<tr>
+<td>Blocked/Suspend</td>
+<td>Evet</td>
+<td>Hayır</td>
+</tr>
+</tbody></table></div>
+<div class="code-shell"><div class="code-bar"><span>text</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-text">Blocked --suspend--&gt; Blocked/Suspend --event occurs--&gt; Ready/Suspend
+Blocked/Suspend --activate--&gt; Blocked
+Ready --suspend--&gt; Ready/Suspend --activate--&gt; Ready
+</code></pre></div>
+<p>Ek geçiş olarak bu geniş modelde running&#39;den ready/suspend&#39;e askıya alma da gösterilebilir. Beş durum sorusuna istenmedikçe bu iki ek durumu ekleme. Olay tamamlanması askıyı kendiliğinden kaldırmaz. Askıya alma nedenleri: swapping/bellek açma, OS&#39;nin sorun şüphesi, kullanıcı isteği, periyodik zamanlama, ebeveyn isteği.</p>
+<p><strong>Doğruluk düzeltmesi:</strong> <code>kill PID</code> varsayılan olarak SIGTERM gönderir; dondurma komutu değildir. <code>kill -9 PID</code> hedefe SIGKILL gönderir; otomatik olarak bütün çocukları öldürmez. Zombie zaten sonlanmıştır; canlı fakat ebeveyni bitmiş çocuk orphan&#39;dır. Bunlar nottaki bazı cümlelerin düzeltilmiş hâlidir. <a href="https://man7.org/linux/man-pages/man1/kill.1.html">Linux kill</a>, <a href="https://www.man7.org/linux/man-pages/man2/wait.2.html">Linux wait</a>.</p>
+<p><strong>Bellek dosyaları:</strong> Notlarda <code>pagefile.sys</code>/<code>swap.sys</code> yazımları ve 250/256 MB gibi değerler var. Windows dosyasının adı <code>swapfile.sys</code> olarak bilinir. Sabit boyut iddialarını ezberleme; rehberde kesin yapılandırma kuralı sayılmadı. Page file, bellek sayfaları için disk desteği ve commit kapasitesi sağlar; boyutu zorunlu olarak RAM&#39;e eşit değildir. <code>/tmp</code>, genel geçer swap alanı tanımı değildir. <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/introduction-to-the-page-file">Microsoft page file açıklaması</a>.</p>
+<ol start="6">
+<li><strong>Hatırlama:</strong> “Blocked: olay; suspended: yürütme dışına alınmış; terminated: iş bitmiş.”</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Blocked/Suspend durumunda I/O tamamlanırsa?” <strong>Ready/Suspend.</strong> Olay engeli kalktı, ama süreç henüz RAM&#39;e geri alınmadı. “Notepad&#39;i açıp 10 saniye sonra kapat” ödevinin mantığı: oluştur → PID/handle sakla → süreyi bekle → uygun sonlandırma isteği gönder → kaynakları temizle. Bunlar suspension değildir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="6"><div class="lesson-head"><span class="lesson-number">06</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-12">Ders 6 — Thread, paylaşılan kaynaklar ve özel bağlam</h3></div><button class="complete" data-complete="6" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Bir process içinde birden fazla yürütme akışı. (K03, K06, K22, K23, K26)</li>
+<li><strong>Basit açıklama:</strong> Process kaynakların kabıdır; thread o kabın içinde iş yapan akıştır. Çalışan bir süreçte en az bir thread düşünülür. Aynı process&#39;in thread&#39;leri belleği paylaşır ama her birinin kaldığı komut ve çağrı geçmişi ayrıdır.</li>
+<li><strong>Terimler:</strong> Thread = iş parçacığı; multithreading = çok iş parçacıklılık; thread ID = thread kimliği; execution state = yürütme durumu; saved context = saklanan bağlam; thread-local storage (TLS) = thread&#39;e özel saklama alanı; main thread = ana iş parçacığı.</li>
+<li><strong>Örnek:</strong> Bir editörde arayüz thread&#39;i kullanıcıya yanıt verirken başka thread dosya kaydedebilir. Aynı belge verisini paylaşmaları işlerini kolaylaştırır; aynı veriyi eşzamanlı değiştirmeleri ise yarış riski yaratır.</li>
+<li><strong>Sınav noktaları:</strong> Faydalar: responsiveness (yanıt verebilirlik), resource sharing (kaynak paylaşımı), economy (oluşturma/geçiş maliyetinin görece düşüklüğü), scalability (çok çekirdeği kullanabilme). Bunlar her programın kesin hızlanacağı anlamına gelmez. Thread&#39;in kendi stack&#39;i, PC/register bağlamı, kimliği ve durumu vardır. “Thread&#39;in kendine ait hiç belleği yoktur” yanlış genellemedir. Normal global/statik değişkenler paylaşımlıdır; yalnızca açıkça thread-local olanlar thread&#39;e özeldir. Sürecin sonlandırılması içindeki thread&#39;leri de bitirir. Bir thread&#39;in normal bitişiyle bütün sürecin bitişi aynı değildir; main&#39;den <code>return</code> gibi süreç sonlandıran yollar tümünü etkileyebilir.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Özellik</th>
+<th>Aynı process&#39;in thread&#39;leri arasında</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kod/text</td>
+<td>Paylaşılır</td>
+</tr>
+<tr>
+<td>Global/statik veri ve heap</td>
+<td>Paylaşılır</td>
+</tr>
+<tr>
+<td>Açık dosyalar ve süreç kaynakları</td>
+<td>Paylaşılır</td>
+</tr>
+<tr>
+<td>PC ve register bağlamı</td>
+<td>Her thread için ayrı</td>
+</tr>
+<tr>
+<td>Stack/çağrı çerçeveleri</td>
+<td>Her thread için ayrı</td>
+</tr>
+<tr>
+<td>Thread ID, durum, TLS</td>
+<td>Her thread için ayrı</td>
+</tr>
+</tbody></table></div>
+<p>Notta görülen tek/çok süreç ve tek/çok thread şekilleri dört kombinasyonu anlatır: tek süreç–tek akış; tek süreç–çok akış; çok süreç–her birinde tek akış; çok süreç–her birinde çok akış. Ekranda “16 thread” görünmesi mutlaka 15 işçi + 1 main anlamına gelmez; tasarıma göre değişir.</p>
+<ol start="6">
+<li><strong>Hatırlama:</strong> “Ev ortak; herkesin kaldığı sayfa ve not defteri ayrı.” Ev=process belleği, sayfa=PC, defter=stack.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Aynı süreçteki iki thread aynı global diziyi okuyabilir mi; aynı stack&#39;i kullanmak zorunda mı?” <strong>Diziyi okuyabilir; stack&#39;leri ayrıdır.</strong> Ortak salt okuma, aynı hücreye korunmasız yazma ile karıştırılmamalıdır.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="7"><div class="lesson-head"><span class="lesson-number">07</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-13">Ders 7 — Concurrency, parallelism ve işi bölme</h3></div><button class="complete" data-complete="7" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body"><div class="demo" data-demo="parallel"></div>
+<ol>
+<li><strong>Konu:</strong> Aynı zaman aralığında ilerleme ile aynı anda yürütme. (K05, K15, K20)</li>
+<li><strong>Basit açıklama:</strong> Concurrency, birden fazla işin ilerleyişinin çakışması/iç içe geçmesidir. Tek çekirdekte sırayla kısa parçalar çalıştırarak olabilir. Parallelism, işlerin gerçekten aynı anda farklı yürütme kaynaklarında çalışmasıdır. Birbirlerinin çıktısına ihtiyaç duyma zorunluluğu concurrency tanımı değildir.</li>
+<li><strong>Terimler:</strong> Concurrency = eşzamanlılık; parallelism = paralellik; multicore = çok çekirdek; multiprocessor = çok işlemci; data parallelism = veri paralelliği; task parallelism = görev paralelliği; dependency = bağımlılık; load balancing = yük dengeleme; multitasking = çok görevli çalışma; hyper-threading/SMT = aynı fiziksel çekirdekte birden fazla mantıksal yürütme bağlamı.</li>
+<li><strong>Örnek:</strong> Tek kasiyer iki müşterinin işine sırayla dönerse concurrency; iki kasiyer aynı anda hizmet verirse parallelism. Dizi yarılarını aynı toplama işlemiyle hesaplamak data parallelism; bir thread dosyayı okurken diğerinin kullanıcı isteklerini işlemesi task parallelism örneğidir. Görevler aynı veya farklı veri kullanabilir.</li>
+<li><strong>Sınav noktaları:</strong> Tek çekirdek şeması <code>T1 T2 T3 T1 T2</code>; iki çekirdek şeması ayrı iki satırda eşzamanlı işlerdir. Multicore güçlükleri: işi bölme, dengeleme, veriyi bölme, veri bağımlılıkları, test/debugging. Multiprogramming birden fazla işi bellekte bulundurup CPU kullanımını artırır. Multitasking zaman paylaşımıyla birden fazla görevin ilerlemesidir; çok kullanıcı şartı yoktur. Multiprocessing birden fazla işlemci/yürütme kaynağı kullanımıdır. Hyper-threading, iki tam fiziksel çekirdek demek değildir. Network OS ağdaki bilgisayarların kaynak/hizmet paylaşımıyla ilgilidir; bütün sistemler tek merkezden yönetilmek zorunda değildir.</li>
+<li><strong>Hatırlama:</strong> “Concurrency: işler birlikte ilerler. Parallelism: işler aynı anda yürür.” Veri paralelliği: <strong>aynı işlem, veri parçaları</strong>; görev paralelliği: <strong>farklı görevler</strong>.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Tek çekirdekte 4 thread varsa mutlaka paralel mi?” <strong>Hayır.</strong> Zaman paylaşımıyla concurrent olabilirler. “1000 elemanı 500+500 ayırmak hangi türdür?” <strong>Veri paralelliği.</strong> Kod <code>sections</code> kullansa da yapılan iş aynı toplamanın farklı veri parçalarına uygulanmasıdır.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="8"><div class="lesson-head"><span class="lesson-number">08</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-14">Ders 8 — Yarış durumu, atomiklik ve kritik bölge</h3></div><button class="complete" data-complete="8" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body"><div class="demo" data-demo="race"></div>
+<ol>
+<li><strong>Konu:</strong> Doğru görünen iki işlem neden yanlış sonuç verir? (K08, K14, K18)</li>
+<li><strong>Basit açıklama:</strong> İki akış paylaşılan veriye erişirken sonuç erişim sırasına bağlıysa race condition oluşabilir. <code>x++</code> kaynak kodda tek ifade olsa da oku–artır–yaz adımlarına ayrılabilir. Critical section ortak veriye erişen ve birlikte yürütülmesi güvenli olmayan kod parçasıdır; mutual exclusion aynı anda tek akışın bu bölgeye girmesini sağlar.</li>
+<li><strong>Terimler:</strong> Race condition = yarış durumu; critical section = kritik bölge; mutual exclusion = karşılıklı dışlama; lock/unlock = kilitle/kilidi aç; atomic operation = atomik işlem; interleaving = adımların iç içe geçmesi; lost update = kayıp güncelleme.</li>
+<li><strong>Örnek:</strong> x=0 iken iki kişinin artırması:</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th align="right">Adım</th>
+<th>T1</th>
+<th>T2</th>
+<th align="right">Ortak x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>x&#39;i okur: 0</td>
+<td></td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td></td>
+<td>x&#39;i okur: 0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Yerelde 1 hesaplar</td>
+<td></td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td></td>
+<td>Yerelde 1 hesaplar</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>1 yazar</td>
+<td></td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td></td>
+<td>1 yazar</td>
+<td align="right">1</td>
+</tr>
+</tbody></table></div>
+<p>İstenen 2, izlenen hatalı yürütmede 1. Bu tablo, adım mantığını açıklayan modeldir; gerçek C/C++&#39;ta atomik olmayan ortak değişkende veri yarışı tanımsız davranıştır; bütün olası sonuçları yalnızca 1 ve 2 diye sınırlamayız (ek doğruluk notu).
+5. <strong>Sınav noktaları:</strong> Kilit <strong>okuma+değiştirme+yazmanın tamamını</strong> korumalı. Sadece son yazmayı kilitlemek eski değer üzerinden hesaplamayı engellemez. Kilit alma işleminin kendisi de güvenli/atomik olmalıdır. Atomic, diğer akışlara göre bölünmez etki demektir; “CPU&#39;da hiçbir kesme olamaz” ya da “inline fonksiyon” demek değildir. Inline, atomiklik garantisi sağlamaz; “1000 kat hız” genel bir kural değildir. Nottaki echo örneğinde <code>chin/chout</code> gerçekten paylaşılıyorsa okuma–kopyalama–yazdırma arasına başka akış girmesi beklenmedik karakter üretir. Ayrı process&#39;lerin normal global değişkenleri kendiliğinden ortak değildir; örnek paylaşımlı veri varsayar.
+6. <strong>Hatırlama:</strong> “Bir satır ≠ bir atomik işlem.” Ortak veriye <strong>oku–değiştir–yaz</strong> varsa korumayı düşün.
+7. <strong>Örnek soru ve çözüm:</strong> “İki thread sadece aynı diziyi okuyor. Kilit kesin gerekir mi?” <strong>Hayır.</strong> Başka yazan yoksa salt ortak okuma kendi başına veri yarışı oluşturmaz. Ortak <code>toplam += ...</code> ise bir yazma ve yarış kaynağıdır.</p>
+</div></section><section class="lesson-card" data-lesson="9"><div class="lesson-head"><span class="lesson-number">09</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-15">Ders 9 — Semaphore ve mutex: sınavın sayısal kısmı</h3></div><button class="complete" data-complete="9" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body"><div class="demo" data-demo="semaphore"></div>
+<ol>
+<li><strong>Konu:</strong> Kaç giriş izni var, kaç kişi bekliyor? (K18, K25)</li>
+<li><strong>Basit açıklama:</strong> Counting semaphore, sınırlı sayıdaki izinleri yönetir. Başlangıç K=2 ise aynı anda iki izin tutulabilir. Bu, tek girişli mutual exclusion ile aynı amaç değildir. Mutex tek sahipli bir kilittir; counting semaphore birden fazla eşdeğer kaynak için kullanılabilir.</li>
+<li><strong>Terimler:</strong> Semaphore = semafor; counting semaphore = saymalı semafor; binary semaphore = ikili semafor; permit = izin; wait/P/down = izin alma; signal/V/up = izin bırakma; blocked queue = bekleme kuyruğu; mutex = karşılıklı dışlama kilidi.</li>
+<li><strong>Örnek:</strong> İki kabinli bir hizmet noktasında iki kişi işlem yapar, diğerleri sırada bekler. S=1 demek bir boş izin demektir; “her zaman içerisi tamamen boş” demek değildir. Başlangıç kapasitesini bilmelisin.</li>
+<li><strong>Sınav noktaları:</strong> Çıkmış soru negatif değer sorduğu ve notta negatif değer kuyrukla ilişkilendirildiği için aşağıdaki <strong>işaretli sayaçlı ders modeli</strong> kullanılıyor. Her kütüphanenin API&#39;si negatif değeri aynen göstermeyebilir.</li>
+</ol>
+<div class="code-shell"><div class="code-bar"><span>text</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-text">Başlangıç: S = K
+wait(S):   S = S - 1; S &lt; 0 ise çağıranı kuyruğa alıp blokla
+signal(S): S = S + 1; S &lt;= 0 ise kuyruktan bir bekleyeni uyandır
+</code></pre></div>
+<p>Bu işlemler sıradan korunmasız <code>S--</code>/<code>S++</code> olarak uygulanamaz; sayaç/kuyruk güncellemesi atomik biçimde koordine edilir. Uyanan thread önce ready olur; CPU&#39;yu hemen alacağı garanti değildir.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Sayaç</th>
+<th>Ders modelinde anlamı</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S &gt; 0</td>
+<td>S adet kullanılabilir izin, semafor kuyruğunda bekleyen yok</td>
+</tr>
+<tr>
+<td>S = 0</td>
+<td>Boş izin yok, semafor kuyruğunda bekleyen yok</td>
+</tr>
+<tr>
+<td>S &lt; 0</td>
+<td>Boş izin yok, -S adet bekleyen var</td>
+</tr>
+</tbody></table></div>
+<p>İzinleri düzgün alıp bırakan, sabit K kapasiteli ve geçişleri tamamlanmış bir modelde: <strong>boş izin=max(S,0)</strong>; <strong>bekleyen=max(-S,0)</strong>; <strong>tutulan izin=K-max(S,0)</strong>. “Tutulan izin” her nanosaniyede fiziksel olarak kritik kodu yürüten CPU sayısı değildir; thread izin aldıktan sonra ready durumda da olabilir. Sınavın beklenen “içeride” sayımı bu izin sahipliğidir.</p>
+<p><strong>K=2, dört thread sırayla wait çağırıyor; henüz çıkan yok:</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Olay</th>
+<th align="right">S</th>
+<th align="right">İzin sahibi</th>
+<th align="right">Bekleyen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Başlangıç</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>T1 wait</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>T2 wait</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>T3 wait</td>
+<td align="right">-1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td>T4 wait</td>
+<td align="right">-2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td>Bir izin sahibi signal</td>
+<td align="right">-1</td>
+<td align="right">2: biri bırakır, sıradaki devralır</td>
+<td align="right">1</td>
+</tr>
+</tbody></table></div>
+<p>Mutex ile binary semaphore aynı şey değildir: mutex&#39;in sahipliği vardır; normalde alan thread bırakır. Semaphore signal işlemi sahiplik kuralına aynı biçimde bağlı değildir. Binary semaphore benzer dışlama düzeni kurabilir, fakat mutex&#39;i sadece “0–1 sayan semafor” diye tanımlamak eksiktir.</p>
+<ol start="6">
+<li><strong>Hatırlama:</strong> “Pozitif: boş izin; negatif: kuyruk; sıfır: izin bitti, kuyruk yok.” Önce <strong>K kaç?</strong> diye sor.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Başlangıç K=3, S=-2; durum?” <strong>3 izin sahibi, 2 bekleyen, 0 boş izin.</strong> K bilinmeseydi içerideki sayıyı yalnızca -2&#39;den çıkaramazdın.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="10"><div class="lesson-head"><span class="lesson-number">10</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-16">Ders 10 — İşi iki thread&#39;e bölme, sonuçları birleştirme</h3></div><button class="complete" data-complete="10" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body"><div class="demo" data-demo="array"></div>
+<ol>
+<li><strong>Konu:</strong> Böl–hesapla–bekle–birleştir. (Çıkmış S3; K05, K06)</li>
+<li><strong>Basit açıklama:</strong> Her işçiye ayrık veri aralığı ver. Her biri kendi ara toplamını üretsin. Hepsinin bittiği yerde sonuçları birleştir. Paylaşılan tek toplamı sürekli güncellemek gereksiz yarış yaratır.</li>
+<li><strong>Terimler:</strong> Section = iş bölümü bloğu; parallel region = paralel bölge; shared/private = ortak/özel; partial sum = ara toplam; barrier = bariyer/tamamlanma bekleme noktası; join = iş parçacığının bitmesini bekleme; reduction = kısmi sonuçları birleştirme.</li>
+<li><strong>Örnek:</strong> 1000 fişi iki kişiye dağıt: ilk 500 fiş, son 500 fiş. İki kişi ayrı kâğıtlara toplar, sonrasında iki sayı eklenir. Son kişi bitmeden genel toplamı ilan etme.</li>
+<li><strong>Sınav noktaları:</strong> İlk aralık <code>[0,500)</code>, ikincisi <code>[500,1000)</code>; her biri 500 eleman. Son geçerli indeks 999. Döngü değişkenlerini blok içinde tanımlayarak ayrı tut. Diziyi ortak okuyabilirler; her ara toplamın yalnızca tek yazarı olsun. Sonuç yazdırma paralel bölgenin dışında bir kez yapılsın. <code>section</code> sözcüğünden dolayı çıkmış soruya en yakın çözüm <strong>OpenMP</strong> kabul edildi; API&#39;nin sınavda açıkça yazılmayan kısmı için bu bir yorumdur. OpenMP sözdizimi ve bariyer açıklaması <strong>notlarda açık kodu bulunmayan, soruyu çözmek için eklenen bilgidir</strong>. OpenMP <code>sections</code> sonunda <code>nowait</code> yoksa örtük bariyer bulunur. <a href="https://www.openmp.org/spec-html/5.2/openmpse64.html">OpenMP sections tanımı</a>.</li>
+<li><strong>Hatırlama:</strong> <strong>Böl–Topla–Bekle–Birleştir.</strong> İndeksler için <code>0 ≤ i &lt; 500</code>, <code>500 ≤ i &lt; 1000</code>.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “İki section içinde aynı <code>toplam += dizi[i]</code> kullanılırsa ne değişir?” Aynı değişkende yarış riski oluşur. Ayrı <code>s1/s2</code> ile her sonucun tek yazarı olur; hesaplar tamamlanınca <code>s1+s2</code> alınır. Tam çözüm sonraki çıkmış sorular bölümündedir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="11"><div class="lesson-head"><span class="lesson-number">11</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-17">Ders 11 — User/kernel thread, eşleme ve kütüphaneler</h3></div><button class="complete" data-complete="11" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Thread&#39;i kim yönetir, CPU&#39;ya kim görünür? (K05, K06, K15, K24)</li>
+<li><strong>Basit açıklama:</strong> Kullanıcı düzeyindeki kütüphane thread&#39;leri kendi içinde yönetebilir. Kernel thread&#39;lerini OS zamanlayıcısı bilir. Bir API&#39;nin adını bilmek, onun mutlaka many-to-one kullandığını göstermez; <strong>programlama arayüzü ile uygulama modeli farklı şeylerdir</strong>.</li>
+<li><strong>Terimler:</strong> User-level thread (ULT) = kullanıcı düzeyi thread; kernel-level thread (KLT) = çekirdek düzeyi thread; thread library = thread kütüphanesi; many-to-one = çoktan bire; one-to-one = bire bir; many-to-many = çoktan çoğa; hybrid = karma model; POSIX/Pthreads = POSIX thread arayüzü; JVM = Java sanal makinesi.</li>
+<li><strong>Örnek:</strong> Many-to-one&#39;da 5 kullanıcı akışı tek kernel akışına bağlanır. İşletim sistemi bunları 5 ayrı kernel thread gibi zamanlayamaz. One-to-one&#39;da her birine ayrı kernel thread karşılık gelir.</li>
+<li><strong>Sınav noktaları:</strong></li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Eşleme</th>
+<th>Çok çekirdekte bu akışların paralelliği</th>
+<th>Bloklanma etkisi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Many-to-one</td>
+<td>Birçok ULT → 1 KLT</td>
+<td>Tek KLT nedeniyle bu grup aynı anda bir yürütme bağlamıyla sınırlı</td>
+<td>Bloklayan sistem çağrısı bütün grubu durdurabilir</td>
+</tr>
+<tr>
+<td>One-to-one</td>
+<td>Her ULT → ayrı KLT</td>
+<td>OS uygun çekirdeklerde paralel çalıştırabilir</td>
+<td>Birinin bloklanması diğerlerini zorunlu durdurmaz</td>
+</tr>
+<tr>
+<td>Many-to-many</td>
+<td>Birçok ULT → birden fazla KLT</td>
+<td>KLT sayısı ölçüsünde paralellik mümkün</td>
+<td>Diğer KLT&#39;ler ilerleyebilir; yönetim daha karmaşık</td>
+</tr>
+</tbody></table></div>
+<p>Saf ULT avantajı: thread geçişi için kernel moduna geçmek gerekmeyebilir; uygulamaya özgü zamanlama mümkündür. Saf many-to-one dezavantajı: bloklayan çağrı ve tek KLT sınırı. KLT avantajı: OS ayrı thread&#39;leri zamanlar; bloklanana rağmen diğerlerini çalıştırabilir. Maliyeti: kernel yönetimi ve çok sayıda thread&#39;in ek yükü. Modern OS&#39;lerde thread desteği vardır; “tüm OS&#39;ler POSIX çalıştırır” doğru değildir. Windows thread API&#39;si, POSIX Pthreads, Java thread API&#39;si ayrı arayüzlerdir. Java API&#39;si JVM üzerinden çalışır; bunun eşlemesi çalışma zamanı ve kullanılan thread türüne bağlıdır. Pthreads adı tek başına ULT uygulaması demek değildir. Nottaki “Linux&#39;ta ayrım yok” ifadesi ortak task altyapısını anlatır; adres alanı/kaynak paylaşımı bakımından process–thread farkını silmez.
+6. <strong>Hatırlama:</strong> Eşlemenin <strong>sağ tarafı kernel&#39;e görünür</strong>; paralel çalışabilecek bağlamları düşünürken sağ tarafı say.
+7. <strong>Örnek soru ve çözüm:</strong> “8 ULT, 1 KLT ve 8 çekirdek var; sekizi aynı anda çalışır mı?” <strong>Hayır.</strong> Tek kernel yürütme bağlamı bu kullanıcı thread&#39;lerini sekiz çekirdeğe aynı anda dağıtamaz. “Bir bloklanan thread herkesi durdurur” sonucu her modele değil, burada anlatılan saf many-to-one modele aittir.</p>
+</div></section><section class="lesson-card" data-lesson="12"><div class="lesson-head"><span class="lesson-number">12</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-18">Ders 12 — Deadlock, livelock, starvation ve öncelik</h3></div><button class="complete" data-complete="12" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Birden fazla iş neden ilerleyemez? (K08, K14)</li>
+<li><strong>Basit açıklama:</strong> Deadlock&#39;ta işler birbirini bekleyip kalır. Livelock&#39;ta hareket vardır ama iş tamamlanmaz. Starvation&#39;da bazı işler ilerlerken bir iş sürekli dışarıda kalır. Bunlar race condition ile aynı hata değildir.</li>
+<li><strong>Terimler:</strong> Deadlock = kilitlenme; livelock = canlı kilitlenme; starvation = aç kalma; priority = öncelik; progress = ilerleme; scheduling = zamanlama; preemption = CPU&#39;yu geri alma.</li>
+<li><strong>Örnek:</strong> T1 A kilidini tutup B&#39;yi; T2 B&#39;yi tutup A&#39;yı bekler: deadlock. Koridorda iki kişinin sürekli aynı yöne çekilip birbirini tekrar engellemesi: livelock. Sürekli yüksek öncelikli işler geldiği için alt öncelikli işe hiç sıra gelmemesi: starvation.</li>
+<li><strong>Sınav noktaları:</strong> Deadlock için karşılıklı bekleme göster; yalnızca “iş yavaş” demek yetmez. Livelock&#39;ta aktif tekrar/tepki var. Starvation&#39;da sistemin başka işleri ilerleyebilir. Öncelik sayılarının yönü sisteme bağlıdır: 0&#39;ın en yüksek olması evrensel değildir. Notta “Linux 6, Windows 9” biçimindeki öncelik sınıfı sayıları bağlamsız verilmiş; tüm öncelik seviyelerinin değişmez sayısı diye ezberlenmemeli. Eşzamanlılıkta OS&#39;nin çözmesi gerekenler notta iletişim, kaynak paylaşımı, aktiviteleri koordine etme ve CPU zamanı dağıtma olarak özetleniyor.</li>
+<li><strong>Hatırlama:</strong> “Dead: bekler. Live: uğraşır. Starve: sıra gelmez.”</li>
+<li><strong>Örnek soru ve çözüm:</strong> “T1 her seferinde kilidi alıyor, T2 hiç alamıyor; T1 işi bitirip yenisine geçebiliyor.” <strong>Starvation.</strong> Herkesin birbirini beklediği deadlock değildir. Ek öğretici çözüm fikri: aynı sırada kilit alma deadlock riskini; adil sıra/yaşlandırma starvation riskini azaltabilir. Bunlar notta algoritma olarak işlenmiş kabul edilmedi.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="13"><div class="lesson-head"><span class="lesson-number">13</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-19">Ders 13 — İşlemci, bus, instruction cycle ve assembly</h3></div><button class="complete" data-complete="13" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> CPU bir komutu nasıl işler? (K07, K10–K12, K19, K21)</li>
+<li><strong>Basit açıklama:</strong> CPU komutu bellekten getirir, ne olduğunu çözer, yürütür; sonra sıradakine geçer. Notlardaki instruction cycle şekli bu üç adımı anlatır. Dallar/döngüler sonraki komut adresini değiştirebilir.</li>
+<li><strong>Terimler:</strong> Fetch = getir; decode = çöz; execute = yürüt; instruction = komut; opcode = işlem kodu; operand = üzerinde işlem yapılan değer/yazmaç/adres; address bus = adres yolu; data bus = veri yolu; control bus = denetim yolu; FPU = kayan nokta birimi; BIOS = temel giriş/çıkış yazılımı; POST = açılış öz sınaması; MBR = ana önyükleme kaydı.</li>
+<li><strong>Örnek ve şema:</strong> <code>MOV DL,41h</code> içinde <code>MOV</code> işlem, <code>DL</code> hedef yazmaç, <code>41h</code> onaltılık değerdir. <code>41h=65</code> ASCII&#39;de A&#39;dır. Klasik DOS örneğinde <code>AH=02h</code>, <code>DL=41h</code>, <code>INT 21h</code> karakter çıkışı ister. <code>INT 20h</code> sonlandırma örneğidir; bu DOS bağlamıdır, güncel her OS&#39;nin API&#39;si değildir.</li>
+</ol>
+<div class="code-shell"><div class="code-bar"><span>text</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-text">Başla → Fetch → Decode → Execute → sonraki komut için Fetch ... → Bitir
+CPU --adres/denetim isteği--&gt; Bellek
+CPU &lt;-------veri-----------&gt; Bellek
+</code></pre></div>
+<ol start="5">
+<li><strong>Sınav noktaları:</strong> Address bus “neresi?”, data bus “hangi veri?”, control bus “hangi işlem?” sorusunu yanıtlar. Notta control bus tek yön çizilmiş; tüm denetim sinyalleri için evrensel tek yön kuralı değildir. <code>MOV</code> kopyalar, <code>INC</code> artırır, <code>DEC</code> azaltır, <code>CMP</code> karşılaştırma bayraklarını ayarlar, <code>JNZ</code> zero flag sıfırsa dallanır, <code>LOOP</code> ilgili sayaç yazmacını azaltıp sıfır değilse döner. Nottaki <code>CL=64h</code> 100&#39;dür; döngüde tüm <code>CX</code> kullanılıyorsa <code>CH</code> de doğru başlatılmalıdır. <code>MOV CL,1Ah</code> ise 26&#39;dır; onaltılık/ondalık ayrımına dikkat. <code>Run</code> genellikle programı başlatma, <code>execute</code> komutu/işi yürütme anlamında kullanılır; bağlama göre örtüşebilir.</li>
+</ol>
+<p>Boot anlatımındaki BIOS/POST ve 0. sektör–512 byte MBR bilgisi <strong>klasik BIOS/MBR modelidir</strong>; her modern önyüklemenin zorunlu modeli değildir. Shell kernel değildir. <code>/bin</code>, <code>/sbin</code>, <code>/usr</code> Unix dizin düzeniyle ilgilidir; nottaki “USR=Unique System Resources” ifadesi güvenilir evrensel açılım olarak kullanılmamalı. Fiber hafif yürütme bağlamıdır; thread→fiber→instruction zinciri bütün sistemlerin zorunlu hiyerarşisi değildir.
+6. <strong>Hatırlama:</strong> <strong>Getir–Çöz–Yürüt.</strong> Bus için <strong>Adres=Nereye, Veri=Ne, Kontrol=Nasıl</strong>.
+7. <strong>Örnek soru ve çözüm:</strong> “<code>MOV DL,41h</code> kaç ondalıktır ve karakteri nedir?” <code>4×16+1=65</code>, ASCII A. “Komut getirildikten hemen sonra?” Decode. “<code>LOOP</code> ile 100 tur isteniyor, yalnız CL yüklemek yeterli mi?” CX&#39;in üst kısmı bilinmiyorsa yeterli değil; başlangıç sayacının tamamı doğru olmalıdır.</p>
+</div></section><section class="lesson-card" data-lesson="14"><div class="lesson-head"><span class="lesson-number">14</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-20">Ders 14 — Register genişliği, segmentler, adres ve bit kaydırma</h3></div><button class="complete" data-complete="14" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Sayı kaç bit, adres nasıl hesaplanır? (K04, K07, K10, K12, K19–K21)</li>
+<li><strong>Basit açıklama:</strong> Register CPU&#39;nun hızlı çalışma alanıdır. x86 örneğinde AL 8 bit, AX 16 bit, EAX 32 bit, RAX 64 bittir. Küçük isimler büyük yazmacın belirli alt parçalarını gösterir. AH/AL, AX&#39;in yüksek/düşük byte&#39;larıdır.</li>
+<li><strong>Terimler:</strong> Byte = 8 bit; word = burada x86 için 16 bit; doubleword/DWORD = 32 bit; quadword/QWORD = 64 bit; high/low = yüksek/düşük bölüm; accumulator = akümülatör; base = taban; count = sayaç; instruction pointer = komut işaretçisi; segment = bölüm; offset = ofset; shift = bit kaydırma; real/protected/long mode = gerçek/korumalı/uzun kip.</li>
+<li><strong>Örnek:</strong> AX=1234h ise AH=12h, AL=34h. İşaretsiz en büyükler: AL=FFh=255; AX=FFFFh=65535; EAX=FFFFFFFFh=4294967295. IP/EIP/RIP sıradaki komut konumuyla ilgilidir. CS kod, DS veri, SS stack, ES ek segment; SP stack tepesini, BP stack çerçevesini adreslemede kullanılır. Stack LIFO (son giren ilk çıkar) mantığındadır.</li>
+<li><strong>Sınav noktaları ve hesaplar:</strong></li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Hesap</th>
+<th>Yöntem</th>
+<th>Çözüm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0F00:000F gerçek kip fiziksel adresi</td>
+<td>segment × 10h + offset</td>
+<td>F000h + 000Fh = <strong>F00Fh</strong></td>
+</tr>
+<tr>
+<td>1234:0010 gerçek kip fiziksel adresi</td>
+<td>1234h × 10h + 0010h</td>
+<td>12340h + 10h = <strong>12350h</strong></td>
+</tr>
+<tr>
+<td>AX=ABCDh</td>
+<td>yüksek/düşük byte ayır</td>
+<td>AH=ABh, AL=CDh</td>
+</tr>
+<tr>
+<td>12 &lt;&lt; 1</td>
+<td>bir bit sola</td>
+<td><strong>24</strong>, taşma olmadığı varsayımıyla</td>
+</tr>
+<tr>
+<td>12 &gt;&gt; 1</td>
+<td>bir bit sağa</td>
+<td><strong>6</strong>, işaretsiz/uygun pozitif bağlamda</td>
+</tr>
+</tbody></table></div>
+<p>Gerçek kip adres formülü bütün protected/long mode adreslemelerine uygulanmaz. Sağa kaydırma negatif işaretli sayılarda ve sola kaydırma taşmada “daima yarısı/iki katı” diye genellenmez. 32 bit adres, teorik olarak 2^32 byte=4 GiB alanı adresler; nottaki “en fazla 2 GB” kullanıcı alanı düzeni gibi özel bağlamlara aittir, 32 bitin matematiksel sınırı değildir. İşlemci çalışma kipi ile user/kernel yetki kipi farklı eksenlerdir. 64 bit OS&#39;nin 32 bit uygulama çalıştırması uyumluluk desteğine bağlıdır. Nottaki “long mode&#39;da tüm segmentler yok sayılır” cümlesi de genellemedir; FS/GS gibi istisnalar vardır (ek doğruluk notu).
+6. <strong>Hatırlama:</strong> <strong>AL–AX–EAX–RAX: 8–16–32–64.</strong> Gerçek kip: <strong>segmenti bir hex basamak sola kaydır, offset&#39;i ekle</strong>.
+7. <strong>Örnek soru ve çözüm:</strong> “CS=1000h, IP=0020h ise gerçek kip adresi?” <code>1000h×10h+0020h=10020h</code>. “IP kodun kendisini mi tutar?” Hayır, komut adresini/konumunu tutar; kod bellektedir.</p>
+</div></section><section class="lesson-card" data-lesson="15"><div class="lesson-head"><span class="lesson-number">15</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-21">Ders 15 — Windows süreç API&#39;leri ve native/WOW64</h3></div><button class="complete" data-complete="15" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Süreç bilgilerini programdan sorgulama. (K01, K06, K17)</li>
+<li><strong>Basit açıklama:</strong> API işletim sisteminden hizmet isteme arayüzüdür. PID süreç numarasıdır; handle, belli erişim haklarıyla bir OS nesnesine erişim sağlayan tanıtıcıdır. İkisi aynı değer türü/amaç değildir.</li>
+<li><strong>Terimler:</strong> API = uygulama programlama arayüzü; handle = erişim tanıtıcısı; native = ilgili platformun doğal yürütme biçimi; WOW64 = 64 bit Windows&#39;ta uyumlu 32 bit uygulama ortamı; major/minor = ana/alt sürüm; module base name = modülün yol içermeyen dosya adı.</li>
+<li><strong>Örnek:</strong> Görev yöneticisindeki PID ile bir süreci tanırsın; programın <code>OpenProcess</code> ile aldığı handle ise o sürece hangi işlemleri yapabileceğini belirleyen erişim bağlamına sahiptir.</li>
+<li><strong>Sınav noktaları:</strong></li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>API</th>
+<th>Bilmen gereken işlev</th>
+<th>Karıştırma</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OpenProcess</code></td>
+<td>İstenen haklarla mevcut sürece handle alır</td>
+<td>Yeni süreç oluşturmaz</td>
+</tr>
+<tr>
+<td><code>GetProcessVersion</code></td>
+<td>EXE&#39;nin hedeflediği sistem sürüm bilgisini verir</td>
+<td>Doğrudan “şu an kurulu OS sürümü” değildir</td>
+</tr>
+<tr>
+<td><code>GetCurrentProcessorNumber</code></td>
+<td>Çağrı anında mevcut thread&#39;in çalıştığı işlemci numarasını verir</td>
+<td>PID veya thread ID değildir</td>
+</tr>
+<tr>
+<td><code>IsWow64Process</code></td>
+<td>Sürecin WOW64 altında olup olmadığını çıktı parametresine yazar</td>
+<td>Fonksiyonun başarı dönüşü ile bu çıktı farklıdır</td>
+</tr>
+<tr>
+<td><code>GetModuleBaseName</code></td>
+<td>Modülün yol içermeyen adını verir</td>
+<td>Tam dosya yolu değildir</td>
+</tr>
+</tbody></table></div>
+<p>Nottaki <code>GetCurrentProcessNumber</code> benzeri yazım için doğru API adı <code>GetCurrentProcessorNumber</code>dır. <code>GetProcessVersion</code> sonucunda HIGHWORD major, LOWORD minor&#39;dur. <code>IsWow64Process</code> başarısızsa dönüş sıfırdır; başarılı olduğunda asıl WOW64 sonucu çıktı parametresinden okunur. x64 Windows bağlamında WOW64=false sonucunu “her platformda kesin native 64 bit” diye genelleme. Notta geçen 32/64 bit derleme ödevi mimariyi gözlemlemek içindir. <code>windows.h</code> API bildirimlerini sağlar; her fonksiyonun gerektirdiği ek header/library ayrıca kontrol edilir.</p>
+<p>Bu tablo nottaki belirsiz API ifadeleri için belgeyle doğrulandı: <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocessversion">GetProcessVersion</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocessornumber">GetCurrentProcessorNumber</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/wow64apiset/nf-wow64apiset-iswow64process">IsWow64Process</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/psapi/nf-psapi-getmodulebasenamew">GetModuleBaseName</a>.
+6. <strong>Hatırlama:</strong> “PID kim, handle hangi erişimle, processor number hangi CPU?”
+7. <strong>Örnek soru ve çözüm:</strong> “<code>OpenProcess</code> çağrısı yeni Notepad başlatır mı?” <strong>Hayır.</strong> Var olan sürece erişim açar. Notepad başlatma ödevinde ayrıca süreç oluşturma işlemi gerekir. “GetModuleBaseName sonucunda klasör yolu bekler miyim?” Hayır; temel dosya adı beklenir.</p>
+</div></section><section class="lesson-card" data-lesson="16"><div class="lesson-head"><span class="lesson-number">16</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-22">Ders 16 — Kimlik, yetki ve çok süreçli tarayıcı</h3></div><button class="complete" data-complete="16" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Kim olduğunu bilmek ve ne yapabileceğini belirlemek. (K09, K11)</li>
+<li><strong>Basit açıklama:</strong> Authentication kimliği doğrular; authorization o kimliğin erişim yetkisini denetler. Doğru şifreyle girmek, bütün verileri silebilmek anlamına gelmez. Tarayıcıda süreçlere ayırma ise sekmeleri birbirinden yalıtarak hata ve saldırının yayılmasını azaltabilir.</li>
+<li><strong>Terimler:</strong> Authentication = kimlik doğrulama; authorization = yetkilendirme; isolation = yalıtım; sandbox = sınırlı çalışma ortamı; memory leak = bellek sızıntısı; RBAC = rol tabanlı erişim; ABAC = öznitelik tabanlı erişim; ACL = erişim denetim listesi; session = oturum; token = belirteç; MFA = çok faktörlü doğrulama.</li>
+<li><strong>Örnek:</strong> Öğrenci kimliğiyle portala girersin: authentication. Yalnız kendi notlarını görürsün: authorization. Admin kullanıcı silebilir, viewer yalnız okuyabilir. Bir tarayıcı sekmesinin çökmesinin diğerlerini zorunlu kapatmaması süreç yalıtımının faydasıdır.</li>
+<li><strong>Sınav noktaları:</strong> RBAC kullanıcı→rol→izin; ABAC kullanıcı/kaynak/zaman/konum gibi niteliklere göre karar; ACL her kaynakta kimin ne yapabileceğinin listesi. Katmanlar: frontend giriş formu/oturum arayüzü; backend kimlik ve endpoint yetki kontrolü; service iş kuralı; data katmanı satır/view/prosedür erişimleri. Güvenlik yalnızca frontend&#39;de buton gizlemekle sağlanmaz. Controller isteği yönlendirir, iş mantığı genellikle service&#39;te, veri erişimi repository/DAO&#39;dadır. Session tabanlı düzende sunucu oturum kaydı tutar; token tabanlı düzende istemci belirteci sunar. JWT imzalı belirteç biçimidir; şifrelenmiş olmak zorunda değildir (ek açıklama). MFA farklı doğrulama faktörlerini birleştirir. OAuth 2.0 yetki devri protokolüdür; tek başına kimlik doğrulama protokolü diye ezberleme. Tarayıcıda ana süreç, renderer, extension ve network süreçleri bulunabilir; “her sekme her zaman tam bir süreç” kesin kural değildir. Sızıntı ayrılan belleğin artık kullanılmadığı hâlde serbest bırakılmamasıdır; “uygulama çok RAM kullanıyor” tek başına kanıt değildir.</li>
+<li><strong>Hatırlama:</strong> “Authentication: kimsin? Authorization: neye iznin var?” RBAC=rol, ABAC=özellik, ACL=kaynak listesi.</li>
+<li><strong>Örnek soru ve çözüm:</strong> “Şifresi doğru öğrenci başka öğrencinin kaydını güncelleyebiliyor; hangi denetim eksik?” <strong>Authorization.</strong> Kimliği doğrulanmış olabilir; hedef kaynağa yetkisi denetlenmiyor. “Sadece giriş formunu değiştirmek çözer mi?” Hayır, sunucuda yetki kontrolü gerekir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="17"><div class="lesson-head"><span class="lesson-number">17</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-23">Ders 17 — Ağ kimlikleri ve spoofing (düşük öncelik)</h3></div><button class="complete" data-complete="17" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Kaynağı başka biriymiş gibi gösterme. (K24)</li>
+<li><strong>Basit açıklama:</strong> Spoofing bir kimlik/adres bilgisini taklit etmektir. DNS ad–IP; ARP yerel ağda IPv4–MAC eşlemesiyle ilgilidir. Bu eşlemeleri bozmak trafiği yanlış yere yönlendirebilir.</li>
+<li><strong>Terimler:</strong> Spoofing = kimlik/adres taklidi; IP = ağ adresi; MAC = bağlantı katmanı adresi; DNS = alan adı sistemi; ARP = adres çözümleme protokolü; cache poisoning = önbellek zehirleme; port = iletişim uç noktası numarası.</li>
+<li><strong>Örnek:</strong> Bir alan adının yanlış IP&#39;ye çözümlenmesi kullanıcıyı yanlış sunucuya yönlendirebilir. ARP tablosuna sahte eşleme girmesi yerel ağ trafiğini etkileyebilir.</li>
+<li><strong>Sınav noktaları:</strong> Notta IP, DNS, ARP spoofing ve MAC değiştirme anılıyor. MAC spoofing için fiziksel donanımı değiştirmek şart değildir. Reverse DNS veya RARP tek başına genel spoofing önleme yöntemi değildir; nottaki bu öneriler güvenilir çözüm kuralı olarak kullanılmadı. Port tarama bir keşif işlemidir; spoofing ile aynı kavram değildir. Konu burada tanımsal tutuldu; notta ayrıntılı protokol algoritması yok.</li>
+<li><strong>Hatırlama:</strong> “DNS: ad→IP. ARP: yerel IPv4→MAC. Spoofing: bu kimliği taklit.”</li>
+<li><strong>Örnek soru ve çözüm:</strong> “DNS spoofing ile race condition aynı sorun mu?” Hayır. İlki ağ kimliği/eşleme güvenliği, ikincisi eşzamanlı erişim sırasının sonuç üzerindeki etkisidir.</li>
+</ol>
+</div></section><section class="lesson-card" data-lesson="18"><div class="lesson-head"><span class="lesson-number">18</span><div><span class="overline">KONU ANLATIMI</span><h3 id="bolum-24">Ders 18 — Notlardaki tamamlayıcı hesap ve teori parçaları</h3></div><button class="complete" data-complete="18" aria-pressed="false" title="Dersi tamamlandı olarak işaretle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Tamamladım</span></button></div><div class="lesson-body">
+<ol>
+<li><strong>Konu:</strong> Ana kapsam dışında görünebilen ama atlanmayan üç parça. (K03, K05, K14, K17)</li>
+<li><strong>Basit açıklama:</strong> Bu fotoğraflarda başka konulara ait kısa örnekler var. Görünen sınav sorularıyla doğrudan bağları gösterilemiyor; önce ana dersleri bitir, sonra bu bölümü tanı.</li>
+<li><strong>Terimler:</strong> Bootstrap = yerine koyarak örnekleme; random forest = rastgele orman; feature randomness = özellik rastgeleliği; Gaussian Naive Bayes = Gauss naif Bayes; mean = ortalama; variance = varyans; pumping lemma = pompalama lemması; regular language = düzenli dil.</li>
+<li><strong>Örnekler ve hesap:</strong><ul>
+<li><strong>Bootstrap:</strong> n veri arasından n kez yerine koyarak seçim yapılırsa belirli bir örneğin hiç seçilmeme olasılığı <code>(1-1/n)^n</code>; büyük n için yaklaşık 0,368. Bu, tüm verilerin seçilmeme olasılığı değildir. Random forest bootstrap örneklemesi ve özellik alt kümeleriyle çeşitlilik oluşturabilir.</li>
+<li><strong>Gaussian Naive Bayes:</strong> Notta erkek örnekleri 175/185, ortalama 180; kadın 165/155, ortalama 160, varyans 25 verilmiş. x=172, eşit varyans ve <strong>eşit sınıf öncülleri varsayımıyla</strong>, 180&#39;e uzaklık 8; 160&#39;a uzaklık 12. Erkek sınıfı için Gauss yoğunluğu daha yüksektir. Notun “yakına bak” sezgisi bu varsayımlara bağlıdır; öncüller/varyanslar farklıysa yalnız yakınlık yetmez.</li>
+<li><strong>Pumping lemma:</strong> Düzenli dillerin sağlaması gereken bir özellik verir. Tipik kullanım bir dilin düzenli olmadığını çelişkiyle göstermektir. “Lemmayı bir örnekte sağladı, o hâlde dil düzenlidir” sonucu çıkarılmaz. Notta <code>s=xyz</code>, <code>|s|≥p</code> parçaları okunuyor, tam ispat yok. Ek tamamlayıcı standart biçim: düzenli L için bir p vardır; her yeterince uzun s∈L için s=xyz, <code>|xy|≤p</code>, <code>|y|&gt;0</code> ve her i≥0 için <code>xy^iz∈L</code>. Düzenli olmadığını göstermek için tüm uygun bölmelere karşı bir pompalama bozuluşu gerekir; tek bölme yetmez.</li>
+</ul>
+</li>
+<li><strong>Sınav noktaları:</strong> Bu üç örneğin birbirinden farklı alanlar olduğunu ayır. Fotoğrafta olmayan tam ML algoritmasını veya otomata ispatını hocanın anlattığı kapsam gibi varsayma. Hesapta kullanılan varsayımları yaz.</li>
+<li><strong>Hatırlama:</strong> “Bootstrap: seçilmeyen örnek; Gauss: varsayımla yoğunluk; lemma: düzenlilik için gerekli özellik.”</li>
+<li><strong>Örnek soru ve çözüm:</strong> “n=2 iken belirli bir örnek iki seçimde de seçilmesin: olasılık?” <code>(1-1/2)^2=1/4</code>. “172&#39;nin erkek sınıfına yakın olması tek başına her Naive Bayes probleminde yeterli mi?” Hayır; öncüller ve dağılım parametreleri de gerekir.</li>
+</ol>
+</div></section></section>
+<section class="chapter" data-chapter="bolum-25"><h2 id="bolum-25">5. Çıkmış soruların tam çözümleri</h2>
+<h3 id="bolum-26">Çıkmış soru 1 — Beş durum, geçişleriyle çizim</h3>
+<p><strong>Görünen soru:</strong> “5 durumlu process state diyagramını çiziniz ve transitionlarını yazınız?” (15 puan.)</p>
+<p><strong>Sınava yazılacak cevap:</strong> Ders 3&#39;teki şema ve altı geçiş tablosu. New, Ready, Running, Blocked/Waiting, Exit/Terminated durumlarını; Admit, Dispatch, Time-out, Event wait, Event occurs, Release oklarını göster.</p>
+<p><strong>Neden doğru?</strong> Ready CPU&#39;yu bekler, blocked henüz çalışma koşulu oluşmadığı için olay bekler. Olay bitince ready olur; dispatch ile running&#39;e döner. Böylece “olay tamamlanması” ve “CPU verilmesi” farklı kararlar olarak gösterilir.</p>
+<p><strong>Seçenek yok:</strong> Bu soru çoktan seçmeli olmadığı için orijinal yanlış şıklar bulunmuyor. Aşağıdakiler yanlış cevap örnekleridir:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Yanlış cevap</th>
+<th>Neden yanlış?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blocked → Running, etiketi “I/O bitti”</td>
+<td>CPU&#39;ya atanma adımını atlıyor</td>
+</tr>
+<tr>
+<td>Running → Blocked, etiketi “time-out”</td>
+<td>CPU süresi dolması olay beklemek değildir; ready olmalı</td>
+</tr>
+<tr>
+<td>Ready → Blocked, etiketi “disk isteği”</td>
+<td>Temel beş durum modelinde isteği çalışmakta olan süreç yapar</td>
+</tr>
+<tr>
+<td>Yalnızca durum isimleri</td>
+<td>Soru geçişleri de istiyor</td>
+</tr>
+<tr>
+<td>Beş yerine yedi durum, açıklamasız</td>
+<td>İstenen temel model yerine başka model çiziliyor</td>
+</tr>
+</tbody></table></div>
+<p><strong>Aynı mantıkta yeni soru:</strong> “P oluşturuldu, CPU aldı, disk istedi, disk bitti, CPU aldı, zaman dilimi doldu, CPU aldı ve bitti. Durum sırasını yaz.”</p>
+<p><strong>Çözüm:</strong> New → Ready → Running → Blocked → Ready → Running → Ready → Running → Exit.</p>
+<h3 id="bolum-27">Çıkmış soru 2 — Başlangıç 2, dört thread</h3>
+<p><strong>Okunabilen istek:</strong> Kritik bölgeye erişim için başlangıcı 2 olan semaphore kullanılıyor. Sayaç -2, 0 ve 1 iken durum yazılacak. Sağ uç kesik olduğundan metnin son sözcükleri birebir aktarılmadı. Çözüm K18/K25&#39;teki negatif kuyruk modeline dayanır.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th align="right">S</th>
+<th>Sınava yazılacak yorum</th>
+<th>Neden?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">-2</td>
+<td>2 izin sahibi içeride kabul edilir; 2 thread semafor kuyruğunda bekler; boş izin yok</td>
+<td>Negatif büyüklük bekleyen sayısıdır; kapasite 2 doludur</td>
+</tr>
+<tr>
+<td align="right">0</td>
+<td>2 izin tutuluyor; boş izin ve kuyrukta bekleyen yok</td>
+<td>İki izin tüketilmiş; henüz üçüncü bekleyen isteği yok</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td>1 izin tutuluyor; 1 boş izin var; bekleyen yok</td>
+<td>Başlangıç 2&#39;den yalnızca bir izin eksilmiş</td>
+</tr>
+</tbody></table></div>
+<p>Dört thread bulunması, hepsinin her anda semafora başvurduğu anlamına gelmez. Örneğin S=1 iken diğer üç thread dışarıda başka iş yapıyor veya henüz başvurmamış olabilir. Tutarlı wait/signal kullanımı ve sabit kapasite varsayılır.</p>
+<p><strong>Yanlış cevaplar neden yanlış?</strong></p>
+<ul>
+<li>“-2: içeride eksi iki thread”: Negatif değer insan/thread sayısı değil, bekleme kuyruğu işaretidir.</li>
+<li>“-2: yalnız bir thread içeride”: Başlangıç değerini 1 sanmış olur; soruda 2.</li>
+<li>“0: kritik bölge boş”: Tersidir; kullanılabilir izin yoktur. Boş kuyruğu boş kaynakla karıştırır.</li>
+<li>“1: içeride hiç kimse yok”: Bu ancak başlangıcı 1 olan, uygun binary örneğinde düşünülebilir; K=2 için bir izin kullanılıyordur.</li>
+<li>“4 thread varsa hep 4&#39;ü de içeride”: Semaphore zaten eşzamanlı izin sayısını sınırlar.</li>
+</ul>
+<p><strong>Yeni soru:</strong> K=2 iken sırayla T1 wait, T2 wait, T3 wait, T1 signal gerçekleşiyor. Her adımdan sonra S?</p>
+<p><strong>Çözüm:</strong> 1, 0, -1, 0. Son signal T3&#39;ün beklemesini çözer; T3 izin alabilecek şekilde uyandırılır, ama hemen CPU&#39;da çalışması gerekmez. Son durumda iki izin tutulabilir, semafor kuyruğunda bekleyen kalmaz.</p>
+<h3 id="bolum-28">Çıkmış soru 3 — 1000 elemanı iki section ile toplama</h3>
+<p><strong>Görünen istek:</strong> 0–499 elemanlarını bir thread, 500–999 elemanlarını ikinci thread toplasın; işler bitince genel toplam ekrana yazılsın. Dizi zaten var kabul ediliyor. 30 puan; kod tamamlama.</p>
+<p><strong>Yorum:</strong> “Section” sözcüğü nedeniyle OpenMP çözümü veriliyor. Fotoğrafta API adı açık görünmediğinden, bunu kesin bir alıntı değil teknik yorum olarak kabul et. Nottaki <code>int dizi[1000] = {1,3,...,2,1};</code> gösteriminde <code>...</code> gerçek C başlatıcısı değildir. Aşağıdaki program buna karşı derlenebilir test dizisi kullanır. Sınavda hocanın verdiği gerçek dizi varsa yalnızca başlatma satırını korursun.</p>
+<div class="code-shell"><div class="code-bar"><span>C / OpenMP</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;omp.h&gt;
+
+int main(int argc, char *argv[])
+{
+    int dizi[1000];
+    /* Test verisi; sinavda verilen dizi bunun yerine kullanilir. */
+    for (int i = 0; i &lt; 1000; ++i)
+        dizi[i] = i + 1;
+
+    long long s1 = 0;
+    long long s2 = 0;
+
+    omp_set_dynamic(0);
+    #pragma omp parallel sections num_threads(2) shared(dizi, s1, s2)
+    {
+        #pragma omp section
+        {
+            long long yerel = 0;
+            for (int i = 0; i &lt; 500; ++i)
+                yerel += dizi[i];
+            s1 = yerel;
+        }
+
+        #pragma omp section
+        {
+            long long yerel = 0;
+            for (int i = 500; i &lt; 1000; ++i)
+                yerel += dizi[i];
+            s2 = yerel;
+        }
+    } /* Paralel bolge biter; tum thread&#39;ler tamamlanmis olur. */
+
+    long long toplam = s1 + s2;
+    printf(&quot;Toplam = %lld\n&quot;, toplam);
+    return 0;
+}
+</code></pre></div>
+<p><strong>Satırların mantığı:</strong></p>
+<ol>
+<li>Dizi ortak okunur. Her section&#39;ın <code>i</code> ve <code>yerel</code> değişkenleri kendi bloğunda tanımlanır.</li>
+<li>Bir section yalnızca <code>s1</code>&#39;e, diğeri yalnızca <code>s2</code>&#39;ye yazar. Aynı toplama değişkenine yarışarak yazmazlar.</li>
+<li><code>parallel sections</code> bir thread ekibi kurup section bloklarını dağıtır. <code>num_threads(2)</code> iki thread talep eder; <code>omp_set_dynamic(0)</code> dinamik küçültmeyi kapatır. Çalışma zamanı/ortam sınırları ayrıca geçerlidir.</li>
+<li>Hangi section&#39;ı hangi thread numarasının yürüteceği belirtilmemiştir. “İlk section kesin thread 0, ikinci kesin thread 1” yazma. Standart section dağıtımını uygulamaya bırakır; bölümün farklı thread kimliklerine sabitlenmesi ayrı bir gereksinimdir. Sorudaki iki section ile iş paylaşımı için tipik sınav çözümü budur. <a href="https://www.openmp.org/spec-html/5.2/openmpse64.html">OpenMP sections</a>.</li>
+<li>Paralel bölge sonundaki bekleme tamamlanmadan ana akış dışarı çıkmaz. Bu nedenle toplam iki kısmi sonuç hazır olduktan sonra yazılır. Son kısımdaki tek <code>printf</code>, sonucu bir kez yazdırır.</li>
+<li><code>long long</code> ara toplamın dar <code>int</code> taşması riskini azaltır; verilen test aralığında sonuç 500500&#39;dür. Her olası veri büyüklüğü için sınırsız taşma garantisi değildir.</li>
+</ol>
+<p><strong>Somut aralık kontrolü:</strong> 0–499&#39;da <code>499-0+1=500</code>, 500–999&#39;da <code>999-500+1=500</code> eleman var. Test dizisi 1…1000 için s1=125250, s2=375250, toplam=500500. Fotoğrafta gerçek dizinin tüm değerleri bulunmadığından orijinal sorunun sayısal toplamı hesaplanamaz; istenen programdır.</p>
+<p><strong>Yanlış kodlar neden yanlış?</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Hata</th>
+<th>Sonuç</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>İlk döngü <code>i&lt;=500</code>, ikinci <code>i=500</code></td>
+<td>500. indeks iki kez toplanır</td>
+</tr>
+<tr>
+<td>İkinci döngü <code>i&lt;=1000</code></td>
+<td><code>dizi[1000]</code> sınır dışıdır</td>
+</tr>
+<tr>
+<td><code>s1</code> veya <code>s2</code> başlatılmamış</td>
+<td>Belirsiz başlangıç değeriyle toplama</td>
+</tr>
+<tr>
+<td>İki section da ortak <code>toplam += ...</code> yapıyor</td>
+<td>Eşzamanlı güncelleme yarışı</td>
+</tr>
+<tr>
+<td>Yazdırma bir section&#39;ın içinde</td>
+<td>Diğer hesap tamamlanmamış olabilir</td>
+</tr>
+<tr>
+<td><code>#pragma omp parallel</code> var, <code>sections</code> yok</td>
+<td>Her thread bütün bloğu yürütebilir; iş bölümü kurulmaz</td>
+</tr>
+<tr>
+<td>Kodu OpenMP desteği olmadan derlemek</td>
+<td>Pragma&#39;lar paralel yürütmeyi sağlamayabilir</td>
+</tr>
+<tr>
+<td>Gerçek başlatıcıda <code>...</code> yazmak</td>
+<td>Geçerli dizi başlatıcısı değildir</td>
+</tr>
+</tbody></table></div>
+<p><strong>Derleme örneği (ek bilgi):</strong> OpenMP destekli GCC ile <code>gcc -std=c11 -fopenmp cozum.c -o cozum</code>; MSVC&#39;de uygun OpenMP derleme seçeneği gerekir. Bu çalışma ortamında GCC/Clang/MSVC komutu bulunmadı; bu yüzden kodun burada derlenip çalıştırıldığı iddia edilmiyor. Aralıklar ve ara toplamlar ayrıca hesapla doğrulandı.</p>
+<p><strong>Yeni soru:</strong> 12 elemanı 3 section&#39;a böl. Her section 4 eleman toplasın. Hangi aralıklar?</p>
+<p><strong>Çözüm:</strong> <code>[0,4)</code>, <code>[4,8)</code>, <code>[8,12)</code>. Üç ayrı ara toplam ve paralel bölgeden sonra tek bir birleştirme. <code>reduction</code> başka bir çözüm yaklaşımıdır; fakat soru özellikle section istiyorsa onu değiştirmeden kullan.</p>
+</section>
+<section class="chapter" data-chapter="bolum-29"><h2 id="bolum-29">6. Karıştırılan kavramlar: hızlı karşılaştırma</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Kavram çifti</th>
+<th>Temel fark</th>
+<th>Kontrol sorusu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Program / process</td>
+<td>Saklanan tarif / durum ve kaynaklarıyla yürütme örneği</td>
+<td>“PID ve anlık durum var mı?”</td>
+</tr>
+<tr>
+<td>Process / thread</td>
+<td>Kaynak/adres alanı kabı / içindeki yürütme akışı</td>
+<td>“Kim aynı belleği paylaşıyor?”</td>
+</tr>
+<tr>
+<td>Ready / blocked</td>
+<td>CPU bekler / olay bekler</td>
+<td>“CPU verilse hemen çalışabilir mi?”</td>
+</tr>
+<tr>
+<td>Blocked / suspended</td>
+<td>Olay engeli / askıya alınma</td>
+<td>“Olay bitince belleğe de dönmüş olur mu?”</td>
+</tr>
+<tr>
+<td>PC / PID</td>
+<td>Komut konumu / süreç kimliği</td>
+<td>“Nerede mi, kim mi?”</td>
+</tr>
+<tr>
+<td>PCB / PC</td>
+<td>Süreç kayıt yapısı / bu yapıdaki yürütme konum bilgisi</td>
+<td>“Bütün kayıt mı, tek alan mı?”</td>
+</tr>
+<tr>
+<td>Scheduler / dispatcher</td>
+<td>Sonraki işi seçer / CPU&#39;yu devreder</td>
+<td>“Seçim mi, devir mi?”</td>
+</tr>
+<tr>
+<td>Concurrency / parallelism</td>
+<td>Birlikte ilerleme / aynı anda yürütme</td>
+<td>“Tek çekirdekte de olabilir mi?”</td>
+</tr>
+<tr>
+<td>Data / task parallelism</td>
+<td>Aynı işlemin veri bölümleri / farklı görevler</td>
+<td>“İşlem mi, veri mi değişti?”</td>
+</tr>
+<tr>
+<td>Mutex / semaphore</td>
+<td>Sahipli tek kilit / izin sayacı</td>
+<td>“Kapasite 1 olmak zorunda mı?”</td>
+</tr>
+<tr>
+<td>Atomic / inline</td>
+<td>Bölünmez etki / çağrı yerinde genişletme yaklaşımı</td>
+<td>“Inline yarış garantisini çözer mi?”</td>
+</tr>
+<tr>
+<td>Barrier / mutual exclusion</td>
+<td>Herkesin tamamlamasını bekleme / aynı anda giriş engeli</td>
+<td>“Bitişi mi, girişi mi kontrol ediyor?”</td>
+</tr>
+<tr>
+<td>Deadlock / starvation</td>
+<td>Karşılıklı bekleyenler / sıra bulamayan iş</td>
+<td>“Başkaları ilerliyor mu?”</td>
+</tr>
+<tr>
+<td>ULT / KLT</td>
+<td>Kütüphane yönetimi / OS&#39;nin bildiği thread</td>
+<td>“OS ayrı ayrı zamanlıyor mu?”</td>
+</tr>
+<tr>
+<td>User/kernel / 32/64 bit</td>
+<td>Yetki düzeyi / mimari-veri genişliği</td>
+<td>“Biri diğerini belirler mi?”</td>
+</tr>
+<tr>
+<td>Authentication / authorization</td>
+<td>Kimlik doğrulama / yetki kararı</td>
+<td>“Kimsin mi, ne yapabilirsin mi?”</td>
+</tr>
+<tr>
+<td>Orphan / zombie</td>
+<td>Canlı çocuk, ebeveyni yok / bitmiş çocuk, kaydı bekliyor</td>
+<td>“Çocuk gerçekten bitmiş mi?”</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="chapter" data-chapter="bolum-30"><h2 id="bolum-30">7. Önemli kavramlar sözlüğü</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>İngilizce</th>
+<th>Türkçe ve tek cümlelik anlam</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accounting</td>
+<td>Kaynak kullanımının kaydını tutma</td>
+</tr>
+<tr>
+<td>Admit</td>
+<td>Yeni süreci hazır işlere kabul etme</td>
+</tr>
+<tr>
+<td>Address space</td>
+<td>Sürecin adresleyebildiği bellek alanı</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Yazılımların hizmet isteme arayüzü</td>
+</tr>
+<tr>
+<td>Atomic</td>
+<td>Diğer akışlara göre bölünmez etki gösteren</td>
+</tr>
+<tr>
+<td>Barrier</td>
+<td>Katılan işlerin belirli noktayı tamamlamasını bekleme</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>Bir olay/kaynak koşulu nedeniyle ilerleyemeyen</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Yürütmeye devam etmek için gereken anlık durum</td>
+</tr>
+<tr>
+<td>Context switch</td>
+<td>Bir yürütme bağlamından diğerine geçiş</td>
+</tr>
+<tr>
+<td>Critical section</td>
+<td>Paylaşılan durum üzerinde korunması gereken kod bölgesi</td>
+</tr>
+<tr>
+<td>Dispatch</td>
+<td>Hazır işe CPU&#39;yu verme</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Beklenebilen/geldiğinde süreci hazır kılabilen olay</td>
+</tr>
+<tr>
+<td>Handle</td>
+<td>OS nesnesine erişim tanıtıcısı</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Dinamik bellek ayırma alanı</td>
+</tr>
+<tr>
+<td>I/O</td>
+<td>Giriş/çıkış; örneğin disk okuma</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td>Süreçler arası iletişim</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>OS&#39;nin temel yönetim çekirdeği</td>
+</tr>
+<tr>
+<td>Lock</td>
+<td>Korunan bölgeye giriş denetimi</td>
+</tr>
+<tr>
+<td>LIFO</td>
+<td>Son giren ilk çıkar</td>
+</tr>
+<tr>
+<td>Mutual exclusion</td>
+<td>Aynı kritik bölgeye eşzamanlı tek giriş sağlama</td>
+</tr>
+<tr>
+<td>Operand / opcode</td>
+<td>İşlenen değer/konum / yapılacak işlem</td>
+</tr>
+<tr>
+<td>Permit</td>
+<td>Semaphore tarafından verilen giriş/kaynak izni</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Süreç kimliği</td>
+</tr>
+<tr>
+<td>PCB</td>
+<td>Sürecin kimlik, durum, bağlam ve kontrol kaydı</td>
+</tr>
+<tr>
+<td>Program counter</td>
+<td>Yürütmenin komut konumu bilgisi</td>
+</tr>
+<tr>
+<td>Race condition</td>
+<td>Sonucun denetlenmeyen işlem sırasına bağlı olması</td>
+</tr>
+<tr>
+<td>Ready</td>
+<td>Çalışmaya uygun fakat CPU bekleyen</td>
+</tr>
+<tr>
+<td>Register</td>
+<td>İşlemci içindeki hızlı yazmaç</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Kullanımına erişim yönetilen kaynak</td>
+</tr>
+<tr>
+<td>Resume</td>
+<td>Askıdaki yürütmeyi yeniden etkinleştirme</td>
+</tr>
+<tr>
+<td>Running</td>
+<td>Komutları CPU&#39;da yürütülmekte olan</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>Yürütülecek işi seçen mekanizma</td>
+</tr>
+<tr>
+<td>Section</td>
+<td>OpenMP&#39;de ekibe dağıtılacak iş bloğu</td>
+</tr>
+<tr>
+<td>Semaphore</td>
+<td>İzinleri ve gerekirse bekleyenleri yöneten eşzamanlama aracı</td>
+</tr>
+<tr>
+<td>Signal / wait</td>
+<td>İzin bırakma/uyandırma / izin alma-bekleme</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Çağrı çerçeveleri ve otomatik yerel verilerin yığını</td>
+</tr>
+<tr>
+<td>Suspend</td>
+<td>Yürütmeyi sonlandırmadan askıya alma</td>
+</tr>
+<tr>
+<td>Swapping</td>
+<td>Süreç/bellek içeriğini RAM ile disk arasında taşıma</td>
+</tr>
+<tr>
+<td>Thread</td>
+<td>Süreç içindeki yürütme akışı</td>
+</tr>
+<tr>
+<td>Time-out</td>
+<td>Verilen zaman diliminin dolması</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Thread&#39;e özel saklama alanı</td>
+</tr>
+<tr>
+<td>Transition</td>
+<td>Durumlar arasındaki geçiş</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="chapter" data-chapter="bolum-31"><h2 id="bolum-31">8. Mini deneme — 50 dakika, 100 puan</h2>
+<p>Bu dağılım <strong>çalışma amacıyla hazırlanmıştır</strong>, orijinal sınavın kalan sorularının tahmini değildir. Soru 1–3 biçimi görünen sınava; diğerleri notlardaki karşılaştırma ve hesaplara dayanır. Önce cevap anahtarını kapat.</p>
+<ol>
+<li><strong>(15 puan, 6 dk)</strong> Beş durumlu süreç diyagramını çiz, altı geçişi adlandır. Disk okuması tamamlanan sürecin neden doğrudan running olmadığını açıkla.</li>
+<li><strong>(15 puan, 6 dk)</strong> Altı thread, başlangıcı K=3 olan işaretli semaphore kullanıyor. S=-2, S=0 ve S=2 için izin sahibi, boş izin ve bekleyen sayısını yaz. Ardından S=-2 iken bir signal&#39;ın sonucu nedir?</li>
+<li><strong>(30 puan, 15 dk)</strong> 1000 elemanlı hazır bir dizinin çift indekslerini bir section, tek indekslerini başka section toplasın; sonuçlar tamamlandıktan sonra genel toplam bir kez yazılsın. OpenMP kodunu yaz.</li>
+<li><strong>(10 puan, 5 dk)</strong> Aynı süreçteki iki thread için aşağıdakileri ortak/özel ayır: kod, heap, global sayaç, PC, register bağlamı, stack. <code>x++</code> ifadesini tek başına kilitsiz kullanmanın neden riskli olduğunu açıkla.</li>
+<li><strong>(10 puan, 5 dk)</strong> 8 ULT&#39;nin 1 KLT&#39;ye bağlandığı sistemde 4 çekirdek var. Paralellik ve bloklayan çağrı etkisini açıkla. One-to-one&#39;a geçilince ne değişebilir?</li>
+<li><strong>(10 puan, 5 dk)</strong> Her birini sınıflandır: (a) T1 A&#39;yı tutup B&#39;yi, T2 B&#39;yi tutup A&#39;yı bekliyor. (b) T3&#39;e sürekli sıra gelmiyor, başkaları çalışıyor. (c) İki thread ortak sayacı okuyup aynı artırılmış değeri yazıyor. Ayrıca kimlik/yetki ayrımını örnekle.</li>
+<li><strong>(10 puan, 8 dk)</strong> (a) AX=3F2Ah için AH/AL? (b) Gerçek kip 1234:0010 fiziksel adresi? (c) Fetch&#39;ten sonraki adım? (d) Bir boş izin varken “kritik bölge tamamen boş” denebilir mi? (e) <code>GetCurrentProcessorNumber</code> PID mi verir?</li>
+</ol>
+<h3 id="bolum-32">Cevap anahtarı ve çözüm ölçütleri</h3>
+<p><strong>1:</strong> Ders 3&#39;teki beş durum ve altı ok. Puan önerisi: durumlar 5, geçişler 6, olay/CPU ayrımı açıklaması 4. I/O tamamlanması bekleme koşulunu kaldırır; scheduler/dispatch ile CPU alınır.</p>
+<p><strong>2:</strong> K=3 için S=-2: 3 izin sahibi, 0 boş, 2 bekleyen. S=0: 3,0,0. S=2: 1,2,0. Signal sonrası S=-1; bir bekleyen uyandırılır, bir bekleyen kalır. Tutulan izin sayısı devir sonrası 3 olabilir. Puan: her satır 4, signal 3. Eksi sayıyı içerideki kişi sayısı sanma.</p>
+<p><strong>3:</strong> Aşağıdaki fonksiyon hazır diziyi alır. Tam programda <code>stdio.h</code>/<code>omp.h</code> bulunur ve <code>main</code> bu fonksiyonu çağırır. <code>num_threads(2)</code> iki thread isteğidir; section kimlik eşlemesi sabit değildir.</p>
+<div class="code-shell"><div class="code-bar"><span>C / OpenMP</span><button class="copy-code" aria-label="Kodu kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Kopyala</span></button></div><pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;omp.h&gt;
+
+void cift_tek_topla(const int dizi[1000])
+{
+    long long cift = 0, tek = 0;
+    omp_set_dynamic(0);
+    #pragma omp parallel sections num_threads(2) shared(dizi, cift, tek)
+    {
+        #pragma omp section
+        {
+            for (int i = 0; i &lt; 1000; i += 2)
+                cift += dizi[i];
+        }
+        #pragma omp section
+        {
+            for (int i = 1; i &lt; 1000; i += 2)
+                tek += dizi[i];
+        }
+    }
+    printf(&quot;Toplam = %lld\n&quot;, cift + tek);
+}
+</code></pre></div>
+<p>Çift indeks 0,2,…,998; tek indeks 1,3,…,999. Her eleman tam bir kez, sınır aşılmadan kullanılır. Tek yazarlı ara toplamlar, beklemeden sonra birleştirme vardır. Puan önerisi: section yapısı 8, indeksler 8, başlatma/paylaşım 6, tamamlanma ve tek çıktı 6, C sözdizimi 2.</p>
+<p><strong>4:</strong> Ortak: kod, heap, global sayaç. Özel: PC, register bağlamı, stack. <code>x++</code> oku–değiştir–yaz adımlarında kayıp güncellemeye yol açabilir. Altı ayrım 6 puan; yarış açıklaması 4.</p>
+<p><strong>5:</strong> Many-to-one: tek kernel bağlamı bu 8 ULT&#39;yi dört çekirdeğe aynı anda dağıtamaz; bloklayan çağrı grubu durdurabilir. One-to-one: ayrı KLT&#39;lerle paralellik ve diğerlerinin ilerlemesi mümkün; ek yönetim maliyeti vardır. Çekirdeklerin ve işin uygunluğu gerekir; “kesin 8 kat hız” denmez. Her açıklama grubu 5 puan.</p>
+<p><strong>6:</strong> (a) deadlock; (b) starvation; (c) race condition/kayıp güncelleme. Kimlik: giriş yapanın kimliği; yetki: hangi kaydı düzenleyebildiği. Üç sınıflama 6, kimlik/yetki 4 puan. Livelock için aktif ama sonuçsuz tekrar gerekirdi.</p>
+<p><strong>7:</strong> (a) AH=3Fh, AL=2Ah. (b) 12350h. (c) Decode. (d) Hayır; kapasite örneğin 2 ise bir izin kullanılıyor olabilir. (e) Hayır; çağrı anındaki işlemci numarası. Her alt soru 2 puan.</p>
+<h3 id="bolum-33">Ek kısa soru bankası</h3>
+<ol>
+<li><strong>Soru:</strong> Süreç tablosunda PID var, PC yok. Kaldığı yerden devam için yeterli mi? <strong>Cevap:</strong> Hayır; PC/register gibi bağlam bilgisi gerekir.</li>
+<li><strong>Soru:</strong> Blocked/Suspend&#39;de olay bitiyor; sıradaki durum? <strong>Cevap:</strong> Ready/Suspend; tekrar etkinleştirilirse Ready.</li>
+<li><strong>Soru:</strong> Authentication başarılı, kullanıcının yetkisiz dosyayı silmesi engellenmiyor. <strong>Cevap:</strong> Authorization kontrolü eksik.</li>
+<li><strong>Soru:</strong> İki thread farklı dizileri aynı toplama algoritmasıyla işliyor. <strong>Cevap:</strong> Veri paralelliği örneği olabilir; yalnız thread sayısıyla tür belirlenmez, yapılan iş/veri ayrımı incelenir.</li>
+<li><strong>Soru:</strong> ULT kütüphanesi adıyla kernel eşlemesi kesin anlaşılır mı? <strong>Cevap:</strong> Hayır; API ve uygulama/eşleme ayrı kavramlardır.</li>
+<li><strong>Soru:</strong> Mutex açıldıktan sonra diğer thread kesin anında CPU alır mı? <strong>Cevap:</strong> Hayır; kilit kullanılabilirliği ve zamanlama ayrı konulardır.</li>
+<li><strong>Soru:</strong> 1000 eleman için <code>[0,499)</code> ve <code>[500,1000)</code> yeterli mi? <strong>Cevap:</strong> Hayır; 499. indeks eksik. İlk aralık <code>[0,500)</code> olmalı.</li>
+<li><strong>Soru:</strong> Örtük bariyer ile mutex&#39;in görevi aynı mı? <strong>Cevap:</strong> Hayır; biri tamamlanmayı bekler, diğeri eşzamanlı girişi dışlar.</li>
+</ol>
+</section>
+<section class="chapter" data-chapter="bolum-34"><h2 id="bolum-34">9. Sınavdan önce okunacak kısa tekrar</h2>
+<ol>
+<li>Process yalnız running değildir; ready ve blocked iken de vardır. Program pasif tarif, process yürütme örneğidir.</li>
+<li>Beş durum: <strong>New, Ready, Running, Blocked, Exit</strong>. Altı ok: admit, dispatch, time-out, event wait, event occurs, release.</li>
+<li><strong>Ready CPU; blocked olay bekler.</strong> I/O bitmesi blocked→ready&#39;dir.</li>
+<li>PCB sürecin kaydıdır; PID kimlik, PC komut konumu. Context switch: kaydet–güncelle–seç–yükle.</li>
+<li>Suspended ile blocked aynı değildir. Askıda olay bitse ready/suspend olunur.</li>
+<li>Thread&#39;ler kod/veri/heap/dosyaları paylaşır; PC/register/stack ayrı olur. Paylaşım hem kolaylık hem yarış riski getirir.</li>
+<li>Concurrency tek çekirdekte mümkündür; parallelism eşzamanlı yürütme ister. Veri paralelliğinde aynı işlem veri parçalarına uygulanır.</li>
+<li><code>x++</code> tek satır olsa da atomik olmak zorunda değildir. Koruma oku–değiştir–yazın tamamını kapsar.</li>
+<li>Dersin semaphore modeli: <strong>S&gt;0 boş izin, S=0 izin yok/kuyruk yok, S&lt;0 ise -S bekleyen</strong>. İçerideki sayıyı yorumlamak için başlangıç K&#39;yı kullan.</li>
+<li><strong>K=2:</strong> S=-2 → 2 izin sahibi+2 bekleyen; S=0 → 2 izin sahibi; S=1 → 1 izin sahibi+1 boş izin.</li>
+<li>Mutex tek sahipli kilit; counting semaphore çoklu izin sayacı. Kapasite 2, tek girişli mutual exclusion değildir.</li>
+<li>Dizi sorusu: <strong>0≤i&lt;500</strong>, <strong>500≤i&lt;1000</strong>. Ara toplamları sıfırla, tek yazarlı tut, herkes bitince birleştir.</li>
+<li><code>parallel sections</code>, iki <code>section</code>; printf dışarıda. Hangi thread&#39;in hangi section&#39;ı aldığı sabit varsayılmaz.</li>
+<li>Many-to-one: tek KLT sınırlaması; one-to-one: ayrı kernel zamanlaması. Pthreads adı tek başına ULT demek değildir.</li>
+<li>Deadlock bekleme döngüsü; livelock aktif ama sonuçsuz; starvation bir işe sıra gelmemesi.</li>
+<li>Fetch–Decode–Execute. AL/AX/EAX/RAX=8/16/32/64 bit. Gerçek kip adres=segment×10h+offset.</li>
+<li>Authentication “kimsin”, authorization “neye iznin var”. Kernel/user yetki ayrımı, 32/64 mimari ayrımıdır.</li>
+<li><code>kill -9 PID</code> otomatik çocuk ağacı sonlandırmaz; orphan ile zombie farklıdır.</li>
+</ol>
+<p><strong>Son kontrol:</strong> Diyagramı bakmadan çiz, K=2 için 4 wait&#39;i hesapla, iki section&#39;lı kodu yaz. Üçünü gerekçelendirerek yapamıyorsan kısa özeti ezberlemek yerine ilgili dersi tekrar çöz.</p>
+</section>
+<section class="chapter" data-chapter="bolum-35"><h2 id="bolum-35">10. Kaynak envanteri ve kapsama karşı kontrol</h2>
+<p>Aşağıdaki tablo 26 not fotoğrafının tamamının görsel incelemesinden çıkarılmıştır. Dosya adları kronolojik ders sırası kabul edilmedi. Her satırdaki ana içerik yukarıdaki derslerde karşılandı; tekrarlar birleştirildi.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Yatay kaydırılabilir tablo"><table>
+<thead>
+<tr>
+<th>Kod</th>
+<th>Kaynak dosya</th>
+<th>Görünen içerik / rehber karşılığı</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>K01</td>
+<td><code>WhatApp Image 2026-10-18 at 16.21.17.jpeg</code></td>
+<td>Creation/termination listesi, PID/PCB başlatma, native/bitlik, Notepad 10 sn ödevi, kill/zombie genellemeleri, askı şekli → Ders 5, 15</td>
+</tr>
+<tr>
+<td>K02</td>
+<td><code>WhatsA Image 2026-10-18 at 16.21.16.jpeg</code></td>
+<td>Yan duran sayfa; Notepad/WordPad, process bellek bölümleri, beş durum, PCB/context switch → Ders 2–4; editör farkı aşağıda</td>
+</tr>
+<tr>
+<td>K03</td>
+<td><code>WhatsApage 2026-10-18 at 16.21.19.jpeg</code></td>
+<td>Gauss boy örneği; parent/child, swapping, termination, thread stack/main → Ders 5–6, 18</td>
+</tr>
+<tr>
+<td>K04</td>
+<td><code>WhatsApp Ige 2026-10-18 at 16.21.18.jpeg</code></td>
+<td>Register genişlikleri, real/protected/long ve user/kernel, OS hedef/hizmetleri, thunk → Ders 1, 14–15; thunk aşağıda</td>
+</tr>
+<tr>
+<td>K05</td>
+<td><code>WhatsApp Image 20218 at 16.21.18.jpeg</code></td>
+<td>Bootstrap formülü, multicore güçlükleri, veri/görev paralelliği, dört süreç/thread şekli, ULT/KLT → Ders 6–7, 11, 18</td>
+</tr>
+<tr>
+<td>K06</td>
+<td><code>WhatsApp Image 2026-1-18 at 16.21.17.jpeg</code></td>
+<td>PCB, thread tanımı/faydaları, eşleme modelleri, OpenProcess, GetProcessVersion, işlemci numarası, WOW64 → Ders 4, 6, 11, 15</td>
+</tr>
+<tr>
+<td>K07</td>
+<td><code>WhatsApp Image 2026-10 16.21.17.jpeg</code></td>
+<td>Bilgisayar/OS/shell, BIOS/MBR, Bash/Explorer/GUI, shift, CPU/FPU/RAM → Ders 1, 13–14</td>
+</tr>
+<tr>
+<td>K08</td>
+<td><code>WhatsApp Image 2026-10- at 16.21.17.jpeg</code></td>
+<td>Critical section, deadlock, livelock, mutual exclusion, race, starvation, echo → Ders 8, 12</td>
+</tr>
+<tr>
+<td>K09</td>
+<td><code>WhatsApp Image 2026-10-18 a1.18.jpeg</code></td>
+<td>Tarayıcı multiprocess/izolasyon/sızıntı, authentication/authorization, RBAC/ABAC/ACL, katmanlar, session/token/MFA/OAuth → Ders 16</td>
+</tr>
+<tr>
+<td>K10</td>
+<td><code>WhatsApp Image 2026-10-18 a16.21.16.jpeg</code></td>
+<td>AX/AH/AL/EAX, bit genişlikleri, IP, user/kernel, kaynak ve OS hizmetleri → Ders 1, 13–14</td>
+</tr>
+<tr>
+<td>K11</td>
+<td><code>WhatsApp Image 2026-10-18 a16.21.17.jpeg</code></td>
+<td>Bus, fetch/decode/execute şekli, DOS komut döngüsü, running, terminal/console, kimlik/yetki → Ders 1, 3, 13, 16</td>
+</tr>
+<tr>
+<td>K12</td>
+<td><code>WhatsApp Image 2026-10-18 a16.21.18.jpeg</code></td>
+<td>BIOS/POST/MBR, thread/fiber, bus, opcode, register/segment/stack/IP, run–execute → Ders 13–14; K21 ile aynı sayfa</td>
+</tr>
+<tr>
+<td>K13</td>
+<td><code>WhatsApp Image 2026-10-18 at 11.18.jpeg</code></td>
+<td>Process tanımı/yönetimi/özellikleri, dispatcher, beş durum şekli → Ders 2–4</td>
+</tr>
+<tr>
+<td>K14</td>
+<td><code>WhatsApp Image 2026-10-18 at 16..16.jpeg</code></td>
+<td>Concurrency, atomic/critical, ilerleme sorunları, inline iddiası → Ders 8, 12</td>
+</tr>
+<tr>
+<td>K15</td>
+<td><code>WhatsApp Image 2026-10-18 at 16..17.jpeg</code></td>
+<td>Multicore güçlükleri, paralellik/concurrency çizimleri, pure ULT/KLT/hybrid, avantaj/dezavantaj, concurrency ilkeleri → Ders 7, 11–12</td>
+</tr>
+<tr>
+<td>K16</td>
+<td><code>WhatsApp Image 2026-10-18 at 16.21.16.jpeg</code></td>
+<td>Beş durumun İngilizce tanımları, altı transition, process table, PCB, context switch başlangıcı → Ders 3–4</td>
+</tr>
+<tr>
+<td>K17</td>
+<td><code>WhatsApp Image 2026-10-18 at 16.21.9.jpeg</code></td>
+<td>GetModuleBaseName, sistem süreç adları, DWORD/QWORD, pumping lemma parçası → Ders 14–15, 18; süreç adları aşağıda</td>
+</tr>
+<tr>
+<td>K18</td>
+<td><code>WhatsApp Image 2026-10-18 at 16.2118.jpeg</code></td>
+<td>Echo paylaşımlı veri/kilit, sayaç yarışı adım tabloları, semaphore negatif/sıfır/pozitif, mutex → Ders 8–9</td>
+</tr>
+<tr>
+<td>K19</td>
+<td><code>WhatsApp Image 2026-10-18 at 16.218.jpeg</code></td>
+<td>DOS debug/assembly, MOV/INT/INC/DEC/CMP/JNZ, register ayrımı, byte/nibble/DWORD → Ders 13–14</td>
+</tr>
+<tr>
+<td>K20</td>
+<td><code>WhatsApp Image 2026-10-18 at 161.18.jpeg</code></td>
+<td>OS ana alanları, gerçek adres ödevi, uni/multi-programming/processing/tasking/threading/hyperthreading, network OS → Ders 1, 7, 14</td>
+</tr>
+<tr>
+<td>K21</td>
+<td><code>WhatsApp Image 2026-10-18 at 1617.jpeg</code></td>
+<td>K12&#39;deki sayfanın daha geniş fotoğrafı; aynı içerik → Ders 13–14</td>
+</tr>
+<tr>
+<td>K22</td>
+<td><code>WhatsApp Image 2026-10-18 at.21.19.jpeg</code></td>
+<td>Single/multithread bellek şekilleri; user/kernel thread çizimi, thread context/stack, suspend/terminate etkisi → Ders 6, 11</td>
+</tr>
+<tr>
+<td>K23</td>
+<td><code>WhatsApp Image 2026-10-1at 16.21.19.jpeg</code></td>
+<td>Swap/pagefile, suspension nedenleri, termination listesi, thread tanımı → Ders 5–6</td>
+</tr>
+<tr>
+<td>K24</td>
+<td><code>WhatsApp Image 2026-10-1t 16.21.17.jpeg</code></td>
+<td>Thread library soruları, POSIX/Windows/Java, ULT/KLT avantaj/dezavantaj, spoofing/DNS/IP/ARP → Ders 11, 17</td>
+</tr>
+<tr>
+<td>K25</td>
+<td><code>WhatsApp Image 26-10-18 at 16.21.16.jpeg</code></td>
+<td>Yan duran kısa semaphore sayfası; negatif/sıfır/pozitif sayaç → Ders 9</td>
+</tr>
+<tr>
+<td>K26</td>
+<td><code>WhatsApp Image026-10-18 at 16.21.18.jpeg</code></td>
+<td>Thread faydaları, thread&#39;e ait durum/context/stack/storage, ortak process kaynakları, suspend/terminate → Ders 6</td>
+</tr>
+<tr>
+<td>Sınav</td>
+<td><code>sinavkagidi.jpeg</code></td>
+<td>Görünen üç açık uçlu soru → Bölüm 5</td>
+</tr>
+</tbody></table></div>
+<h3 id="bolum-36">Kısa ayrıntılar da kaybolmasın</h3>
+<ul>
+<li><strong>Notepad–WordPad:</strong> Nottaki amaç düz metin ile biçimli metni ayırmak. Notepad düz metin; WordPad geleneksel olarak RTF gibi biçimlendirilmiş metin örneğidir. Font/stil bilgisinin saklanması farkını bil; güncel bir Windows sürümünde bu uygulamanın kurulu olduğu varsayılmadı.</li>
+<li><strong>Thunk:</strong> Farklı çağrı düzenleri/arayüzler veya mimari bağlamlar arasında uyarlama yapan ara kod; sadece “16→32 bit, niceliği değil niteliği değiştirmek” diye tanımlamak eksik. Düşük öncelikli tamamlayıcı kavram.</li>
+<li><strong>Sistem süreç adları:</strong> K17&#39;de System (notta PID=4 örneği), <code>smss.exe</code>, <code>csrss.exe</code>, <code>lsass.exe</code> anılıyor. Çalışma amacıyla System=çekirdek/sistem işleri; smss=oturum yöneticisi; csrss=istemci/sunucu çalışma zamanı alt sistemi; lsass=yerel güvenlik yetkilisi olarak ayır. PID=4 gözlemi her OS&#39;deki bütün sistem süreçlerinin kimliği değildir. “Csrss bütün control panel işlemlerini yönetir” gibi geniş tanımlara dayanma.</li>
+<li><strong>Nibble:</strong> 4 bit; 1 byte iki nibble&#39;dır. AX&#39;teki AH/AL ise nibble değil, ayrı 8 bit byte&#39;lardır.</li>
+<li><strong>Hata dönüşleri:</strong> Nottaki “error 0=başarılı” ifadesi tüm API&#39;lere uygulanmaz. Bazı işlevler 0 başarı kodu kullanır; birçok Win32 BOOL işlevinde sıfır başarısızlıktır. Her API sözleşmesi farklı olabilir; Ders 15&#39;te örnek verildi.</li>
+<li><strong>ROM/FPU:</strong> ROM kalıcı/kolay değişmeyen firmware saklama kavramı; FPU floating-point unit (kayan nokta birimi). Nottaki “floating processing” yazımı yerine standart açılım kullanıldı. CPU/RAM/disk aynı şey değildir.</li>
+</ul>
+<h3 id="bolum-37">Düzeltmeler, ek bilgiler ve belirsizlik kaydı</h3>
+<p><strong>Notlardan korunan çekirdek:</strong> Beş durum ve altı geçişin adları, PCB&#39;nin üç bilgi grubu, askının iki ek durumu, thread faydalarının dört başlığı, multicore güçlükleri, üç thread eşleme modeli, negatif semaphore için kuyruk yorumu ve görünen assembly/adres örnekleri.</p>
+<p><strong>Notların birebir tekrarı olmayan ekler:</strong> Öğretici günlük hayat benzetmeleri; tüm yeni sorular/deneme ve cevaplar; semaphore için açık wait/signal sözde kodu ve formüller; OpenMP sözdizimi/çalışma zamanı ve bariyer açıklaması; örnek test dizisi; doğru/yanlış kod tabloları; gerçek C/C++ veri yarışı uyarısı; pumping lemma&#39;nın tamamlanmış standart biçimi. Bunlar hocanın aynen yazdığı içerik gibi sunulmadı.</p>
+<p><strong>Düzeltilen veya sınırlandırılan ifadeler:</strong> Thread&#39;in hiç özel belleği olmaması; kill/-9 ve çocukların otomatik ölmesi; orphan–zombie karışıklığı; S=1&#39;in kapasiteden bağımsız “tam boş” sayılması; user/kernel ile 32/64 bitin aynı sayılması; dispatcher&#39;ın tek bir yüksek öncelikli thread olarak tanımı; 32 bit=zorunlu 2 GB; long mode&#39;da bütün segmentlerin yok sayılması; sabit swap/pagefile boyutu; bütün OS&#39;lerin POSIX olması; inline=atomik veya sabit hız katsayısı; authentication–OAuth karışıklığı; ters DNS/RARP&#39;ın genel spoofing çözümü sayılması.</p>
+<p><strong>Uydurulmayanlar:</strong> Sınav fotoğrafının kesik sağ ucu, ikinci sorunun görünmeyen puanı, orijinal dizinin belirtilmeyen tüm elemanları, sonraki sınav soruları, notların kesik üst satırları ve belirsiz tarih/ders sırası.</p>
+<p><strong>Kontrol sonucu:</strong> 26 kaynak satırındaki ana konular derslerle eşleştirildi; yinelenen sayfa çift sayılmadı. Diyagramın altı geçişi kaynak şekillerle, semafor yorumu K18/K25&#39;teki kuyruk anlatımıyla ve başlangıç 2 bilgisiyle karşılaştırıldı. Dizi aralıklarının her elemanı bir kez kapsaması ve örnek toplamlar bağımsız hesapla kontrol edildi. Kod ortamda C/OpenMP derleyicisi bulunmadığından derlenmedi; çalışma testi yapıldığı iddia edilmiyor.</p>
+</section>
+<section class="chapter" data-chapter="bolum-38"><h2 id="bolum-38">11. Birlikte başlayacağımız ilk ders</h2>
+<p><strong>Önce Ders 1–2 ile başla, ardından hemen Ders 3&#39;e geç.</strong> Donanım ayrıntılarının tümünü öğrenmeyi bekleme: CPU&#39;nun iş yaptığı, OS&#39;nin kaynakları yönettiği ve process&#39;in beklerken de var olduğu fikri ilk diyagram için yeterlidir.</p>
+<p>İlk kısa dersimiz üç soruyla ilerleyebilir:</p>
+<ol>
+<li>Bir editör diskte dururken program mı, process mi?</li>
+<li>Editör açılmış fakat klavye girdisi beklerken hâlâ process mi?</li>
+<li>Girdi geldiğinde neden doğrudan running değil de önce ready oluyor?</li>
+</ol>
+<p>Bu üçünün gerekçesini kurduğunda diyagramı ezberlemek yerine olaylardan çıkarabilirsin. Sonra ayrı kısa dersler hâlinde PCB → thread belleği → concurrency/parallelism → yarış → semaphore → iki section&#39;lı kod sırasıyla ilerleriz.</p>
+</section></article><footer class="footer"><span>Paralel Programlama · Ders rehberi<br>Okuma konumu ve ilerlemen bu tarayıcıda saklanır. İstersen yedeğini indirebilirsin.</span><a href="#icerik">Başa dön ↑</a></footer></main></div><div class="toast" id="toast" role="status" hidden></div><script>/* Models are shared by the interactive lessons and the verification script. */
+const RehberModels = (() => {
+  function processFrames() {
+    return [
+      {state:'new', edge:'', title:'New: süreç oluşturuldu.', note:'Henüz hazır süreçler arasına kabul edilmedi.'},
+      {state:'ready',edge:'admit',title:'Admit → Ready',note:'Artık çalışmaya uygun; CPU sırasını bekliyor.'},
+      {state:'running',edge:'dispatch',title:'Dispatch → Running',note:'CPU verildi. Komutları şimdi yürütülüyor.'},
+      {state:'ready',edge:'timeout',title:'Time-out → Ready',note:'Zaman dilimi bitti. Bir I/O olayı değil, CPU bekliyor.'},
+      {state:'running',edge:'dispatch',title:'Dispatch → Running',note:'CPU tekrar verildi; kaldığı bağlamdan devam ediyor.'},
+      {state:'blocked',edge:'wait',title:'Event wait → Blocked',note:'Disk okuması istedi. CPU verilse bile önce bu olay tamamlanmalı.'},
+      {state:'ready',edge:'occurs',title:'Event occurs → Ready',note:'Disk işlemi bitti. Dikkat: doğrudan Running değil! CPU için tekrar sıra bekler.'},
+      {state:'running',edge:'dispatch',title:'Dispatch → Running',note:'Zamanlayıcı seçti, dispatcher CPU’yu devretti.'},
+      {state:'exit',edge:'release',title:'Release → Exit',note:'Süreç işini tamamladı ve sonlandı.'}
+    ];
+  }
+  function semaphoreFrames() {
+    let s=2, owners=[], queue=[];
+    const frames=[];
+    const snap=(title,note)=>frames.push({s,owners:[...owners],queue:[...queue],free:Math.max(s,0),title,note});
+    snap('Başlangıç: S = 2','İki boş izin var. Henüz kimse kritik bölge için izin almadı.');
+    for(let i=1;i<=4;i++){
+      const id='T'+i; s--;
+      if(s<0){queue.push(id);snap(id+' wait → S = '+s,id+' bekleme kuyruğuna girdi. Negatif sayının büyüklüğü bekleyen sayısını gösterir.');}
+      else{owners.push(id);snap(id+' wait → S = '+s,id+' bir izin aldı. '+Math.max(s,0)+' boş izin kaldı.');}
+    }
+    while(owners.length){
+      const leaving=owners.shift(); s++; const next=queue.shift(); if(next)owners.push(next);
+      snap(leaving+' signal → S = '+s,next?next+' uyandırıldı ve izin devredildi. Uyanması, hemen CPU aldığı anlamına gelmez.':'Bir izin serbest kaldı. Bekleme kuyruğu boş.');
+    }
+    return frames;
+  }
+  function raceFrames(locked=false){
+    const order=locked?['r1','i1','w1','r2','i2','w2']:['r1','r2','i1','i2','w1','w2'];
+    let x=0,a=null,b=null;
+    const frames=[{x,a,b,active:0,title:'Başlangıç: x = 0',note:locked?'Kilit, oku–artır–yazın tamamını koruyor.':'İki thread de x’i birer kez artıracak. Beklediğimiz sonuç: 2.'}];
+    for(const op of order){
+      const id=+op[1],which=id===1?'a':'b';
+      let value=which==='a'?a:b, title='';
+      if(op[0]==='r'){value=x;title='T'+id+' okudu: '+x;}
+      if(op[0]==='i'){value++;title='T'+id+' yerelde artırdı: '+value;}
+      if(op[0]==='w'){x=value;title='T'+id+' ortak x’e yazdı: '+x;}
+      if(which==='a')a=value;else b=value;
+      frames.push({x,a,b,active:id,title,note:op[0]==='w'?'Ortak bellek şimdi '+x+'.':'Ortak x henüz değişmedi; yerel kopya ile işlem yapılıyor.'});
+    }
+    frames.at(-1).note=locked?'Sonuç 2. Kilit işlemleri sıraya koydu; hiçbir güncelleme kaybolmadı.':'Sonuç 1! T2 eski kopyasını yazdı ve T1’in güncellemesi kayboldu. Bu, adım izleme modelidir; gerçek C/C++ veri yarışı tanımsız davranıştır.';
+    return frames;
+  }
+  function partitionFrames(){
+    return Array.from({length:7},(_,i)=>{
+      const a=Math.min(500,i*125),b=Math.min(500,i*100);
+      const sumA=a*(a+1)/2,sumB=b*(1001+b)/2;
+      return {a,b,sumA,sumB,done:i===6,title:i===0?'Dizi iki ayrık aralığa bölündü.':i===6?'Bariyer tamam: sonuçları birleştir.':i===5?'İki ara toplam da hazır.':i===4?'İlk section bitti; diğeri sürüyor.':'İki section kendi ara toplamını üretiyor.',note:i===6?'125250 + 375250 = 500500. Genel toplam yalnızca iki iş de bittikten sonra yazılır.':i>=4?'Bir section’ın erken bitmesi, diğerinin de bittiği anlamına gelmez.':'Test dizisi 1…1000. İlk aralık indeks 0–499, ikinci aralık 500–999. Her eleman tam bir kez işlenir.'};
+    });
+  }
+  function checkpointPosition(cp,anchorTop,maxScroll){return Math.max(0,Math.min(maxScroll,anchorTop+Math.max(-140,Number(cp.offset)||0)));}
+  return {processFrames,semaphoreFrames,raceFrames,partitionFrames,checkpointPosition};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=RehberModels;
+if(typeof document!=='undefined') (()=>{
+  'use strict';
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const STORE='paralel.study.v2';
+  let canSave=true,noticeTimer;
+  function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#toast').hidden=true,3200);}
+  function read(k,f){try{return JSON.parse(localStorage.getItem(k))??f;}catch{return f;}}
+  let legacy=read('paralel.completed',[]);
+  let state=read(STORE,{});
+  if(!state||typeof state!=='object'||Array.isArray(state))state={};
+  state={version:2,completed:Array.isArray(legacy)?legacy:[],theme:read('paralel.dark',false)?'dark':'light',font:16,reader:false,...state};
+  state.completed=Array.isArray(state.completed)?state.completed.map(String).filter(n=>+n>=1&&+n<=18):[];
+  state.font=Math.max(14,Math.min(20,Number(state.font)||16));
+  const initialCheckpoint=state.checkpoint?{...state.checkpoint}:null;
+  function saveStatus(ok){
+    $('#save-label').textContent=ok?'Otomatik kaydediliyor':'Kayıt kullanılamıyor';
+    $('#storage-label').textContent=ok?'Bu tarayıcıya otomatik kaydedilir':'Tarayıcı kaydı engelliyor. Yedek indir.';
+    $$('.live-save .dot,.storage-note .dot').forEach(d=>d.style.background=ok?'var(--cyan)':'#777777');
+  }
+  function persist(){try{localStorage.setItem(STORE,JSON.stringify(state));canSave=true;}catch{canSave=false;}saveStatus(canSave);return canSave;}
+  function applyTheme(){document.body.classList.toggle('light',state.theme==='light');$('#theme').setAttribute('aria-pressed',String(state.theme!=='light'));$('#theme').setAttribute('aria-label',state.theme==='light'?'Koyu temaya geç':'Açık temaya geç');}
+  function applyFont(){document.documentElement.style.setProperty('--text-size',state.font+'px');$('#font-label').textContent=state.font+' px';}
+  function progress(){
+    const done=new Set(state.completed);
+    $$('[data-complete]').forEach(b=>{const yes=done.has(b.dataset.complete);b.setAttribute('aria-pressed',String(yes));b.querySelector('span').textContent=yes?'Tamamlandı':'Tamamladım';b.title=yes?'Tamamlandı işaretini kaldır':'Dersi tamamlandı olarak işaretle';});
+    $$('.nav-links a[data-lesson-nav]').forEach(a=>a.classList.toggle('done',done.has(a.dataset.lessonNav)));
+    $('#progress-count').textContent=done.size+' / 18';$('#progress-fill').style.width=(done.size/18*100)+'%';$('#done-count').textContent=done.size;
+  }
+  $$('[data-complete]').forEach(b=>b.addEventListener('click',()=>{const n=b.dataset.complete,done=new Set(state.completed);done.has(n)?done.delete(n):done.add(n);state.completed=[...done];progress();persist();toast(!canSave?'Ders işaretlendi; tarayıcı kaydı engelliyor. Yedek indir.':done.has(n)?'Ders tamamlandı. İlerlemen kaydedildi.':'Ders yeniden çalışılacak olarak işaretlendi.');}));
+  applyTheme();applyFont();progress();document.body.classList.toggle('reader-mode',!!state.reader);
+  $('#focus').setAttribute('aria-pressed',String(!!state.reader));
+  $('#theme').onclick=()=>{state.theme=state.theme==='light'?'dark':'light';applyTheme();persist();};
+  $('#print').onclick=()=>window.print();
+  $('#font-minus').onclick=()=>{state.font=Math.max(14,state.font-1);applyFont();persist();};
+  $('#font-plus').onclick=()=>{state.font=Math.min(20,state.font+1);applyFont();persist();};
+  $('#focus').onclick=()=>{const y=$('#content-tools').getBoundingClientRect().top;state.reader=!state.reader;document.body.classList.toggle('reader-mode',state.reader);$('#focus').setAttribute('aria-pressed',String(state.reader));window.scrollBy({top:$('#content-tools').getBoundingClientRect().top-y,behavior:'instant'});persist();};
+  function closeMenu(){$('.sidebar').classList.remove('open');$('.overlay').classList.remove('open');$('#menu').setAttribute('aria-expanded','false');}
+  $('#menu').onclick=()=>{const open=$('.sidebar').classList.toggle('open');$('.overlay').classList.toggle('open',open);$('#menu').setAttribute('aria-expanded',String(open));};$('.overlay').onclick=closeMenu;
+  $$('[data-nav]').forEach(a=>a.addEventListener('click',closeMenu));
+  $$('.copy-code').forEach(b=>b.addEventListener('click',async()=>{const value=b.closest('.code-shell').querySelector('code').textContent;try{await navigator.clipboard.writeText(value);toast('Panoya kopyalandı');}catch{const t=document.createElement('textarea');t.value=value;document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Panoya kopyalandı':'Kopyalama izni yok; kodu seçerek kopyalayabilirsin.');}}));
+  const headings=$$('article h2,article h3');let ready=false,saveTimer,scrollPending=false;
+  function resumeUI(){const cp=state.checkpoint;const target=cp&&document.getElementById(cp.id);$('#resume-title').textContent=target?target.textContent:'İlk adım: işletim sistemini tanı';$('#resume-detail').textContent=target?'Ders ve sayfadaki konumun kaydedildi. Tam kaldığın noktaya dön.':'Konu anlatımlarını okumaya başladığında konumun otomatik kaydedilir.';$('#resume-text').textContent=target?'Kaldığım yerden devam et':'İlk derse başla';$('#resume-time').textContent=cp?.savedAt?'Son kayıt · '+new Date(cp.savedAt).toLocaleString('tr-TR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'18 kısa ders · kendi hızında çalış';}
+  function capture(){
+    if(!ready||document.visibilityState==='hidden'&&scrollY<100)return;
+    let current=null;
+    for(const h of headings){if(h.getBoundingClientRect().top<=145)current=h;else break;}
+    if(!current)return; // Dashboard ziyaretinde son okuma noktasını kaybetme.
+    const offset=scrollY-(current.getBoundingClientRect().top+scrollY);
+    state.checkpoint={id:current.id,offset:Math.max(-140,offset),hashAtSave:location.hash,savedAt:Date.now()};
+    persist();resumeUI();
+  }
+  function restore(cp){const el=cp&&document.getElementById(cp.id);if(!el)return false;const top=el.getBoundingClientRect().top+scrollY;const max=document.documentElement.scrollHeight-innerHeight;window.scrollTo({top:RehberModels.checkpointPosition(cp,top,max),behavior:'instant'});return true;}
+  $('#resume').onclick=()=>{if(!restore(state.checkpoint))document.querySelector('[data-lesson="1"] h3').scrollIntoView({behavior:'smooth',block:'start'});};
+  function scrollUpdate(){
+    const max=document.documentElement.scrollHeight-innerHeight;$('#reading-fill').style.width=(max>0?scrollY/max*100:0)+'%';
+    let current=headings[0];for(const h of headings){if(h.getBoundingClientRect().top<145)current=h;else break;}
+    const id=current?.id;$$('[data-nav]').forEach(a=>{const active=a.dataset.nav===id;a.classList.toggle('active',active);active?a.setAttribute('aria-current','location'):a.removeAttribute('aria-current');});
+    scrollPending=false;
+  }
+  addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(scrollUpdate);}if(ready){clearTimeout(saveTimer);saveTimer=setTimeout(capture,450);}},{passive:true});
+  addEventListener('pagehide',capture);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')capture();});
+  resumeUI();persist();
+  function initPosition(){requestAnimationFrame(()=>requestAnimationFrame(()=>{let requested='';try{requested=decodeURIComponent(location.hash.slice(1));}catch{requested=location.hash.slice(1);}if(initialCheckpoint&&(!requested||requested===initialCheckpoint.id||location.hash===initialCheckpoint.hashAtSave))restore(initialCheckpoint);else if(requested)document.getElementById(requested)?.scrollIntoView({behavior:'instant',block:'start'});ready=true;scrollUpdate();}));}
+  if(document.readyState==='complete')initPosition();else addEventListener('load',initPosition,{once:true});
+  $('#export-state').onclick=()=>{capture();const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='paralel-calisma-yedegi.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('İlerleme yedeği indirildi.');};
+  $('#import-state').onclick=()=>$('#import-file').click();
+  $('#import-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>100000)throw Error();const data=JSON.parse(await file.text());if(data.version!==2||!Array.isArray(data.completed))throw Error();state.completed=data.completed.map(String).filter(n=>+n>=1&&+n<=18);if(data.checkpoint&&document.getElementById(data.checkpoint.id))state.checkpoint={id:data.checkpoint.id,offset:Math.max(-140,Number(data.checkpoint.offset)||0),savedAt:Date.now()};progress();persist();resumeUI();toast('İlerlemen yedekten geri yüklendi.');}catch{toast('Geçerli bir Paralel çalışma yedeği seç.');}e.target.value='';};
+  const search=$('#search'),results=$('#results');
+  const index=headings.map(h=>{let texts=[],n=h.nextElementSibling;while(n&&!/^H[23]$/.test(n.tagName)){texts.push(n.textContent);n=n.nextElementSibling;}if(h.closest('.lesson-card'))texts=[h.closest('.lesson-card').querySelector('.lesson-body').textContent];return{id:h.id,title:h.textContent,text:texts.join(' ').replace(/\s+/g,' ')};});
+  const norm=s=>s.toLocaleLowerCase('tr');
+  search.addEventListener('input',()=>{const q=norm(search.value.trim());results.replaceChildren();if(q.length<2){results.hidden=true;return;}const found=index.filter(x=>norm(x.title+' '+x.text).includes(q)).slice(0,12);results.hidden=false;search.setAttribute('aria-expanded','true');if(!found.length){const p=document.createElement('p');p.className='no-results';p.textContent='Sonuç bulunamadı. Başka bir kavram dene.';results.append(p);}for(const x of found){const a=document.createElement('a');a.className='search-result';a.href='#'+x.id;a.textContent=x.title;const small=document.createElement('small'),pos=Math.max(0,norm(x.text).indexOf(q)-45);small.textContent=(pos?'…':'')+x.text.slice(pos,pos+145)+'…';a.append(small);a.onclick=()=>{results.hidden=true;search.blur();};results.append(a);}});
+  search.onkeydown=e=>{if(e.key==='Enter'){const a=results.querySelector('a');if(a){a.click();location.hash=a.hash;}}if(e.key==='ArrowDown'){const a=results.querySelector('a');if(a){e.preventDefault();a.focus();}}};
+  document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))results.hidden=true;});
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();search.focus();}if(e.key==='Escape'){results.hidden=true;closeMenu();search.blur();}});
+
+  /* Interactive explainers: deterministic states, motion between them. */
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let activeDemo=null;
+  function demoShell(title,stage,modes=''){return '<div class="demo-heading"><span class="demo-mark">ADIM ADIM</span><strong>'+title+'</strong>'+modes+'</div><div class="demo-stage">'+stage+'</div><p class="demo-note" aria-live="polite"><span class="note-title"></span><small class="note-detail"></small></p><div class="demo-controls"><button data-action="play" aria-pressed="false">▶ Oynat</button><button data-action="prev">← Geri</button><button data-action="next">Sonraki adım →</button><button data-action="reset" aria-label="Animasyonu başa al">↺ Başa al</button><span class="step-count"></span></div>';}
+  function controller(root,frames,render){
+    let at=0,timer=null;
+    const q=s=>root.querySelector(s);
+    function stop(){clearInterval(timer);timer=null;q('[data-action="play"]').textContent='▶ Oynat';q('[data-action="play"]').setAttribute('aria-pressed','false');}
+    function draw(){const f=frames[at];render(f,at);q('.note-title').textContent=f.title;q('.note-detail').textContent=f.note;q('.step-count').textContent=(at+1)+' / '+frames.length;q('[data-action="prev"]').disabled=at===0;q('[data-action="next"]').disabled=at===frames.length-1;if(at===frames.length-1)stop();}
+    const api={stop,replace(f){stop();frames=f;at=0;draw();}};
+    q('[data-action="play"]').onclick=()=>{if(timer){stop();return;}activeDemo?.stop();activeDemo=api;if(at===frames.length-1)at=0;q('[data-action="play"]').textContent='Ⅱ Duraklat';q('[data-action="play"]').setAttribute('aria-pressed','true');draw();timer=setInterval(()=>{if(at<frames.length-1){at++;draw();}else stop();},reduced?2500:1900);};
+    q('[data-action="next"]').onclick=()=>{stop();at=Math.min(at+1,frames.length-1);draw();};q('[data-action="prev"]').onclick=()=>{stop();at=Math.max(at-1,0);draw();};q('[data-action="reset"]').onclick=()=>{stop();at=0;draw();};
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+    if(typeof IntersectionObserver!=='undefined')new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();}).observe(root);
+    draw();return api;
+  }
+  const process=$('[data-demo="process"]');
+  if(process){
+    const boxes=[['new',20,58,'New'],['ready',177,58,'Ready'],['running',352,58,'Running'],['blocked',264,198,'Blocked'],['exit',520,58,'Exit']];
+    const paths=[['admit','M120 80H177',148,65,'admit'],['dispatch','M277 80H352',313,65,'dispatch'],['timeout','M402 58V23H227V58',310,16,'time-out'],['wait','M402 102V160H314V198',414,159,'event wait'],['occurs','M264 220H227V102',170,167,'event occurs'],['release','M452 80H520',486,65,'release']];
+    const svg='<svg class="process-diagram" viewBox="0 0 640 265" role="img" aria-label="Beş süreç durumu ve altı geçiş"><defs><marker id="state-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="var(--muted)"/></marker></defs><g>'+paths.map(([id,d,x,y,t])=>'<path class="edge" data-edge="'+id+'" d="'+d+'" marker-end="url(#state-arrow)"/><text x="'+x+'" y="'+y+'" text-anchor="middle">'+t+'</text>').join('')+boxes.map(([id,x,y,t])=>'<g class="state" data-state="'+id+'"><rect class="state-box" x="'+x+'" y="'+y+'" width="100" height="44" rx="11"/><text x="'+(x+50)+'" y="'+(y+27)+'" text-anchor="middle">'+t+'</text></g>').join('')+'<circle class="traveler" r="5" cx="0" cy="0" style="transition:transform .6s ease"/></g></svg>';
+    process.innerHTML=demoShell('Bir sürecin yolculuğu',svg);
+    controller(process,RehberModels.processFrames(),f=>{process.querySelectorAll('[data-state]').forEach(n=>n.classList.toggle('active',n.dataset.state===f.state));process.querySelectorAll('[data-edge]').forEach(n=>n.classList.toggle('active',n.dataset.edge===f.edge));const box=boxes.find(b=>b[0]===f.state);process.querySelector('.traveler').style.transform='translate('+(box[1]+50)+'px,'+(box[2]+44)+'px)';});
+  }
+  const sema=$('[data-demo="semaphore"]');
+  if(sema){
+    sema.innerHTML=demoShell('2 izin, 4 thread: sayaç ne anlatıyor?','<div class="sema-layout"><div class="sema-counter">Semaphore <b class="sema-value">2</b><span class="free-count"></span></div><div class="room"><div class="room-label">İZİN SAHİPLERİ · KAPASİTE 2</div><div class="room-tokens owners"></div></div><div class="room"><div class="room-label">BEKLEME KUYRUĞU</div><div class="room-tokens queue"></div></div></div>');
+    const fill=(el,list,cls)=>{el.replaceChildren();if(!list.length){const s=document.createElement('span');s.className='empty-slot';s.textContent='Kimse yok';el.append(s);}list.forEach(id=>{const s=document.createElement('span');s.className='thread-token '+cls;s.textContent=id;el.append(s);});};
+    controller(sema,RehberModels.semaphoreFrames(),f=>{sema.querySelector('.sema-value').textContent=f.s;sema.querySelector('.sema-value').style.color=f.s<0?'#aaaaaa':'var(--cyan)';sema.querySelector('.free-count').textContent=f.free+' boş izin · '+f.queue.length+' bekleyen';fill(sema.querySelector('.owners'),f.owners,'');fill(sema.querySelector('.queue'),f.queue,'waiting');});
+  }
+  const race=$('[data-demo="race"]');
+  if(race){
+    race.innerHTML=demoShell('İki artırma neden bazen yalnızca bir artış olur?','<div class="race-grid"><div class="worker" data-worker="1"><b>THREAD 01</b><div class="local">—</div><small>yerel kopya</small></div><div class="shared"><small>ORTAK x</small><b>0</b></div><div class="worker" data-worker="2"><b>THREAD 02</b><div class="local">—</div><small>yerel kopya</small></div></div>','<div class="demo-mode"><button data-lock="no" aria-pressed="true">Kilitsiz</button><button data-lock="yes" aria-pressed="false">Kilitli</button></div>');
+    const api=controller(race,RehberModels.raceFrames(false),f=>{race.querySelector('.shared b').textContent=f.x;race.querySelector('[data-worker="1"] .local').textContent=f.a??'—';race.querySelector('[data-worker="2"] .local').textContent=f.b??'—';race.querySelectorAll('[data-worker]').forEach(w=>w.classList.toggle('active',+w.dataset.worker===f.active));});
+    race.querySelectorAll('[data-lock]').forEach(b=>b.onclick=()=>{race.querySelectorAll('[data-lock]').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));api.replace(RehberModels.raceFrames(b.dataset.lock==='yes'));});
+  }
+  const parallel=$('[data-demo="parallel"]');
+  if(parallel){
+    const seq=[['T1','T2','T1','T2','T1','T2'],['T1','T1','T1','—','—','—'],['T2','T2','T2','—','—','—']];
+    parallel.innerHTML=demoShell('Sırayla ilerlemek ve aynı anda çalışmak','<div class="timeline">'+seq.map((row,i)=>'<div class="lane"><span class="lane-label">'+['TEK CPU','ÇEKİRDEK 1','ÇEKİRDEK 2'][i]+'</span><div class="ticks">'+row.map((t,j)=>'<span class="tick '+(t==='T2'?'teal':'')+'" data-tick="'+j+'">'+t+'</span>').join('')+'</div>').join('')+'<div class="time-axis">ZAMAN → · her kutu aynı süreyi temsil eder</div></div>');
+    const frames=Array.from({length:7},(_,i)=>({title:i===0?'İki işin de üç zaman birimi hesabı var.':i===3?'İki çekirdekte işler bitti; tek CPU’da işler sürüyor.':i===6?'Tek CPU da işleri tamamladı.':'Zaman birimi '+i,note:i>=3?'Üst satır: tek CPU iş değiştirir. Alt iki satır: T1 ve T2 gerçekten aynı anda ilerler. Süreler öğretici varsayımdır; her programda 2 kat hız garanti değildir.':'Concurrency tek çekirdekte mümkündür. Paralellikte ayrı yürütme kaynakları aynı anda çalışır.'}));
+    controller(parallel,frames,(_,i)=>parallel.querySelectorAll('[data-tick]').forEach(n=>n.classList.toggle('revealed',+n.dataset.tick<i)));
+  }
+  const array=$('[data-demo="array"]');
+  if(array){
+    array.innerHTML=demoShell('Diziyi böl → hesapla → bekle → birleştir','<div class="array-halves"><div class="array-part"><b>SECTION 01</b><br><small>İndeks 0–499 · 500 eleman</small><div class="array-track"><span></span></div><div class="partial-sum">0</div><small class="processed"></small></div><div class="array-part"><b>SECTION 02</b><br><small>İndeks 500–999 · 500 eleman</small><div class="array-track"><span></span></div><div class="partial-sum">0</div><small class="processed"></small></div></div><div class="join-result">GENEL TOPLAM<b>İşlerin bitmesi bekleniyor</b></div>');
+    controller(array,RehberModels.partitionFrames(),f=>{array.querySelectorAll('.array-part').forEach((el,i)=>{const count=i?f.b:f.a;el.querySelector('.array-track span').style.width=count/5+'%';el.querySelector('.partial-sum').textContent=(i?f.sumB:f.sumA).toLocaleString('tr-TR');el.querySelector('.processed').textContent=count+' / 500 eleman';});array.querySelector('.join-result b').textContent=f.done?'500.500':f.a===500&&f.b===500?'Hazır: şimdi birleştir':'İşlerin bitmesi bekleniyor';});
+  }
+})();
+</script></body></html>
