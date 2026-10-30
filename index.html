@@ -1650,6 +1650,8 @@ const StudyExperience=(()=>{
  }
  function init({state,persist,toast}){
    Object.assign(state,sanitize(state));state.version=3;
+   // Open in a single lesson even if an earlier session saved the full guide.
+   state.viewMode='single';
    const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
    const make=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;};
    const btn=(text,fn,cls='ux-button')=>{const el=make('button',cls,text);el.type='button';el.onclick=fn;return el;};
@@ -1678,13 +1680,13 @@ const StudyExperience=(()=>{
      if(scroll){target.scrollIntoView({behavior:'instant',block:'start'});}
      persist();return true;
    }
-   function goLesson(n){if(n<1||n>18)return;const id=cards[n-1].querySelector('h3').id;route(id,true);history.replaceState(null,'','#'+id);}
+   function goLesson(n){if(n<1||n>18)return;state.viewMode='single';const id=cards[n-1].querySelector('h3').id;route(id,true);history.replaceState(null,'','#'+id);}
    $('#previous-lesson').onclick=()=>goLesson(selected-1);$('#next-lesson').onclick=()=>goLesson(selected+1);
    $('#all-content').onclick=()=>{state.viewMode=state.viewMode==='all'?'single':'all';route(cards[selected-1].querySelector('h3').id,true);};
-   function navigateHash(){let id=location.hash.slice(1);try{id=decodeURIComponent(id);}catch{}if(id&&document.getElementById(id)?.closest('article'))route(id,true);else if(id==='icerik'){state.viewMode='all';route(cards[selected-1].querySelector('h3').id,false);$('#icerik').scrollIntoView({behavior:'instant'});}}
+   function navigateHash(){let id=location.hash.slice(1);try{id=decodeURIComponent(id);}catch{}if(id&&document.getElementById(id)?.closest('article')){state.viewMode='single';route(id,true);}else if(id==='icerik'){route(cards[selected-1].querySelector('h3').id,false);$('#icerik').scrollIntoView({behavior:'instant'});}}
    addEventListener('hashchange',navigateHash);
    // Capture clicks too: a hidden target cannot scroll correctly until it is revealed.
-   document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(document.getElementById(id)?.closest('article')){e.preventDefault();route(id,true);history.replaceState(null,'','#'+id);}});
+   document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(document.getElementById(id)?.closest('article')){e.preventDefault();state.viewMode='single';route(id,true);history.replaceState(null,'','#'+id);}});
    let startId=location.hash.slice(1);if(!document.getElementById(startId)?.closest('article'))startId=state.checkpoint?.id||cards[selected-1].querySelector('h3').id;
    route(startId,false);
 
